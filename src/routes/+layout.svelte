@@ -7,6 +7,8 @@ import '../app.css';
 import Header from '$lib/ui/header/NavBar.svelte';
 import Toasts from '$lib/ui/toasts/Toasts.svelte';
 
+export const prerender = true;
+
 onNavigate((navigation) => {
 	if (!document.startViewTransition) return;
 
