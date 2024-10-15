@@ -1,5 +1,6 @@
 <script lang="ts">
 import * as m from '$lib/paraglide/messages.js';
+import { base } from '$app/paths';
 
 import LanguageSelector from './LanguageSelector.svelte';
 import NavLink from './NavLink.svelte';
@@ -12,9 +13,9 @@ let scrollY: number;
 $: fixed = scrollY > 0;
 
 const links = [
-	{ href: '/', label: m.home },
-	{ href: '/posts', label: m.posts },
-	{ href: '/travel', label: m.travel }
+	{ href: `${base}/`, label: m.home },
+	{ href: `${base}/posts`, label: m.posts },
+	{ href: `${base}/travel`, label: m.travel }
 ];
 </script>
 

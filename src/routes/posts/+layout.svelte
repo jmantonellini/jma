@@ -1,7 +1,9 @@
 <script lang="ts">
+import { base } from '$app/paths';
+
+import type { Post } from '@prisma/client';
 import type { LayoutData } from './$types';
 import * as m from '$lib/paraglide/messages';
-import type { Post } from '@prisma/client';
 
 export let data: LayoutData;
 const orderedPosts = data?.posts.sort(
@@ -15,7 +17,7 @@ const orderedPosts = data?.posts.sort(
 		<div class="divider divider-secondary" />
 		<ul class="menu min-h-[40vh] text-base-content">
 			{#each orderedPosts as { slug, title }}
-				<li><a href="/posts/{slug}">{title}</a></li>
+				<li><a href={`${base}/posts/{slug}`}>{title}</a></li>
 			{/each}
 		</ul>
 	</aside>

@@ -5,6 +5,7 @@ import * as m from '$lib/paraglide/messages';
 import type { SubmitFunction } from '@sveltejs/kit';
 import { invalidateAll } from '$app/navigation';
 import { addToast } from '$stores/toast';
+import { base } from '$app/paths';
 
 let loading = false;
 
@@ -26,7 +27,7 @@ const createPost: SubmitFunction = () => {
 	<form
 		class="flex w-1/2 flex-col gap-2 lg:gap-4"
 		method="POST"
-		action="/posts?/createPost"
+		action={`${base}/posts?/createPost`}
 		use:enhance={createPost}
 	>
 		<label for="title" class="form-control">

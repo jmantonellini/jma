@@ -2,6 +2,7 @@
 import type { PageData } from './$types';
 import { languageTag } from '$lib/paraglide/runtime';
 import * as m from '$lib/paraglide/messages';
+	import { base } from '$app/paths';
 
 export let data: PageData;
 
@@ -25,8 +26,10 @@ let showEdit = false;
 		>
 			{post?.title ?? 'Untitled'}
 			{#if user?.id === post?.authorId}
-				<a title={m.edit()} href={`/posts/edit/${post.slug}`} class={`transition-opacity ${!showEdit && 'opacity-0'}`}
-					>🖋️</a
+				<a
+					title={m.edit()}
+					href={`${base}/posts/edit/${post.slug}`}
+					class={`transition-opacity ${!showEdit && 'opacity-0'}`}>🖋️</a
 				>
 			{/if}
 		</h1>

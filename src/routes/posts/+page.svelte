@@ -7,6 +7,7 @@ import type { SubmitFunction } from '@sveltejs/kit';
 import { addToast } from '$stores/toast';
 import { invalidateAll } from '$app/navigation';
 import Confirmation from '$lib/ui/modals/Confirmation.svelte';
+import { base } from '$app/paths';
 
 export let data: PageData;
 
@@ -48,7 +49,7 @@ const deletePost: SubmitFunction = () => {
 						</div>
 						<p>{post.description}</p>
 						<div class="card-actions justify-end">
-							<a href={`/posts/${post.slug}`} class="btn btn-primary">{m.read_post()}</a>
+							<a href={`${base}/posts/${post.slug}`} class="btn btn-primary">{m.read_post()}</a>
 						</div>
 					</div>
 				</div>

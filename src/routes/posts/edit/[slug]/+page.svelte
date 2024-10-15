@@ -4,6 +4,7 @@ import { enhance } from '$app/forms';
 
 import * as m from '$lib/paraglide/messages';
 import { page } from '$app/stores';
+import { base } from '$app/paths';
 
 export let data: PageData;
 const { post } = data;
@@ -12,7 +13,7 @@ const { post } = data;
 <main>
 	<form
 		class="grid grid-rows-[auto_1fr_auto] gap-2 lg:gap-4"
-		action="/posts?/editPost"
+		action={`${base}/posts?/editPost"`}
 		method="POST"
 		use:enhance
 	>
