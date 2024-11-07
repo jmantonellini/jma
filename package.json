@@ -16,7 +16,7 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"postinstall": "prisma generate"
+		"postinstall": "pnpx prisma generate"
 	},
 	"devDependencies": {
 		"@inlang/paraglide-js": "1.11.2",
