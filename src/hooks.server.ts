@@ -2,6 +2,7 @@ import { i18n } from '$lib/i18n';
 import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
+import { beforeUpdate } from 'svelte';
 
 export const userSession: Handle = async ({ event, resolve }) => {
 	const session = event.cookies.get('session');
@@ -30,9 +31,13 @@ export const userSession: Handle = async ({ event, resolve }) => {
 };
 
 export const themeHandler: Handle = async ({ event, resolve }) => {
+	let newTheme = null;
+	let cookiesTheme = null;
+	beforeUpdate(() => {
+		newTheme = event.url.searchParams.get('theme');
+		cookiesTheme = event.cookies.get('colortheme');
+	});
 	let theme: string | null = null;
-	const newTheme = event.url.searchParams.get('theme');
-	const cookiesTheme = event.cookies.get('colortheme');
 
 	if (newTheme) {
 		theme = newTheme;

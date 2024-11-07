@@ -19,7 +19,9 @@ onMount(() => {
 });
 
 const submitUpdateTheme: SubmitFunction = ({ action }) => {
-	const newTheme = action.searchParams.get('theme');
+	const params = new URLSearchParams(action.search);
+	const newTheme = params.get('theme');
+	console.log(action);
 
 	if (newTheme) {
 		document.documentElement.setAttribute('data-theme', newTheme);
@@ -28,7 +30,7 @@ const submitUpdateTheme: SubmitFunction = ({ action }) => {
 };
 </script>
 
-<form class="dropdown h-fit" method="POST" use:enhance={submitUpdateTheme}>
+<form class="dropdown h-fit" method="post" use:enhance={submitUpdateTheme}>
 	<button type="button" class="btn-sm lg:btn" aria-expanded="false" aria-controls="theme-options">
 		{theme}
 	</button>

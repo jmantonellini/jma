@@ -28,7 +28,7 @@ const register: SubmitFunction = () => {
 	<h2>{m.join_the_platform()} 🤗</h2>
 	<form
 		action="?/register"
-		method="POST"
+		method="post"
 		class="flex flex-col gap-4 lg:gap-8"
 		use:enhance={register}
 	>
