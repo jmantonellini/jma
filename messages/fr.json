@@ -28,5 +28,11 @@
 	"post_deleted": "Message supprimé",
 	"are_you_sure": "Tu es sûr de ça ?",
 	"delete_description": "Si vous supprimez ce message, il n'y aura pas de retour en arrière",
-	"delete_button": "Supprimer"
+	"delete_button": "Supprimer",
+	"travel_guide": "Guide de voyage",
+	"travel_description": "Cliquez sur n'importe quel pays visité pour accéder aux informations et recommandations pour vos voyages",
+	"read_more": "En savoir plus",
+	"other_countries": "Autres pays",
+	"published_at": "Publié à",
+	"volunteering": "Volontariat"
 }

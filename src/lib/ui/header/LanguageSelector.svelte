@@ -12,7 +12,7 @@ $: currentPathWithoutLanguage = i18n.route($page.url.pathname);
 
 function switchToLanguage(newLanguage: AvailableLanguageTag) {
 	const localisedPath = i18n.resolveRoute(currentPathWithoutLanguage, newLanguage);
-	goto(localisedPath);
+	goto(localisedPath, { invalidateAll: true });
 }
 
 const labels = {

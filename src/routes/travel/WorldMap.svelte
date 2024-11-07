@@ -2,11 +2,14 @@
 import { onMount } from 'svelte';
 import * as topojson from 'topojson-client';
 import * as d3 from 'd3';
-import world from './countries-110m.json';
+import world from '../../countries/countries-map.json';
 import type { Country } from '@prisma/client';
 
-export let visitedCountries: Country[];
-export let smallDevice: boolean;
+const { onSelectCountry, visitedCountries, smallDevice } = $props<{
+	onSelectCountry: (country: { name: string; code: string; flag: string } | null) => void;
+	visitedCountries: Country[];
+	smallDevice: boolean;
+}>();
 
 const width = 950;
 const height = 500;
@@ -18,16 +21,16 @@ let svg: any;
 let g: any;
 let countries: any;
 let mesh: any;
-let selected: any | null = null;
-
-const primaryColor = '#FE5F55';
-const secondaryColor = '#BDD5EA';
+let selected = $state<string | null>(null);
+let features = $state<any[]>([]);
 
 // Initialize zoom behavior
 const zoom = d3.zoom().scaleExtent([1, 8]).on('zoom', zoomed);
 
 const visitedCountryNames = new Set(
-	visitedCountries.filter((country) => country.visited).map((country) => country.name)
+	visitedCountries
+		.filter((country: Country) => country.visited)
+		.map((country: Country) => country.name)
 );
 
 onMount(async () => {
@@ -38,6 +41,7 @@ onMount(async () => {
 			.attr('viewBox', [0, 0, width, height])
 			.attr('width', '100%')
 			.attr('height', '100%')
+			.style('border', '2px solid oklch(var(--b1))')
 			.attr('preserveAspectRatio', 'xMidYMid meet')
 			.on('click', zoomSA)
 			.call(zoom);
@@ -45,7 +49,7 @@ onMount(async () => {
 		g = svg.append('g');
 
 		// Initialize countries and mesh after fetching the world data
-		let features = topojson.feature(world, world.objects.countries).features;
+		features = topojson.feature(world, world.objects.countries).features;
 
 		// Filter out Antarctica and Greenland
 		features = features.filter(
@@ -56,7 +60,7 @@ onMount(async () => {
 		if (features) {
 			countries = g
 				.append('g')
-				.attr('stroke', '#577399')
+				.attr('stroke', 'oklch(var(--p))')
 				.attr('cursor', 'pointer')
 				.selectAll('path')
 				.data(features)
@@ -64,23 +68,22 @@ onMount(async () => {
 				.attr('d', path)
 				.style('transition', 'all .4s ease')
 				.attr('fill', (d: any) =>
-					visitedCountryNames.has(d.properties.name) ? secondaryColor : 'transparent'
+					visitedCountryNames.has(d.properties.name) ? 'oklch(var(--s))' : 'transparent'
 				)
-				.on('click', (event, d) => {
+				.on('click', (event: MouseEvent, d: any) => {
 					if (visitedCountryNames.has(d.properties.name)) {
+						selected = d.properties.name;
 						clicked(event, d);
 					}
 				})
-				.on('mouseover', (event, d) => {
-					if (visitedCountryNames.has(d.properties.name)) {
-						d3.select(event.currentTarget).style('fill', primaryColor);
-						selected = d.properties.name;
+				.on('mouseover', (event: MouseEvent, d: any) => {
+					if (visitedCountryNames.has(d.properties.name) && selected !== d.properties.name) {
+						d3.select(event.currentTarget).style('fill', 'oklch(var(--pc))');
 					}
 				})
-				.on('mouseout', (event, d) => {
-					if (visitedCountryNames.has(d.properties.name)) {
-						d3.select(event.currentTarget).style('fill', secondaryColor);
-						selected = null;
+				.on('mouseout', (event: MouseEvent, d: any) => {
+					if (visitedCountryNames.has(d.properties.name) && selected !== d.properties.name) {
+						d3.select(event.currentTarget).style('fill', 'oklch(var(--s))');
 					}
 				});
 			mesh = topojson.mesh(world, countries, (a, b) => a !== b);
@@ -93,10 +96,11 @@ onMount(async () => {
 });
 
 function clicked(event: MouseEvent, d: any) {
-	const [[x0, y0], [x1, y1]] = path.bounds(d);
 	event.stopPropagation();
+	onSelectCountry(d.properties);
+	const [[x0, y0], [x1, y1]] = path.bounds(d);
 	countries.transition().style('fill', null);
-	d3.select(event.currentTarget).transition().style('fill', 'grey');
+	d3.select(event.currentTarget).transition().style('fill', 'oklch(var(--p))');
 	svg
 		.transition()
 		.duration(750)
@@ -120,7 +124,6 @@ function zoomSA() {
 	selected = null;
 	const southAmericaCoords = [-300, -410]; // Longitude and Latitude for South America
 	const initialScale = smallDevice ? 4 : 2.5;
-
 	svg
 		.transition()
 		.duration(750)
@@ -136,7 +139,7 @@ function zoomSA() {
 function reset() {
 	const southAmericaCoords = [-500, -300];
 	const initialScale = 1;
-
+	countries.transition().style('fill', null);
 	svg
 		.transition()
 		.duration(750)
@@ -147,11 +150,16 @@ function reset() {
 				.scale(initialScale)
 				.translate(southAmericaCoords[0], southAmericaCoords[1])
 		);
+	selected = null;
+	onSelectCountry(null);
 }
 </script>
 
-<div class="map-container relative h-[80vh] w-full lg:h-[50vh]">
-	<div class="absolute left-1/2 top-3 text-center">{selected ?? ''}</div>
-	<button class="btn btn-sm absolute left-10 top-3" on:click={reset}>Reset Zoom</button>
+<div class="map-container relative h-[70vh] w-full lg:h-[65vh]">
+	<button
+		class="btn btn-circle btn-ghost absolute bottom-2 left-1/2 text-xl opacity-50 transition-opacity hover:opacity-100"
+		onclick={reset}>🌎</button
+	>
+	<div class="absolute left-0 top-0 h-full pointer-events-none w-full shadow-[0_0_8px_20px_oklch(var(--b1))_inset]"></div>
 	<!-- SVG will be appended here by D3.js -->
 </div>

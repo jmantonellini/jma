@@ -13,7 +13,7 @@ const { post } = data;
 	<form
 		class="grid grid-rows-[auto_1fr_auto] gap-2 lg:gap-4"
 		action="/posts?/editPost"
-		method="POST"
+		method="post"
 		use:enhance
 	>
 		<label for="title" class="form-control w-full">

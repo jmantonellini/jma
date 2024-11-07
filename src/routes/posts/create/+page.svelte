@@ -24,7 +24,7 @@ const createPost: SubmitFunction = () => {
 	<h1>{m.create_post()}</h1>
 
 	<form
-		class="flex w-1/2 flex-col gap-2 lg:gap-4"
+		class="flex w-2/3 flex-col gap-2 lg:gap-4"
 		method="POST"
 		action="/posts?/createPost"
 		use:enhance={createPost}
@@ -59,10 +59,10 @@ const createPost: SubmitFunction = () => {
 			</div>
 			<textarea
 				name="content"
-				class="textarea textarea-primary textarea-md min-h-80 w-full resize-none"
+				class="textarea textarea-primary textarea-md min-h-60 w-full resize-none leading-5"
 				placeholder="Blog content"
 				required
-			/>
+			></textarea>
 		</label>
 		<button type="submit" class="btn btn-primary"
 			>{m.publish()}

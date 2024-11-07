@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider  = "postgresql"
@@ -10,58 +8,69 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model Category {
   id    Int    @id @default(autoincrement())
   slug  String @unique
   name  String
-  posts Post[]
+  posts Post[] @relation("CategoryToPost")
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   title       String
   content     String
   description String
   slug        String     @unique
   published   Boolean    @default(false)
-  author      User       @relation(fields: [authorId], references: [id])
   authorId    String
-  categories  Category[]
   tags        String[]
-  Comment     Comment[]
   coverImage  String?
+  Comment     Comment[]
+  author      User       @relation(fields: [authorId], references: [id])
+  categories  Category[] @relation("CategoryToPost")
 }
 
 model Country {
-  id      Int     @id @default(autoincrement())
-  name    String
-  code    String
-  visited Boolean @default(false)
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  code                String                @unique
+  visited             Boolean               @default(false)
+  CountryTranslations CountryTranslations[]
+}
+
+model Language {
+  id                  Int                   @id @default(autoincrement())
+  code                String                @unique
+  name                String
+  CountryTranslations CountryTranslations[]
+}
+
+model CountryTranslations {
+  id           Int      @id @default(autoincrement())
+  countryCode  String
+  languageCode String
+  frontPage    String
+  language     Language @relation(fields: [languageCode], references: [code])
+  country      Country  @relation(fields: [countryCode], references: [code])
 }
 
 model User {
-  id            String   @id @default(uuid())
-  username      String   @unique
+  id            String    @id @default(uuid())
+  username      String    @unique
   name          String?
   lastName      String?
   passwordHash  String
-  userAuthToken String   @unique
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  role          Role     @relation(fields: [roleId], references: [id])
-  roleId        BigInt   @default(1)
+  userAuthToken String    @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  roleId        BigInt    @default(1)
   picture       String?
   description   String?
-
-  Post    Post[]
-  Comment Comment[]
+  Comment       Comment[]
+  Post          Post[]
+  role          Role      @relation(fields: [roleId], references: [id])
 }
 
 model Role {
@@ -74,10 +83,9 @@ model Comment {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  content String
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  Int
-  user    User   @relation(fields: [userId], references: [id])
-  userId  String
+  content   String
+  postId    Int
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }

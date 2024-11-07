@@ -28,5 +28,11 @@
 	"post_deleted": "Postagem excluída",
 	"are_you_sure": "Você tem certeza disso?",
 	"delete_description": "Se você apagar esta postagem não há como voltar atrás",
-	"delete_button": "Excluir"
+	"delete_button": "Excluir",
+	"travel_guide": "Guia de viagem",
+	"travel_description": "Clique em qualquer país visitado para acessar informações e recomendações para suas viagens",
+	"read_more": "Ler mais",
+	"other_countries": "Outros países",
+	"published_at": "Publicado em",
+	"volunteering": "Voluntariado"
 }

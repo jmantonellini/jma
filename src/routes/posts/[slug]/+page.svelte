@@ -16,6 +16,10 @@ function formatDate(date: Date) {
 let showEdit = false;
 </script>
 
+<svelte:head>
+	<title>{post?.title ?? 'Post'}</title>
+</svelte:head>
+
 <main class="grid grid-rows-[auto_1fr] gap-2 lg:gap-4">
 	<hgroup>
 		<h1
@@ -25,8 +29,10 @@ let showEdit = false;
 		>
 			{post?.title ?? 'Untitled'}
 			{#if user?.id === post?.authorId}
-				<a title={m.edit()} href={`/posts/edit/${post.slug}`} class={`transition-opacity ${!showEdit && 'opacity-0'}`}
-					>🖋️</a
+				<a
+					title={m.edit()}
+					href={`/posts/edit/${post.slug}`}
+					class={`transition-opacity ${!showEdit && 'opacity-0'}`}>🖋️</a
 				>
 			{/if}
 		</h1>

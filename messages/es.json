@@ -28,5 +28,11 @@
 	"post_deleted": "Publicación eliminada",
 	"are_you_sure": "Estás seguro?",
 	"delete_description": "Si borras esta publicación no habrá vuelta atrás",
-	"delete_button": "Borrar"
+	"delete_button": "Borrar",
+	"travel_guide": "Guía de viaje",
+	"travel_description": "Haga clic en cualquier país visitado para acceder a información y recomendaciones para sus viajes.",
+	"read_more": "Leer más",
+	"other_countries": "Otros países",
+	"published_at": "Publicado en",
+	"volunteering": "Voluntariado"
 }

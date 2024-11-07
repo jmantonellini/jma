@@ -28,5 +28,11 @@
 	"post_deleted": "Post deleted",
 	"are_you_sure": "You sure about that?",
 	"delete_description": "If you delete this post there's no going back",
-	"delete_button": "Delete"
+	"delete_button": "Delete",
+	"travel_guide": "Travel guide",
+	"travel_description": "Click on any visited country to acces information and recommendations for your travels",
+	"read_more": "Read more",
+	"other_countries": "Other countries",
+	"published_at": "Published at",
+	"volunteering": "Volunteering"
 }

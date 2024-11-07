@@ -23,6 +23,10 @@ const deletePost: SubmitFunction = () => {
 };
 </script>
 
+<svelte:head>
+	<title>{m.posts()}</title>
+</svelte:head>
+
 <main class="w-full">
 	<ul class="flex flex-col items-center gap-3 lg:items-start">
 		{#each posts as post}

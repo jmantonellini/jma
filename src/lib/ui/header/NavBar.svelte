@@ -14,7 +14,8 @@ $: fixed = scrollY > 0;
 const links = [
 	{ href: '/', label: m.home },
 	{ href: '/posts', label: m.posts },
-	{ href: '/travel', label: m.travel }
+	{ href: '/travel', label: m.travel },
+	{ href: '/volunteering', label: m.volunteering }
 ];
 </script>
 
@@ -28,7 +29,7 @@ const links = [
 			<MenuIcon />
 		</div>
 		<ul
-			class="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 text-lg shadow"
+			class="menu dropdown-content menu-sm z-[1] mt-3 w-52 flex-nowrap rounded-box bg-base-100 p-2 text-lg shadow"
 		>
 			{#each links as { href, label }}
 				<NavLink href={href} label={label()} />
@@ -36,7 +37,7 @@ const links = [
 		</ul>
 	</div>
 	<ul
-		class="menu menu-horizontal hidden w-full items-center justify-center gap-2 text-lg lg:col-start-2 lg:flex"
+		class="menu menu-horizontal hidden w-full flex-nowrap items-center justify-center gap-2 text-lg lg:col-start-2 lg:flex"
 	>
 		{#each links as { href, label }}
 			<NavLink href={href} label={label()} />
