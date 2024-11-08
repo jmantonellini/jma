@@ -1,8 +1,12 @@
 import type { Actions } from '@sveltejs/kit';
+import { beforeUpdate } from 'svelte';
 
 export const actions: Actions = {
 	setTheme: async ({ url, cookies }) => {
-		const theme = url.searchParams.get('theme');
+		let theme = null;
+		beforeUpdate(() => {
+			theme = url.searchParams.get('theme');
+		});
 
 		if (theme) {
 			cookies.set('colortheme', theme, {
