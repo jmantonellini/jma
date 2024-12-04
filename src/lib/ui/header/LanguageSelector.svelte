@@ -27,7 +27,7 @@ const labels = {
 	<button tabindex="0" type="button" class="btn-sm lg:btn" aria-expanded="false">
 		{labels[languageTag()]}
 	</button>
-	<ul class="dropdown-content z-[1] mt-2 rounded-box bg-base-300 shadow-2xl">
+	<ul class="dropdown-content z-[1] mt-2 rounded-btn bg-base-300 shadow-2xl">
 		{#each availableLanguageTags as langTag}
 			<li>
 				<button

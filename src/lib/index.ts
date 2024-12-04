@@ -42,3 +42,7 @@ export function formatDate(date: string, dateStyle: DateStyle = 'medium', locale
 	}
 	return '';
 }
+
+export function sleep(ms: number) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}

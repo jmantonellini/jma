@@ -1,23 +1,26 @@
 <script lang="ts">
-import { applyAction } from '$app/forms';
-import type { PageData } from './$types';
-import * as m from '$lib/paraglide/messages';
 import type { SubmitFunction } from '@sveltejs/kit';
-
-import { addToast } from '$stores/toast';
+import { applyAction } from '$app/forms';
 import { invalidateAll } from '$app/navigation';
+import * as m from '$lib/paraglide/messages';
+
+import type { PageData } from './$types';
 import Confirmation from '$lib/ui/modals/Confirmation.svelte';
+import { getToastState } from '$states/toast.svelte';
+import { ToastTypeEnum } from '$lib/types';
 
 export let data: PageData;
 
 let dialog: HTMLDialogElement;
 let deleteId: number;
 
+const toastState = getToastState();
+
 $: ({ posts } = data);
 const deletePost: SubmitFunction = () => {
 	return async ({ result }) => {
 		invalidateAll();
-		addToast({ message: `${m.post_deleted()}! 👋🏼`, type: 'success' });
+		toastState.add(`${m.post_deleted()}! 👋🏼`, ToastTypeEnum.Success);
 		await applyAction(result);
 	};
 };
@@ -65,10 +68,15 @@ const deletePost: SubmitFunction = () => {
 		enhanceFunction={deletePost}
 		action={"?/deletePost"}
 		bind:dialog={dialog}
-		on:close={() => console.log('closed')}
 	>
-		<span slot="title">{m.are_you_sure()}</span>
-		<span slot="description">{m.delete_description()} 🥺</span>
-		<span slot="confirm">{m.delete_button()}</span>
+		{#snippet title()}
+			<span>{m.are_you_sure()}</span>
+		{/snippet}
+		{#snippet description()}
+			<span>{m.delete_description()} 🥺</span>
+		{/snippet}
+		{#snippet confirm()}
+			<span>{m.delete_button()}</span>
+		{/snippet}
 	</Confirmation>
 </main>

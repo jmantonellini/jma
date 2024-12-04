@@ -3,17 +3,12 @@ import { languageTag } from '$lib/paraglide/runtime';
 import type { MetaData, Post } from '$lib/types';
 
 async function getCountryPosts() {
-	console.log('GET COUNTRIES POST');
-
 	const posts: Post[] = [];
 	let paths;
   const lang = languageTag();
-	console.log('LANG 2 TAG', lang);
 	
 	switch (lang) {
 		case 'es':
-			console.log('ESPANIOL');
-
 			paths = import.meta.glob('/src/countries/*/*-es.md', { eager: true });
 			break;
 		case 'fr':
@@ -23,7 +18,6 @@ async function getCountryPosts() {
 			paths = import.meta.glob('/src/countries/*/*-pt.md', { eager: true });
 			break;
 		default:
-			console.log('INGLES');
 			paths = import.meta.glob('/src/countries/*/*-en.md', { eager: true });
 			break;
 	}

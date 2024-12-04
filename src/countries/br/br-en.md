@@ -10,6 +10,12 @@ categories:
 published: true
 ---
 
+<script context="module">
+    import Image from "$lib/ui/custom/Image.svelte";
+</script>
+
+<Image src="/src/countries/br/capoeira.png" alt="capoeira" description="Capoeira group in Itacaré, by Juanma Antonellini"/>
+
 ## Internet
 
 - Make sure I have internet, buy a SIM card

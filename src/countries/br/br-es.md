@@ -10,6 +10,12 @@ categories:
 published: true
 ---
 
+<script context="module">
+    import Image from "$lib/ui/custom/Image.svelte";
+</script>
+
+<Image src="/src/countries/br/capoeira.png" alt="capoeira" description="Grupo de capoeira en Itacaré, by Juanma Antonellini"/>
+
 ## Internet
 
 - Asegurarme que tengo internet, comprarme un chip

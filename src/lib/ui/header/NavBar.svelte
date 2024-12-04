@@ -15,7 +15,8 @@ const links = [
 	{ href: '/', label: m.home },
 	{ href: '/posts', label: m.posts },
 	{ href: '/travel', label: m.travel },
-	{ href: '/volunteering', label: m.volunteering }
+	{ href: '/volunteering', label: m.volunteering },
+	{ href: '/photos', label: m.photos }
 ];
 </script>
 
@@ -29,7 +30,7 @@ const links = [
 			<MenuIcon />
 		</div>
 		<ul
-			class="menu dropdown-content menu-sm z-[1] mt-3 w-52 flex-nowrap rounded-box bg-base-100 p-2 text-lg shadow"
+			class="menu dropdown-content menu-sm z-[1] mt-3 w-52 flex-nowrap rounded-btn bg-base-100 p-2 text-lg shadow"
 		>
 			{#each links as { href, label }}
 				<NavLink href={href} label={label()} />
@@ -55,5 +56,6 @@ header {
 	border-radius: 1rem;
 	z-index: 20;
 	transition: all 0.3s ease;
+	view-transition-name: header;
 }
 </style>

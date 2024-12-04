@@ -3,7 +3,6 @@ import { languageTag } from '$lib/paraglide/runtime.js';
 import * as m from '$lib/paraglide/messages.js';
 
 let { data, children } = $props();
-console.log('LANG 3 LAYOUT', languageTag());
 </script>
 
 <div

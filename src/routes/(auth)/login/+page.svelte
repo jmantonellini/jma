@@ -5,10 +5,12 @@ import { invalidateAll } from '$app/navigation';
 
 import * as m from '$lib/paraglide/messages.js';
 import type { SubmitFunction } from '@sveltejs/kit';
-import { addToast } from '$stores/toast';
+import { ToastTypeEnum } from '$lib/types';
+import { getToastState } from '$states/toast.svelte';
 
 export let form: ActionData;
 
+const toastState = getToastState();
 let loading = false;
 
 const login: SubmitFunction = () => {
@@ -17,7 +19,9 @@ const login: SubmitFunction = () => {
 	return async ({ result }) => {
 		invalidateAll();
 		loading = false;
-		addToast({ message: `${m.welcome()}! 😎`, type: 'success' });
+		result.status === 200 || result.status === 303
+			? toastState.add(`${m.welcome()}! 😎`, ToastTypeEnum.Success)
+			: toastState.add(`${m.something_wrong()} 😓`, ToastTypeEnum.Error);
 		await applyAction(result);
 	};
 };
@@ -25,12 +29,7 @@ const login: SubmitFunction = () => {
 
 <div class="flex w-full flex-col items-center justify-center space-y-8">
 	<h2>{m.welcome()}! 🥳</h2>
-	<form
-		class="mx-auto flex flex-col gap-4 lg:gap-8"
-		action="?/login"
-		method="POST"
-		use:enhance={login}
-	>
+	<form class="flex flex-col gap-2 lg:gap-4" action="?/login" method="post" use:enhance={login}>
 		<label for="username" class="form-control">
 			<div class="label">
 				<span class="label-text">{m.username()}</span>
@@ -45,11 +44,7 @@ const login: SubmitFunction = () => {
 		</label>
 
 		{#if form?.invalid}
-			<p class="error">Username and password is required.</p>
-		{/if}
-
-		{#if form?.credentials}
-			<p class="error">{m.wrong_credentials()}</p>
+			<p class="text-error">Username and password is required.</p>
 		{/if}
 
 		<button class="btn btn-primary" type="submit">
@@ -59,4 +54,7 @@ const login: SubmitFunction = () => {
 			{/if}
 		</button>
 	</form>
+	{#if form?.credentials}
+		<p class="text-error">{m.wrong_credentials()}</p>
+	{/if}
 </div>

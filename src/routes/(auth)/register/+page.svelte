@@ -1,12 +1,15 @@
 <script lang="ts">
 import type { SubmitFunction } from '@sveltejs/kit';
-import { addToast } from '$stores/toast';
 import { applyAction, enhance } from '$app/forms';
 import type { ActionData } from './$types';
 
 import * as m from '$lib/paraglide/messages';
+import { getToastState } from '$states/toast.svelte';
+import { ToastTypeEnum } from '$lib/types';
 
 export let form: ActionData;
+
+const toastState = getToastState();
 
 let showPassword = false;
 let loading = false;
@@ -18,7 +21,7 @@ const register: SubmitFunction = () => {
 
 	return async ({ result }) => {
 		loading = false;
-		addToast({ message: `${m.user_registered()}! 🥳`, type: 'success' });
+		toastState.add(`${m.user_registered()}! 🥳`, ToastTypeEnum.Success);
 		await applyAction(result);
 	};
 };

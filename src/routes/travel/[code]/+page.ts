@@ -6,7 +6,6 @@ export const load: PageLoad = async ({ params }) => {
 	try {
 		const code = params.code;
 		const lang = languageTag();
-		console.log('LANG', lang);
 
 		const post = await import(`/src/countries/${code}/${code}-${lang}.md`);
 

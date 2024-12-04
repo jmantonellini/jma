@@ -89,3 +89,11 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 }
+
+model Photo {
+  id  Int    @id @default(autoincrement())
+  url String
+  description String?
+  alt String?
+  author String?
+}

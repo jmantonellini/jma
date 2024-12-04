@@ -34,7 +34,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$ui: './lib/ui',
-			$stores: './src/stores'
+			$states: './src/states'
 		}
 	}
 };

@@ -160,6 +160,8 @@ function reset() {
 		class="btn btn-circle btn-ghost absolute bottom-2 left-1/2 text-xl opacity-50 transition-opacity hover:opacity-100"
 		onclick={reset}>🌎</button
 	>
-	<div class="absolute left-0 top-0 h-full pointer-events-none w-full shadow-[0_0_8px_20px_oklch(var(--b1))_inset]"></div>
+	<div
+		class="pointer-events-none absolute left-0 top-0 h-full w-full shadow-[0_0_8px_20px_oklch(var(--b1))_inset]"
+	></div>
 	<!-- SVG will be appended here by D3.js -->
 </div>

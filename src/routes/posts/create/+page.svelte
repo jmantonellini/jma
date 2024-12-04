@@ -4,9 +4,11 @@ import { applyAction, enhance } from '$app/forms';
 import * as m from '$lib/paraglide/messages';
 import type { SubmitFunction } from '@sveltejs/kit';
 import { invalidateAll } from '$app/navigation';
-import { addToast } from '$stores/toast';
+import { getToastState } from '$states/toast.svelte';
+import { ToastTypeEnum } from '$lib/types';
 
 let loading = false;
+const toastState = getToastState();
 
 const createPost: SubmitFunction = () => {
 	loading = true;
@@ -14,7 +16,7 @@ const createPost: SubmitFunction = () => {
 	return async ({ result }) => {
 		invalidateAll();
 		loading = false;
-		addToast({ message: `${m.post_created()}! 😎`, type: 'success' });
+		toastState.add(`${m.post_created()}! 😎`, ToastTypeEnum.Success);
 		await applyAction(result);
 	};
 };
@@ -25,7 +27,7 @@ const createPost: SubmitFunction = () => {
 
 	<form
 		class="flex w-2/3 flex-col gap-2 lg:gap-4"
-		method="POST"
+		method="post"
 		action="/posts?/createPost"
 		use:enhance={createPost}
 	>
