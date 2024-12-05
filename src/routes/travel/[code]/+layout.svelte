@@ -1,5 +1,4 @@
 <script lang="ts">
-import { languageTag } from '$lib/paraglide/runtime.js';
 import * as m from '$lib/paraglide/messages.js';
 
 let { data, children } = $props();

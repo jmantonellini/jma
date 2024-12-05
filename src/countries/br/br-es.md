@@ -11,10 +11,10 @@ published: true
 ---
 
 <script context="module">
-    import Image from "$lib/ui/custom/Image.svelte";
+    import PostImage from "$lib/ui/custom/PostImage.svelte";
 </script>
 
-<Image src="/src/countries/br/capoeira.png" alt="capoeira" description="Grupo de capoeira en Itacaré, by Juanma Antonellini"/>
+<PostImage src="/src/countries/br/capoeira.png" alt="capoeira" description="Grupo de capoeira en Itacaré, by Juanma Antonellini"/>
 
 ## Internet
 

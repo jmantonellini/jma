@@ -7,7 +7,8 @@ export const load: PageLoad = async ({ params }) => {
 		const code = params.code;
 		const lang = languageTag();
 
-		const post = await import(`/src/countries/${code}/${code}-${lang}.md`);
+		const paths = import.meta.glob(`/src/countries/${code}/*.md`, { eager: true, as: 'raw' });
+		const post = paths[`/src/countries/${code}/${code}-${lang}.md`];
 
 		if (!post) {
 			throw error(404, 'Country not found');
