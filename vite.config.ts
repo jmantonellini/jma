@@ -2,6 +2,7 @@ import { paraglide } from '@inlang/paraglide-sveltekit/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { enhancedImages } from '@sveltejs/enhanced-img';
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 
 export default defineConfig({
 	plugins: [
@@ -15,6 +16,18 @@ export default defineConfig({
 	server: {
 		fs: {
 			allow: ['./tailwind.config.cjs']
+		}
+	},
+	optimizeDeps: {
+		esbuildOptions: {
+			define: {
+				global: 'globalThis'
+			},
+			plugins: [
+				NodeGlobalsPolyfillPlugin({
+					buffer: true
+				})
+			]
 		}
 	}
 });

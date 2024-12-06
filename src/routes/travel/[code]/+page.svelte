@@ -24,7 +24,5 @@ const title = data.meta?.title;
 		{/each}
 	</div>
 
-	<div class="prose">
-		<data.content />
-	</div>
+	<div class="prose">{@html data.content}</div>
 </article>
