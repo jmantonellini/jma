@@ -5,6 +5,7 @@ import { enhancedImages } from '@sveltejs/enhanced-img';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 
 export default defineConfig({
+	assetsInclude: ['**/*.md'],
 	plugins: [
 		enhancedImages(),
 		paraglide({ project: './project.inlang', outdir: './src/lib/paraglide' }),
