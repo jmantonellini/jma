@@ -3,21 +3,24 @@ title: Bolivia 🇧🇴
 description: Highlands and carnivals
 date: '2024-10-26'
 categories:
-    - travel
-    - country
-    - bolivia
-    - latam
+  - travel
+  - country
+  - bolivia
+  - latam
 published: true
 ---
 
-![chuncho](/src/countries/bo/chuncho.jpg)
-*Chuncho from Tarija's San Roque festival, by Juanma Antonellini*
+<script context="module">
+    import PostImage from "$lib/ui/custom/PostImage.svelte";
+</script>
+
+<PostImage src="/src/countries/bo/chuncho.jpg" alt="chuncho" description="Chuncho de la fiesta de San Roque en Tarija, por Juanma Antonellini"/>
 
 The Bermejo border is super calm. Sleeper bus from Salta to Tarija $49000.
 
 Starting with Tarija is beautiful. Quiet and neat town. People are friendly and there's no feeling of insecurity. Food is plentiful and cheap. The **Pata y Perro hostel** is an excellent volunteering opportunity.
 
-*Proposed route*
+_Proposed route_
 
 1. **Tarija**
 1. **Tupiza**
@@ -61,10 +64,10 @@ Starting with Tarija is beautiful. Quiet and neat town. People are friendly and 
 ### Applications / Virtual Wallets
 
 - Wise doesn't work for withdrawing from ATMs, it has a VERY low exchange rate and charges VERY high fees:
-    - BCP ATM fee 55.70BS
-    - Mercantil Santa Cruz ATM fee 48.40BS
-    - Banco Sol ATM 200BS -> 29.11 USD (6.87USD) ❌
-    - BancoFie ATM 200BS -> 36.22USD ❌
+  - BCP ATM fee 55.70BS
+  - Mercantil Santa Cruz ATM fee 48.40BS
+  - Banco Sol ATM 200BS -> 29.11 USD (6.87USD) ❌
+  - BancoFie ATM 200BS -> 36.22USD ❌
 
 ## Food
 

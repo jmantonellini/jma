@@ -10,9 +10,11 @@ categories:
 published: true
 ---
 
-![chuncho](/src/countries/bo/chuncho.jpg)
-_Chuncho de la fiesta de San Roque en Tarija, por Juanma Antonellini_
+<script context="module">
+    import PostImage from "$lib/ui/custom/PostImage.svelte";
+</script>
 
+<PostImage src="/src/countries/bo/chuncho.jpg" alt="chuncho" description="Chuncho de la fiesta de San Roque en Tarija, por Juanma Antonellini"/>
 
 La frontera de Bermejo súper tranquila. Bus cama desde Salta a Tarija $49000.
 

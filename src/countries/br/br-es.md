@@ -3,10 +3,10 @@ title: Brasil 🇧🇷
 description: Un país de muchos países
 date: '2024-10-26'
 categories:
-    - travel
-    - country
-    - brasil
-    - south america
+  - travel
+  - country
+  - brasil
+  - south america
 published: true
 ---
 
@@ -29,20 +29,20 @@ published: true
 ## CPF
 
 - Es muy útil tener el CPF ya que te provee las siguientes ventajas:
-    - Usar PIX (una de las más importantes) para pagar como si fuera Mercado Pago en todos lados
-    - Te permite abrir cuentas bancarias, invertir, etc.
-    - Habilita para sacar un chip de celular
-    - 
+  - Usar PIX (una de las más importantes) para pagar como si fuera Mercado Pago en todos lados
+  - Te permite abrir cuentas bancarias, invertir, etc.
+  - Habilita para sacar un chip de celular
+  -
 - Hay que llevar una documentación al Bank of Brazil
 - Contacto de la señora que ayuda con los trámites en Arraial do Cabo:
 - Pasos para realizarlo:
-    1. Completar el [formulario](https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/default.asp)
-    2. Si ingresaste a Brasil con pasaporte ponés el número de pasaporte, si usaste el DNI ponés el DNI.
-    3. Poner el CEP y la dirección del hostel donde estés parando. (Lograduro: RUA)
-    4. Cuando termines te aparece este mensaje:
-        
-        ![CPF](/src/countries/br/cpf.png)
-        
+  1. Completar el [formulario](https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/default.asp)
+  2. Si ingresaste a Brasil con pasaporte ponés el número de pasaporte, si usaste el DNI ponés el DNI.
+  3. Poner el CEP y la dirección del hostel donde estés parando. (Lograduro: RUA)
+  4. Cuando termines te aparece este mensaje:
+
+<PostImage src="/src/countries/br/cpf.png" alt="CPF" description="Required document for ID"/>
+
     5. Seleccionar para impresión y guardarse una copia. Luego necesito llevarlo impreso.
     6. Ahora hay que ir a la “**Secretaria da Receita Federal do Brasil”** más cercana y presentar la documentación solicitada:
         1. Documento o pasaporte (lo que hayas usado para completar el form) y una copia del mismo
@@ -84,16 +84,16 @@ Me terminó sacando:
 
 ![IMG_2523.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b5ef7771-13c8-419f-9deb-38b3d86cfd22/b311d8b8-8ce0-47dc-823c-12c0379b0213/IMG_2523.png)
 
-| Reales | USD | Description |
-| --- | --- | --- |
-| 1020 | 218,54 | Santander |
-| 90 | 18,98 | Loja ropa |
-| 70 | 14,78 | Loja ropa |
-| 179 | 39,49 | Loja ropa |
-| 152 | 34,93 | Comida |
-| 152 | 32,10 | Loja ropa |
-| 210 | 46,37 | Riachuelo ropa |
-| 351 | 74,25 | Super EPA |
+| Reales | USD    | Description    |
+| ------ | ------ | -------------- |
+| 1020   | 218,54 | Santander      |
+| 90     | 18,98  | Loja ropa      |
+| 70     | 14,78  | Loja ropa      |
+| 179    | 39,49  | Loja ropa      |
+| 152    | 34,93  | Comida         |
+| 152    | 32,10  | Loja ropa      |
+| 210    | 46,37  | Riachuelo ropa |
+| 351    | 74,25  | Super EPA      |
 
 ### Aplicaciones / Billeteras virtuales
 
@@ -108,7 +108,7 @@ Me terminó sacando:
 - Uber con la tarjeta de Payo sí o sí (no me deja)
 - Tener cuidado en las ciudades grandes, si hay que ser sorete hay que serlo
 - Sirve mucho para encontrar viajes a varios lados: https://www.rome2rio.com/
-El tema horarios checkearlo con la página de la empresa.
+  El tema horarios checkearlo con la página de la empresa.
 - Facebook con grupos de la comunidad, ciudad, estado, etc. Unirme y hacer preguntas, ver cómo va la mano. Siempre aparece alguien que te da una mano.
 - **Bla bla car** para moverse a las playas más barato
 - **Buser** para micros de media/larga distancia
@@ -123,7 +123,7 @@ El tema horarios checkearlo con la página de la empresa.
 ## Coworking
 
 - [cwk.com.br](http://cwk.com.br/)
-- 
+-
 
 ## Contactos
 
@@ -145,9 +145,9 @@ El tema horarios checkearlo con la página de la empresa.
 - Debería estar todo apostillado en aproximadamente 5 días. Me llegó esa misma tarde.
 - Tuve que pagar 5,25 BRS más por cada uno. En total son otros: 10,5 BRS
 - Ahora con todo eso listo hay que juntar esta documentación:
-https://www.gov.br/pf/pt-br/assuntos/imigracao/autorizacao-residencia/acordo-de-residencia-brasil-e-argentina
+  https://www.gov.br/pf/pt-br/assuntos/imigracao/autorizacao-residencia/acordo-de-residencia-brasil-e-argentina
 
-![residencia](/src/countries/br/residencia.png)
+<PostImage src="/src/countries/br/residencia.png" alt="residence" description="Residence document"/>
 
 - Sacar un turno para que te atiendan en la Policia Federal
 - Como se ve en la image, hay que pagar dos trámites más de 168,13 BRS y 204,77 BRS.

@@ -3,10 +3,10 @@ title: Brasil 🇧🇷
 description: A country of many countries
 date: '2024-10-26'
 categories:
-    - travel
-    - country
-    - brasil
-    - south america
+  - travel
+  - country
+  - brasil
+  - south america
 published: true
 ---
 
@@ -29,18 +29,14 @@ published: true
 ## CPF
 
 - It's very useful to have the CPF as it provides the following advantages:
-    - Use PIX (one of the most important) to pay like Mercado Pago everywhere
-    - Allows you to open bank accounts, invest, etc.
-    - Enables you to get a cell phone SIM card
+  - Use PIX (one of the most important) to pay like Mercado Pago everywhere
+  - Allows you to open bank accounts, invest, etc.
+  - Enables you to get a cell phone SIM card
 - You need to bring documentation to the Bank of Brazil
 - Contact of the lady who helps with paperwork in Arraial do Cabo:
-- Steps to do it:
-    1. Complete the [form](https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/default.asp)
-    2. If you entered Brazil with a passport, put the passport number; if you used your ID, put the ID number.
-    3. Put the CEP and address of the hostel where you're staying. (Lograduro: RUA)
-    4. When you finish, this message appears:
-        
-        ![CPF](/src/countries/br/cpf.png)
+- Steps to do it: 1. Complete the [form](https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/default.asp) 2. If you entered Brazil with a passport, put the passport number; if you used your ID, put the ID number. 3. Put the CEP and address of the hostel where you're staying. (Lograduro: RUA) 4. When you finish, this message appears:
+
+<PostImage src="/src/countries/br/cpf.png" alt="CPF" description="Required document for ID"/>
         
     5. Select for printing and save a copy. Then you need to bring it printed.
     6. Now you have to go to the nearest "**Secretaria da Receita Federal do Brasil**" and present the requested documentation:
@@ -83,16 +79,16 @@ It ended up taking:
 
 ![IMG_2523.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b5ef7771-13c8-419f-9deb-38b3d86cfd22/b311d8b8-8ce0-47dc-823c-12c0379b0213/IMG_2523.png)
 
-| Reais | USD | Description |
-| --- | --- | --- |
-| 1020 | 218.54 | Santander |
-| 90 | 18.98 | Clothing store |
-| 70 | 14.78 | Clothing store |
-| 179 | 39.49 | Clothing store |
-| 152 | 34.93 | Food |
-| 152 | 32.10 | Clothing store |
-| 210 | 46.37 | Riachuelo clothing |
-| 351 | 74.25 | EPA Supermarket |
+| Reais | USD    | Description        |
+| ----- | ------ | ------------------ |
+| 1020  | 218.54 | Santander          |
+| 90    | 18.98  | Clothing store     |
+| 70    | 14.78  | Clothing store     |
+| 179   | 39.49  | Clothing store     |
+| 152   | 34.93  | Food               |
+| 152   | 32.10  | Clothing store     |
+| 210   | 46.37  | Riachuelo clothing |
+| 351   | 74.25  | EPA Supermarket    |
 
 ### Applications / Virtual Wallets
 
@@ -107,7 +103,7 @@ It ended up taking:
 - Uber with the Payo card for sure (it doesn't let me)
 - Be careful in big cities, if you need to be tough, be tough
 - Very useful for finding trips to various places: https://www.rome2rio.com/
-Check the schedules with the company's website.
+  Check the schedules with the company's website.
 - Facebook with community, city, state groups, etc. Join and ask questions, see how things are going. Someone always appears to give you a hand.
 - **Bla bla car** to move to beaches cheaper
 - **Buser** for medium/long distance buses
@@ -143,9 +139,9 @@ Check the schedules with the company's website.
 - Everything should be apostilled in approximately 5 days. I received it that same afternoon.
 - I had to pay 5.25 BRS more for each one. In total, it's another: 10.5 BRS
 - Now with all that ready, you have to gather this documentation:
-https://www.gov.br/pf/pt-br/assuntos/imigracao/autorizacao-residencia/acordo-de-residencia-brasil-e-argentina
+  https://www.gov.br/pf/pt-br/assuntos/imigracao/autorizacao-residencia/acordo-de-residencia-brasil-e-argentina
 
-![residence](/src/countries/br/residencia.png)
+<PostImage src="/src/countries/br/residencia.png" alt="residence" description="Residence document"/>
 
 - Make an appointment to be attended at the Federal Police
 - As seen in the image, you have to pay two more fees of 168.13 BRS and 204.77 BRS.
