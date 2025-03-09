@@ -21,7 +21,6 @@ let expanded = $state(0);
 async function rotate() {
 	if (expanded > 0) {
 		retract();
-		console.log('SLEEP');
 
 		await sleep(500);
 	}
@@ -33,7 +32,6 @@ async function rotate() {
 function expand() {
 	expanded = selected;
 	onExpand(true);
-	console.log('EXPAND');
 }
 
 function retract() {

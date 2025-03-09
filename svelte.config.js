@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { escapeSvelte, mdsvex } from 'mdsvex';
 import { createHighlighter } from 'shiki';
@@ -25,7 +25,12 @@ const mdsvexOptions = {
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	extensions: ['.svelte', '.md'],
-	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
+	preprocess: [
+		vitePreprocess({
+			script: true
+		}),
+		mdsvex(mdsvexOptions)
+	],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

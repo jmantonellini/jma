@@ -8,7 +8,6 @@ import * as m from '$lib/paraglide/messages.js';
 let { data } = $props<{ photos: Photo[] }>();
 let dialog: HTMLDialogElement;
 const photos = data.photos;
-console.log('PHOTOS', photos);
 </script>
 
 <div class="flex w-full flex-col items-center px-2 lg:px-4">

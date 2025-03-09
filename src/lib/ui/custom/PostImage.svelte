@@ -5,6 +5,7 @@
     description?: string;
   };
   const { src, alt, description }: Props = $props();
+  
   </script>
   
   <div class="flex w-full flex-col gap-2">

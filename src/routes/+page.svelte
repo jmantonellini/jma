@@ -14,10 +14,7 @@ function onSelect(id: number) {
 }
 
 function onExpand(value: boolean) {
-	console.log('EXPAND 2');
-	console.log('SELECTED', selected);
 	expanded = value;
-	console.log('EXPANDED', expanded);
 }
 
 onMount(() => {

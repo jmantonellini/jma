@@ -1,22 +1,23 @@
 <script lang="ts">
 import { capitalize, formatDate } from '$lib';
 import * as m from '$lib/paraglide/messages';
-import { marked } from "marked";
-
+	import { languageTag } from '$lib/paraglide/runtime.js';
+import { marked } from 'marked';
 
 let { data } = $props();
-const title = data?.title;
+const lang = languageTag();
+
 </script>
 
 <svelte:head>
-	<title>{title}</title>
+	<title>{data.title}</title>
 	<meta property="og:type" content="article" />
-	<meta property="og:title" content={title} />
+	<meta property="og:title" content={data.title} />
 </svelte:head>
 
 <article class="flex flex-col gap-4">
 	<hgroup>
-		<h1>{title}</h1>
+		<h1>{data.title}</h1>
 		<p class="opacity-50">{m.published_at()} {formatDate(data?.date)}</p>
 	</hgroup>
 
