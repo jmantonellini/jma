@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output = "src/generated/prisma/client"
 }
 
 datasource db {
@@ -91,9 +92,9 @@ model Comment {
 }
 
 model Photo {
-  id  Int    @id @default(autoincrement())
-  url String
+  id          Int     @id @default(autoincrement())
+  url         String
   description String?
-  alt String?
-  author String?
+  alt         String?
+  author      String?
 }
