@@ -1,10 +1,10 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
+COPY prisma ./prisma
 RUN npm i -g pnpm
-RUN pnpm i
+RUN pnpm install
 RUN pnpm run postinstall
-COPY . .
 RUN pnpm run build
 RUN pnpm prune --production
 
