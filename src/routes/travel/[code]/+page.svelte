@@ -1,11 +1,9 @@
 <script lang="ts">
 import { capitalize, formatDate } from '$lib';
 import * as m from '$lib/paraglide/messages';
-	import { languageTag } from '$lib/paraglide/runtime.js';
 import { marked } from 'marked';
 
 let { data } = $props();
-const lang = languageTag();
 
 </script>
 

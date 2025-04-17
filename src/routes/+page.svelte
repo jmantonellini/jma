@@ -2,8 +2,8 @@
 import RotationBlocks from '$lib/ui/custom/RotationBlocks.svelte';
 import { onMount } from 'svelte';
 import { fade, fly } from 'svelte/transition';
-// import me from '$lib/images/me.webp';
 import Socials from '$lib/ui/socials/Socials.svelte';
+import * as m from '$lib/paraglide/messages';
 
 let selected = $state(0);
 let expanded = $state(false);
@@ -32,7 +32,11 @@ onMount(() => {
 
 <RotationBlocks onSelect={onSelect} onExpand={onExpand}>
 	{#snippet block1()}
-		<div class="text-[15cqw] font-bold leading-none">Hi</div>
+		<div class="@container">
+			<p class="text-[6cqw] font-bold leading-none">
+				{m.hi()}
+			</p>
+		</div>
 	{/snippet}
 	{#snippet block2()}
 		<div class="relative flex h-full flex-col justify-between leading-none">
@@ -82,10 +86,9 @@ onMount(() => {
 		</div>
 	{/snippet}
 	{#snippet block3()}
-		<span class="text-[1.5cqw] leading-tight font-bold">
-			I love traveling and learning about stuff
-			Some of my interests are technology 💻, photography 📷 &
-			knowledge sharing 📖
+		<span class="text-[1.5cqw] font-bold leading-tight">
+			I love traveling and learning about stuff Some of my interests are technology 💻, photography
+			📷 & knowledge sharing 📖
 		</span>
 	{/snippet}
 	{#snippet block4()}

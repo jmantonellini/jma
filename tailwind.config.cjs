@@ -58,7 +58,7 @@ export default {
 			}
 		}
 	},
-	plugins: [tailwindTypography, daisyui],
+	plugins: [tailwindTypography, daisyui, import('@tailwindcss/container-queries')],
 	daisyui: {
 		themes: [
 			{
