@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma
 COPY vite.config.ts ./
+COPY . .
 RUN npm i -g pnpm
 RUN pnpm install
 RUN pnpm run postinstall
