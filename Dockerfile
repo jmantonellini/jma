@@ -1,7 +1,8 @@
 FROM node:22-alpine AS builder
-WORKDIR /src
+WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma
+COPY vite.config.ts /src/vite.config.ts
 RUN npm i -g pnpm
 RUN pnpm install
 RUN pnpm run postinstall
@@ -9,7 +10,7 @@ RUN pnpm run build
 RUN pnpm prune --production
 
 FROM node:22-alpine
-WORKDIR /src
+WORKDIR /app
 COPY --from=builder /app/build build/
 COPY --from=builder /app/node_modules node_modules/
 COPY package.json .
