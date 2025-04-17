@@ -2,7 +2,7 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma
-COPY vite.config.ts /src/vite.config.ts
+COPY vite.config.ts ./
 RUN npm i -g pnpm
 RUN pnpm install
 RUN pnpm run postinstall
