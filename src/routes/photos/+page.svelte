@@ -6,7 +6,7 @@ import Add from '$lib/icons/Add.svelte';
 import * as m from '$lib/paraglide/messages.js';
 
 let { data } = $props<{ photos: Photo[] }>();
-let dialog: HTMLDialogElement;
+let dialog: HTMLDialogElement = $state(null) as HTMLDialogElement | unknown as HTMLDialogElement;
 const photos = data.photos;
 </script>
 
