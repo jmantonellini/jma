@@ -1,17 +1,29 @@
-Dockerfile
-.dockerignore
+# Archivos de control de versiones y config
 .git
 .gitignore
 .gitattributes
-README.md
 .npmrc
 .prettierrc
-.eslintrc.cjs
-.graphqlrc
+.eslintrc.*
 .editorconfig
-.svelte-kit
 .vscode
+README.md
+
+# Archivos de salida de build
+.svelte-kit
 node_modules
 build
 package
+dist
+
+# Configs y temporales innecesarios
+Dockerfile
+.dockerignore
+
+# Archivos sensibles
 **/.env
+.env
+.env.*
+
+# Prisma output (si ya lo generás dentro del contenedor)
+prisma/generated
