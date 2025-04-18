@@ -26,4 +26,4 @@ jobs:
           caprover deploy \
             --caproverUrl $CAPROVER_URL \
             --caproverApp $CAPROVER_APP \
-            --caproverToken $CAPROVER_TOKEN
+            --caproverPassword $CAPROVER_TOKEN
