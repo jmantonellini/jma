@@ -55,4 +55,4 @@ jobs:
           server: https://eco-sistema.net
           app: jma
           token: ${{ secrets.APP_TOKEN }}
-          image: ghcr.io/jmantonellini/jma:main
+          image: ghcr.io/jmantonellini/jma:latest
