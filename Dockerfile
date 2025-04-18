@@ -22,7 +22,7 @@ RUN pnpm run postinstall
 RUN ls -la node_modules/.pnpm/@prisma+client*/node_modules/@prisma/client
 
 # Build y limpieza
-RUN pnpx svelte-kit sync
+RUN pnpm exec svelte-kit sync
 RUN pnpm run build
 RUN pnpm prune --production
 
