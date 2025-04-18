@@ -1,4 +1,4 @@
-name: Deploy to CapRover via CLI
+name: Deploy to CapRover
 
 on:
   push:
@@ -10,20 +10,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      CAPROVER_URL: https://eco-sistema.net
+      CAPROVER_APP: jma
+      CAPROVER_PASSWORD: ${{ secrets.APP_TOKEN }}
+
     steps:
-      - name: 📥 Checkout repo
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 🧰 Install CapRover CLI
+      - name: Install CapRover CLI
         run: npm install -g caprover
 
-      - name: 🚀 Deploy to CapRover
-        env:
-          CAPROVER_URL: https://eco-sistema.net
-          CAPROVER_APP: jma
-          CAPROVER_TOKEN: ${{ secrets.APP_TOKEN }}
+      - name: Deploy to CapRover
         run: |
           caprover deploy \
             --caproverUrl $CAPROVER_URL \
             --caproverApp $CAPROVER_APP \
-            --caproverPassword $CAPROVER_TOKEN
+            --caproverPassword $CAPROVER_PASSWORD
