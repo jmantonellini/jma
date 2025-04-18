@@ -19,9 +19,10 @@ RUN pnpm install
 RUN pnpm run postinstall
 
 # 🔍 Verificamos que Prisma haya generado el cliente
-RUN ls -la node_modules/.prisma/client || echo "⚠️ Prisma client NO generado"
+RUN ls -la node_modules/.pnpm/@prisma+client*/node_modules/@prisma/client
 
 # Build y limpieza
+RUN pnpx svelte-kit sync
 RUN pnpm run build
 RUN pnpm prune --production
 
