@@ -1,4 +1,4 @@
-name: Deploy to CapRover (no GHCR)
+name: Deploy to CapRover via CLI
 
 on:
   push:
@@ -11,10 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🧰 Install CapRover CLI
+        run: npm install -g caprover
+
       - name: 🚀 Deploy to CapRover
-        uses: caprover/deploy-from-github@v1.1.2
-        with:
-          server: https://eco-sistema.net
-          app: jma
-          token: ${{ secrets.APP_TOKEN }}
-          branch: main
+        env:
+          CAPROVER_URL: https://eco-sistema.net
+          CAPROVER_APP: jma
+          CAPROVER_TOKEN: ${{ secrets.APP_TOKEN }}
+        run: |
+          caprover deploy \
+            --caproverUrl $CAPROVER_URL \
+            --caproverApp $CAPROVER_APP \
+            --caproverToken $CAPROVER_TOKEN
