@@ -46,5 +46,7 @@ RUN npx prisma generate
 ENV NODE_ENV=production
 EXPOSE 3000
 
+RUN ls -la ./build
+
 # Comando final
-CMD ["node", "build"]
+CMD ["node", "build/index.js"]
