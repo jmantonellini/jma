@@ -37,5 +37,7 @@ RUN npx prisma generate
 ENV NODE_ENV=production
 EXPOSE 3000
 
+RUN ls -la build/
+
 # 🟢 Entrada correcta para SvelteKit 2 + adapter-node
-CMD ["node", ".svelte-kit/output/server/index.js"]
+CMD ["node", "build"]
