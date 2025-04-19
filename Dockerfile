@@ -16,6 +16,10 @@ RUN pnpm exec svelte-kit sync
 RUN pnpm run build
 RUN pnpm prune --production
 
+# Debug: Verificamos que la build se haya generado
+RUN echo "🔍 Archivos en /app después del build:" && ls -la /app
+RUN echo "🔍 Contenido de /app/build:" && ls -la /app/build
+
 # ─────────────────────────────
 # 🚀 Production Stage
 # ─────────────────────────────
@@ -29,15 +33,18 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/static ./static
 COPY --from=builder /app/.svelte-kit ./.svelte-kit
+COPY --from=builder /app/build ./build
 
 # Generamos Prisma Client en producción
+RUN npm i -g prisma
 RUN npx prisma generate
 
 # Puerto y entorno
 ENV NODE_ENV=production
 EXPOSE 3000
 
-RUN ls -la build/
+# Debug: Verificamos que el build esté disponible en esta etapa
+RUN echo "🧪 Archivos finales:" && ls -la /app && ls -la /app/build
 
 # 🟢 Entrada correcta para SvelteKit 2 + adapter-node
 CMD ["node", "build"]
