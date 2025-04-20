@@ -31,7 +31,7 @@ setToastState();
 			</main>
 		{/key}
 		<footer class="flex h-full items-center justify-center p-4 lg:p-8">
-			<p>&copy; Juanma 2024 🌱</p>
+			<p>&copy; Juanma 2025 🌱</p>
 		</footer>
 	</div>
 </ParaglideJS>

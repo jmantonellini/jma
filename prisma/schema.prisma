@@ -4,9 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Category {
@@ -50,11 +49,11 @@ model Language {
 
 model CountryTranslations {
   id           Int      @id @default(autoincrement())
-  countryCode  String
   languageCode String
   frontPage    String
-  language     Language @relation(fields: [languageCode], references: [code])
+  countryCode  String
   country      Country  @relation(fields: [countryCode], references: [code])
+  language     Language @relation(fields: [languageCode], references: [code])
 }
 
 model User {
