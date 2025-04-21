@@ -11,7 +11,13 @@ if lsof -i TCP:$LOCAL_PORT &>/dev/null; then
   echo "🔁 El túnel ya está activo en el puerto $LOCAL_PORT"
 else
   echo "🚀 Levantando túnel SSH a $REMOTE_HOST..."
-  ssh -f -N -L ${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT} ${SSH_USER}@${REMOTE_HOST}
+
+  ssh -f -N \
+    -o ServerAliveInterval=60 \
+    -o ServerAliveCountMax=60 \
+    -L ${LOCAL_PORT}:127.0.0.1:${REMOTE_PORT} \
+    ${SSH_USER}@${REMOTE_HOST}
+
   echo "✅ Túnel SSH levantado en localhost:$LOCAL_PORT"
 fi
 

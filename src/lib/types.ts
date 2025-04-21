@@ -14,7 +14,7 @@ export type ToastTypes = 'info' | 'success' | 'error';
 export enum ToastTypeEnum {
 	Info = 'info',
 	Success = 'success',
-	Error = 'error',
+	Error = 'error'
 }
 
 export type Toast = {
@@ -22,4 +22,12 @@ export type Toast = {
 	type: ToastTypes;
 	message: string;
 	timeout?: number;
+};
+
+export type Photo = {
+	url: string;
+	description: string;
+	alt: string;
+	author: string;
+	proxyUrl?: string;
 };
