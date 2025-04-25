@@ -111,6 +111,7 @@ Y que CapRover tenga en su panel (Cluster > Docker Registries):
 ## 💡 Cambios de arquitectura
 
 - Se movió la base de datos del servicio cloud de Supabase a una One-Click app de Caprover en PostgreSQL puro. Se optó por no usar la app de Supabase por considerarase overkill para los requerimientos.
+- Se intentó utilizar imgproxy pero se decidió ir por Imagor (preset con almacenamiento local en CapRover) debido a múltiples fallos con firmas, compilación y descargas desde URLs remotas.
 
 ---
 

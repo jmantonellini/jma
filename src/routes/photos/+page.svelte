@@ -24,19 +24,15 @@
 	<div class="columns-3">
 		{#if photos}
 			{#each photos as photo, i}
-				<!-- {#if photo?.proxyUrl}
-					<img src={photo.url} alt={photo.alt} />
-				{:else}
-					<p style="color:red">Falta URL para {photo.alt}</p>
-				{/if} -->
 				<div class="group relative mb-4 w-full overflow-hidden">
 					<ResponsiveImage src={photo?.proxyUrl} alt={photo.alt} />
 					<h2
 						class="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center bg-base-100 opacity-0 transition-opacity hover:opacity-80"
 					>
 						<span class="absolute text-white opacity-50">{photo.description}</span>
-						<span class="bg-clip-text text-transparent" style="background-image: url({photo.url});"
-							>{photo.description}</span
+						<span
+							class="bg-clip-text text-transparent"
+							style="background-image: url({photo.proxyUrl});">{photo.description}</span
 						>
 					</h2>
 				</div>

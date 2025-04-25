@@ -1,16 +1,12 @@
 <script lang="ts">
-	export let src: string;
-	export let alt = '';
-	export let width = 800;
-	export let height = 600;
-	export let className = '';
+	let { src, alt } = $props<{ src: string; alt: string }>();
+	let loaded = $state(false);
 </script>
 
 <img
 	{src}
 	{alt}
-	{width}
-	{height}
-	class={`transition duration-300 ease-in-out ${className}`}
+	class={`transition duration-500 ease-in-out ${loaded ? 'blur-0' : 'blur-md'} w-full`}
 	loading="lazy"
+	onload={() => (loaded = true)}
 />
