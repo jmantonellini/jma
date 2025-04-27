@@ -31,3 +31,5 @@ export type Photo = {
 	author: string;
 	proxyUrl?: string;
 };
+
+export type Callback = () => void;

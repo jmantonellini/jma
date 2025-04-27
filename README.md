@@ -112,6 +112,7 @@ Y que CapRover tenga en su panel (Cluster > Docker Registries):
 
 - Se movió la base de datos del servicio cloud de Supabase a una One-Click app de Caprover en PostgreSQL puro. Se optó por no usar la app de Supabase por considerarase overkill para los requerimientos.
 - Se intentó utilizar imgproxy pero se decidió ir por Imagor (preset con almacenamiento local en CapRover) debido a múltiples fallos con firmas, compilación y descargas desde URLs remotas.
+- Se integró Amazon CloudFront como CDN delante del bucket S3 para servir imágenes a través de un subdominio, mejorando significativamente la velocidad de carga, reduciendo la latencia global y permitiendo cacheo eficiente en los edge locations de AWS.
 
 ---
 
