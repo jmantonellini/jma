@@ -96,4 +96,5 @@ model Photo {
   description String?
   alt         String?
   author      String?
+  proxyUrl    String?
 }

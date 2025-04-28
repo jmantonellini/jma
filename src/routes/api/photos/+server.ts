@@ -7,17 +7,19 @@ export const POST: RequestHandler = async ({ request }) => {
 	const { url, description, alt, author } = await request.json();
 	try {
 		console.log('Creating DB record for:', url);
+		const proxyUrl = getProxyUrl(url, { width: 800, format: 'webp' });
 
-		await prisma.photo.create({
+		const photo = await prisma.photo.create({
 			data: {
 				url,
 				description,
 				alt,
-				author
+				author,
+				proxyUrl
 			}
 		});
 
-		return new Response(JSON.stringify({ message: 'Photo metadata stored successfully' }), {
+		return new Response(JSON.stringify({ photo, message: 'Photo metadata stored successfully' }), {
 			headers: { 'Content-Type': 'application/json' }
 		});
 	} catch (error) {
@@ -32,7 +34,7 @@ export const POST: RequestHandler = async ({ request }) => {
 export const GET: RequestHandler = async ({ url }) => {
 	const cursor = url.searchParams.get('cursor');
 
-	const limit = 20;
+	const limit = 15;
 
 	const photos = await prisma.photo.findMany({
 		take: limit,

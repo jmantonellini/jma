@@ -21,7 +21,8 @@
 
 	async function startObserver() {
 		if (!loadMoreTrigger || observer || !nextCursor) return;
-
+		console.log('Observer started');
+		
 		await tick();
 
 		observer = new IntersectionObserver(
@@ -29,6 +30,8 @@
 				if (entry.isIntersecting && nextCursor && !isFetching && alreadyLoaded) {
 					isFetching = true;
 					try {
+						console.log('Fetching more photos');
+						
 						const res = await fetch(`/api/photos?cursor=${nextCursor}`);
 						if (!res.ok) throw new Error('Failed to fetch photos');
 
@@ -51,13 +54,18 @@
 	}
 
 	$effect(() => {
-		startObserver();
+		!observer && startObserver();
 
 		return () => {
 			observer?.disconnect();
 			observer = null;
 		};
 	});
+
+	function handlePhotoUploaded(photo: Photo) {
+		photos.unshift(photo);
+		dialog.close();
+	}
 </script>
 
 <div class="flex w-full flex-col items-center px-2 lg:px-4">
@@ -72,7 +80,7 @@
 		{#snippet title()}
 			{m.upload_photo()}
 		{/snippet}
-		<UploadPhoto />
+		<UploadPhoto onPhotoUploaded={handlePhotoUploaded} />
 	</Modal>
 
 	<div class="columns-3">

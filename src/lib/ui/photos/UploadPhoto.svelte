@@ -1,72 +1,81 @@
 <script lang="ts">
 	import { invalidateAll } from '$app/navigation';
-import { ToastTypeEnum } from '$lib/types';
-import { getToastState } from '$states/toast.svelte';
-import * as m from '$lib/paraglide/messages.js';
+	import { ToastTypeEnum, type Photo } from '$lib/types';
+	import { getToastState } from '$states/toast.svelte';
+	import * as m from '$lib/paraglide/messages.js';
 
-let file: File | null = $state(null);
-let description: string = $state('');
-let alt: string = $state('');
-let author: string = $state('Juan Manuel Antonellini');
-let progress = $state(0);
-const toastState = getToastState();
+	const { onPhotoUploaded } = $props<{ onPhotoUploaded?: (photo: Photo) => void }>();
 
-async function uploadFile(event: Event) {
-	event.preventDefault();
-	if (!file) return;
+	let file: File | null = $state(null);
+	let description: string = $state('');
+	let alt: string = $state('');
+	let author: string = $state('Juan Manuel Antonellini');
+	let progress = $state(0);
+	const toastState = getToastState();
 
-	const urlResponse = await fetch('/api/photos/url?name=' + file.name);
-	const { preSignedUrl, permanentUrl } = await urlResponse.json();
+	async function uploadFile(event: Event) {
+		event.preventDefault();
+		if (!file) return;
 
-	const xhr = new XMLHttpRequest();
-	xhr.upload.onprogress = (event) => {
-		if (event.lengthComputable) {
-			const percentComplete = Math.round((event.loaded / event.total) * 100);
-			console.log(`Uploading: ${percentComplete}%`);
-			progress = percentComplete;
-		}
-	};
+		const urlResponse = await fetch('/api/photos/url?name=' + file.name);
+		const { preSignedUrl, permanentUrl } = await urlResponse.json();
 
-	xhr.onerror = () => {
-		return new Response(JSON.stringify({ error: 'Upload failed' }), {
-			status: 500,
-			headers: { 'Content-Type': 'application/json' }
-		});
-	};
-
-	// Perform upload
-	xhr.open('PUT', preSignedUrl, true);
-	xhr.setRequestHeader('Content-Type', file.type);
-	xhr.send(file);
-
-	xhr.onload = async () => {
-		if (xhr.status === 200) {
-			// Store metadata in the database after upload
-			const metadataResponse = await fetch('/api/photos', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					url: permanentUrl,
-					description,
-					alt,
-					author
-				})
-			});
-
-			if (metadataResponse.ok) {
-				console.log('Metadata stored successfully');
-				toastState.add(`${m.photo_uploaded()}! 🥳`, ToastTypeEnum.Success);
-				invalidateAll();
-			} else {
-				console.error('Error storing metadata', await metadataResponse.text());
+		const xhr = new XMLHttpRequest();
+		xhr.upload.onprogress = (event) => {
+			if (event.lengthComputable) {
+				const percentComplete = Math.round((event.loaded / event.total) * 100);
+				console.log(`Uploading: ${percentComplete}%`);
+				progress = percentComplete;
 			}
-		} else {
-			console.error('Error uploading file', xhr.statusText);
-		}
-	};
-}
+		};
+
+		xhr.onerror = () => {
+			return new Response(JSON.stringify({ error: 'Upload failed' }), {
+				status: 500,
+				headers: { 'Content-Type': 'application/json' }
+			});
+		};
+
+		// Perform upload
+		xhr.open('PUT', preSignedUrl, true);
+		xhr.setRequestHeader('Content-Type', file.type);
+		xhr.send(file);
+
+		xhr.onload = async () => {
+			if (xhr.status === 200) {
+				// Store metadata in the database after upload
+				const metadataResponse = await fetch('/api/photos', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						url: permanentUrl,
+						description,
+						alt,
+						author
+					})
+				});
+
+				if (metadataResponse.ok) {
+					console.log('Metadata stored successfully');
+					if (onPhotoUploaded) {
+						const newPhoto = await metadataResponse.json().then((r) => {
+							console.log('RESPONSE', r);
+							console.log('Photo uploaded', r.photo);
+							
+							onPhotoUploaded(r.photo);
+						});
+					}
+					toastState.add(`${m.photo_uploaded()}! 🥳`, ToastTypeEnum.Success);
+				} else {
+					console.error('Error storing metadata', await metadataResponse.text());
+				}
+			} else {
+				console.error('Error uploading file', xhr.statusText);
+			}
+		};
+	}
 </script>
 
 <form class="flex w-full flex-col items-center gap-2 p-4 lg:gap-4">
@@ -75,11 +84,11 @@ async function uploadFile(event: Event) {
 		type="file"
 		class="file-input file-input-bordered w-full"
 		oninput={(event) => {
-		const target = event.target as HTMLInputElement;
-		if (target && target.files) {
-			file = target.files[0];
-		}
-	}}
+			const target = event.target as HTMLInputElement;
+			if (target && target.files) {
+				file = target.files[0];
+			}
+		}}
 	/>
 	<input
 		class="input input-bordered w-full"
@@ -114,7 +123,7 @@ async function uploadFile(event: Event) {
 </form>
 
 <style lang="postcss">
-.show {
-	@apply visible;
-}
+	.show {
+		@apply visible;
+	}
 </style>

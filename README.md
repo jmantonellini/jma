@@ -116,6 +116,14 @@ Y que CapRover tenga en su panel (Cluster > Docker Registries):
 
 ---
 
+## 🧩 Features presentes
+
+- Infinite scrolling para mostrar imágenes utilizando la API IntersectionObserver
+- Sección de blog-posts usando mdsvex
+- Mapa interactivo que utiliza las librerías topojson y d3 con objetos países customizados
+
+---
+
 ## 🧠 Filosofía
 
 > Este proyecto busca documentar aprendizajes y compartir caminos que fortalezcan nuestra relación con la tierra. 🌍
