@@ -41,7 +41,7 @@ const config = {
 		}),
 		alias: {
 			$ui: './lib/ui',
-			$states: './src/states'
+			$states: './src/states',
 		}
 	}
 };

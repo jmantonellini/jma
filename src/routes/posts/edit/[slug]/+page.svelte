@@ -3,7 +3,7 @@ import type { PageData } from './$types';
 import { enhance } from '$app/forms';
 
 import * as m from '$lib/paraglide/messages';
-import { page } from '$app/stores';
+import { page } from '$app/state';
 
 export let data: PageData;
 const { post } = data;
@@ -29,7 +29,7 @@ const { post } = data;
 			<textarea
 				name="description"
 				class="textarea textarea-primary resize-none leading-5"
-				maxlength="100"
+				maxlength="150"
 				rows="5"
 				cols="50"
 				required>{post?.description}</textarea
@@ -48,7 +48,7 @@ const { post } = data;
 			>
 		</label>
 		<input type="hidden" name="id" value={post?.id} />
-		<input type="hidden" name="slug" value={$page.params.slug} />
+		<input type="hidden" name="slug" value={page.params.slug} />
 		<button type="submit" class="btn btn-primary">{m.save()}</button>
 	</form>
 </main>

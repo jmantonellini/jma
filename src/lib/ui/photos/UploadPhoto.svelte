@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
 	import { ToastTypeEnum, type Photo } from '$lib/types';
 	import { getToastState } from '$states/toast.svelte';
 	import * as m from '$lib/paraglide/messages.js';
@@ -17,7 +16,9 @@
 		event.preventDefault();
 		if (!file) return;
 
-		const urlResponse = await fetch('/api/photos/url?name=' + file.name);
+		const urlResponse = await fetch('/api/photos/url?name=' + file.name, {
+			headers: { 'x-human-verified': 'true' }
+		});
 		const { preSignedUrl, permanentUrl } = await urlResponse.json();
 
 		const xhr = new XMLHttpRequest();
@@ -47,7 +48,8 @@
 				const metadataResponse = await fetch('/api/photos', {
 					method: 'POST',
 					headers: {
-						'Content-Type': 'application/json'
+						'Content-Type': 'application/json',
+						'x-human-verified': 'true'
 					},
 					body: JSON.stringify({
 						url: permanentUrl,
@@ -63,7 +65,7 @@
 						const newPhoto = await metadataResponse.json().then((r) => {
 							console.log('RESPONSE', r);
 							console.log('Photo uploaded', r.photo);
-							
+
 							onPhotoUploaded(r.photo);
 						});
 					}

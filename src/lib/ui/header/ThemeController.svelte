@@ -1,43 +1,40 @@
 <script lang="ts">
-import { browser } from '$app/environment';
-import { enhance } from '$app/forms';
-import { capitalize } from '$lib';
-import type { SubmitFunction } from '@sveltejs/kit';
-import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+	import { enhance } from '$app/forms';
+	import { capitalize } from '$lib';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { onMount } from 'svelte';
 
-const themes = {
-	light: '🔆',
-	sunset: '🌙',
-	retro: '📺',
-	cyberpunk: '🔌'
-};
+	const themes = {
+		eco: '🌱',
+		dark: '🌙',
+	};
 
-let theme = themes.sunset;
+	let theme = themes.dark;
 
-onMount(() => {
-	let themeName = document.documentElement.getAttribute('data-theme') as keyof typeof themes;
-	if (!themeName) {
-		themeName = themes.sunset;
-	}
-	if (browser) {
-		document.cookie = 'colortheme=' + themeName;
-	}
-	theme = themes[themeName];
-});
+	onMount(() => {
+		if (!browser) return;
 
-const submitUpdateTheme: SubmitFunction = ({ action }) => {
-	const params = new URLSearchParams(action.search);
-	const newTheme = params.get('theme');
+		const current = document.documentElement.getAttribute('data-theme') as keyof typeof themes;
+		if (current && themes[current]) {
+			document.cookie = 'colortheme=' + current + '; path=/; max-age=' + 60 * 60 * 24 * 365;
+			theme = themes[current];
+		}
+	});
 
-	if (newTheme) {
-		document.documentElement.setAttribute('data-theme', newTheme);
-		theme = themes[newTheme as keyof typeof themes];
-	}
-};
+	const submitUpdateTheme: SubmitFunction = ({ action }) => {
+		const params = new URLSearchParams(action.search);
+		const newTheme = params.get('theme');
+
+		if (newTheme) {
+			document.documentElement.setAttribute('data-theme', newTheme);
+			theme = themes[newTheme as keyof typeof themes];
+		}
+	};
 </script>
 
 <form class="dropdown h-fit" method="post" use:enhance={submitUpdateTheme}>
-	<button type="button" class="btn-sm lg:btn" aria-expanded="false" aria-controls="theme-options">
+	<button type="button" class="btn btn-sm lg:btn-md" aria-expanded="false" aria-controls="theme-options">
 		{theme}
 	</button>
 	<ul id="theme-options" class="dropdown-content z-[1] mt-2 rounded-btn bg-base-300 shadow-2xl">
@@ -48,7 +45,7 @@ const submitUpdateTheme: SubmitFunction = ({ action }) => {
 					aria-label={`${capitalize(theme)} theme`}
 					formaction={`/?/setTheme&theme=${theme}`}
 				>
-					{themes[theme]}
+					{themes[theme as keyof typeof themes]}
 				</button>
 			</li>
 		{/each}

@@ -36,8 +36,6 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.1",
 		"globals": "^15.15.0",
-		"gray-matter": "^4.0.3",
-		"marked": "^14.1.4",
 		"mdsvex": "^0.12.3",
 		"postcss": "^8.5.3",
 		"prettier": "^3.5.3",

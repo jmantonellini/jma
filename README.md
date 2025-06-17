@@ -31,38 +31,7 @@ git push origin main
 - **Almacenamiento:** S3 (upload firmado desde el browser)
 - **CI/CD:** GitHub Actions + GHCR
 - **Hosting:** CapRover en DigitalOcean
-
----
-
-## 🔐 Secrets necesarios
-
-Asegurate de tener los siguientes secretos en GitHub (`Settings > Secrets > Actions`):
-
-| Nombre             | Descripción                                  |
-|--------------------|----------------------------------------------|
-| `APP_TOKEN`        | Token de la app en CapRover (para deploy)    |
-| `GHCR_PAT`         | Personal Access Token con `write:packages`   |
-
-Y que CapRover tenga en su panel (Cluster > Docker Registries):
-
-- Registry: `ghcr.io`
-- Usuario: `jmantonellini`
-- Password: tu PAT
-
----
-
-## 🌐 Subdominios y Redirecciones
-
-- `eco-sistema.net`: Dominio principal
-- `www.eco-sistema.net`: Redirige automáticamente al principal
-- `jma.eco-sistema.net`: También redirige (middleware en `hooks.server.ts`)
-
----
-
-## 🔧 Healthchecks y monitoreo
-
-- Ruta `/health` expuesta para monitoreo
-- CapRover usa `/health` como Health Check automático
+- **Analytics:** Umami en CapRover
 
 ---
 
@@ -113,6 +82,8 @@ Y que CapRover tenga en su panel (Cluster > Docker Registries):
 - Se movió la base de datos del servicio cloud de Supabase a una One-Click app de Caprover en PostgreSQL puro. Se optó por no usar la app de Supabase por considerarase overkill para los requerimientos.
 - Se intentó utilizar imgproxy pero se decidió ir por Imagor (preset con almacenamiento local en CapRover) debido a múltiples fallos con firmas, compilación y descargas desde URLs remotas.
 - Se integró Amazon CloudFront como CDN delante del bucket S3 para servir imágenes a través de un subdominio, mejorando significativamente la velocidad de carga, reduciendo la latencia global y permitiendo cacheo eficiente en los edge locations de AWS.
+- Analytics usando Umami self-hosted en CapRover
+- Implementación de reglas de seguridad en CloudFlare y middleware en Svelte contra bots
 
 ---
 
@@ -121,6 +92,7 @@ Y que CapRover tenga en su panel (Cluster > Docker Registries):
 - Infinite scrolling para mostrar imágenes utilizando la API IntersectionObserver
 - Sección de blog-posts usando mdsvex
 - Mapa interactivo que utiliza las librerías topojson y d3 con objetos países customizados
+- 
 
 ---
 
@@ -133,4 +105,4 @@ Y que CapRover tenga en su panel (Cluster > Docker Registries):
 
 
 Desarrollado por [Juan Manuel Antonellini](https://eco-sistema.net)  
-[GitHub](https://github.com/jmantonellini) · [Instagram](https://instagram.com/jmantonellini)
+[GitHub](https://github.com/jmantonellini) · [Instagram](https://instagram.com/juanma.antonellini)

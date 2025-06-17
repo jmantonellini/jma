@@ -1,29 +1,31 @@
 <script lang="ts">
-import type { SubmitFunction } from '@sveltejs/kit';
-import { applyAction } from '$app/forms';
-import { invalidateAll } from '$app/navigation';
-import * as m from '$lib/paraglide/messages';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { applyAction } from '$app/forms';
+	import { goto, invalidateAll } from '$app/navigation';
+	import { page } from '$app/state';
 
-import type { PageData } from './$types';
-import Confirmation from '$lib/ui/modals/Confirmation.svelte';
-import { getToastState } from '$states/toast.svelte';
-import { ToastTypeEnum } from '$lib/types';
+	import * as m from '$lib/paraglide/messages';
+	import Confirmation from '$lib/ui/modals/Confirmation.svelte';
+	import { getToastState } from '$states/toast.svelte';
+	import { ToastTypeEnum } from '$lib/types';
+	import { isAdmin } from '$lib';
 
-export let data: PageData;
+	let { data } = $props();
 
-let dialog: HTMLDialogElement;
-let deleteId: number;
+	let dialog = $state<HTMLDialogElement | null>(null);
+	let deleteId = $state(0);
+	const pathname = $derived(page.url.pathname);
 
-const toastState = getToastState();
+	const toastState = getToastState();
 
-$: ({ posts } = data);
-const deletePost: SubmitFunction = () => {
-	return async ({ result }) => {
-		invalidateAll();
-		toastState.add(`${m.post_deleted()}! 👋🏼`, ToastTypeEnum.Success);
-		await applyAction(result);
+	const posts = $derived(() => data.posts);
+	const deletePost: SubmitFunction = () => {
+		return async ({ result }) => {
+			invalidateAll();
+			toastState.add(`${m.post_deleted()}! 👋🏼`, ToastTypeEnum.Success);
+			await applyAction(result);
+		};
 	};
-};
 </script>
 
 <svelte:head>
@@ -32,30 +34,35 @@ const deletePost: SubmitFunction = () => {
 
 <main class="w-full">
 	<ul class="flex flex-col items-center gap-3 lg:items-start">
-		{#each posts as post}
+		{#each posts() as post}
 			<li class="flex flex-col gap-2">
 				<div class="card bg-base-100 shadow-xl lg:card-side">
 					<figure>
-						<img
-							src="https://img.daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.webp"
-							alt="Album"
-							class="w-40 lg:w-60"
-						/>
+						<img class="lg:h-[20rem] lg:w-[20rem]" src={post.coverImage} alt={post.description} />
 					</figure>
 					<div class="card-body">
 						<div class="flex items-center gap-2">
 							<h3 class="font-semibold">{post.title}</h3>
-							<button
-								class="btn btn-ghost"
-								on:click={() => {
-								dialog.showModal();
-								deleteId = post.id;
-							}}>🗑️</button
-							>
+							{#if isAdmin(page.data?.user?.role)}
+								<button
+									class="btn btn-ghost"
+									onclick={() => {
+										dialog?.showModal();
+										deleteId = post.id;
+									}}>🗑️</button
+								>
+							{/if}
 						</div>
 						<p>{post.description}</p>
 						<div class="card-actions justify-end">
-							<a href={`/posts/${post.slug}`} class="btn btn-primary">{m.read_post()}</a>
+							<a
+								href={`/posts/${post.slug}`}
+								onclick={(event) => {
+									event.preventDefault();
+									if (pathname !== `/posts/${post.slug}`) goto(`/posts/${post.slug}`);
+								}}
+								class="btn btn-primary">{m.read_post()}</a
+							>
 						</div>
 					</div>
 				</div>
@@ -63,12 +70,7 @@ const deletePost: SubmitFunction = () => {
 		{/each}
 	</ul>
 
-	<Confirmation
-		id={deleteId}
-		enhanceFunction={deletePost}
-		action={"?/deletePost"}
-		bind:dialog={dialog}
-	>
+	<Confirmation id={deleteId} enhanceFunction={deletePost} action={'?/deletePost'} bind:dialog>
 		{#snippet title()}
 			<span>{m.are_you_sure()}</span>
 		{/snippet}

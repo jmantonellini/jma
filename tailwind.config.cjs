@@ -62,28 +62,29 @@ export default {
 	daisyui: {
 		themes: [
 			{
-				light: {
-					primary: '#522B47',
-					secondary: '#8DAA9D',
-					accent: '#BDD5EA',
-					neutral: '#F7F7FF',
-					'base-100': '#fbf5f3',
-					info: '#fef08a',
-					success: '#75FF75',
-					warning: '#ea580c',
-					error: '#FF8989'
+				eco: {
+					primary: '#14532D',
+					secondary: '#4D7C0F',
+					accent: '#65A30D',
+					neutral: '#374151',
+					'base-100': '#F0FDF4',
+					'base-content': '#1B1C1B',
+					info: '#3B82F6',
+					success: '#15803D',
+					warning: '#F59E0B',
+					error: '#DC2626'
 				},
-				sunset: {
-					primary: '#cf5c36',
-					'primary-content': '#eee5e9',
-					secondary: '#A8C686',
-					'base-100': '#333F47',
-					accent: '#669BBC',
-					neutral: '#F7F7FF',
-					info: '#fef08a',
-					success: '#75FF75',
-					warning: '#ea580c',
-					error: '#FF8989'
+				dark: {
+					primary: '#65A30D',
+					secondary: '#4D7C0F',
+					accent: '#A3E635',
+					neutral: '#1F2937',
+					'base-100': '#0F172A',
+					'base-content': '#F0FDF4',
+					info: '#3B82F6',
+					success: '#22C55E',
+					warning: '#EAB308',
+					error: '#EF4444'
 				}
 			},
 			'retro',

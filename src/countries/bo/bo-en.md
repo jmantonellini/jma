@@ -14,7 +14,7 @@ published: true
     import PostImage from "$lib/ui/custom/PostImage.svelte";
 </script>
 
-<PostImage src="$lib/images/chuncho.jpg" alt="chuncho" description="Chuncho de la fiesta de San Roque en Tarija, por Juanma Antonellini"></PostImage>
+<PostImage src="/images/chuncho.jpg" alt="chuncho" description="Chuncho de la fiesta de San Roque en Tarija, por Juanma Antonellini"></PostImage>
 
 The Bermejo border is super calm. Sleeper bus from Salta to Tarija $49000.
 

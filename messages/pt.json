@@ -1,6 +1,5 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"greeting": "Bem-vindo ao meu espaço!",
 	"login": "Conecte-se",
 	"wrong_credentials": "Você inseriu as credenciais erradas.",
 	"home": "Lar",
@@ -22,7 +21,6 @@
 	"username": "Nome de usuário",
 	"password": "Senha",
 	"show_password": "Mostrar senha",
-	"welcome": "Bem-vindo",
 	"user_registered": "Usuário registrado",
 	"post_created": "Postagem criada",
 	"post_deleted": "Postagem excluída",
@@ -41,5 +39,6 @@
 	"photos": "Fotos",
 	"photo_uploaded": "Foto carregada",
 	"upload_photo": "Carregar foto",
-	"hi": "Ola"
+	"hi": "Ola",
+	"welcome": "Bem vindo"
 }

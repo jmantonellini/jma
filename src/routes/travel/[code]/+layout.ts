@@ -1,9 +1,11 @@
-import type { Post } from '$lib/types';
 import type { LayoutLoad } from './$types';
 
-export const load: LayoutLoad = async ({ fetch }) => {
+export const load: LayoutLoad = async ({ fetch, params }) => {
 	const response = await fetch('/api/travel');
-	const posts: Post[] = await response.json();
-  
-	return { posts };
+	const posts = await response.json();
+
+	return {
+		posts,
+		code: params.code
+	};
 };

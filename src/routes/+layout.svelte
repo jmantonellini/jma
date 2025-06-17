@@ -21,12 +21,12 @@
 <ParaglideJS {i18n}>
 	<ViewTransition />
 	<Toasts />
-	<div class="box-border font-jost grid h-full min-h-[100vh] w-full grid-rows-[auto_1fr_auto]">
+	<div class="box-border font-jost grid h-full min-h-[100vh] w-screen grid-rows-[auto_1fr_auto]">
 		<Header />
-
+		
 		{#key url}
 			<main
-				class="mt-8"
+				class="mt-8 px-8 lg:mt-12 lg:px-12"
 				in:fly={{ x: -200, duration: 300, delay: 300 }}
 				out:fly={{ x: 200, duration: 300 }}
 			>
@@ -35,13 +35,6 @@
 		{/key}
 		<footer class="flex h-full items-center justify-center gap-4 p-4 lg:p-8">
 			<p>&copy; Juanma 2025 🌱</p>
-			<a
-				href="https://www.digitalocean.com/?refcode=514208bfc1b8&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
-				><img
-					src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%202.svg"
-					alt="DigitalOcean Referral Badge"
-				/></a
-			>
 		</footer>
 	</div>
 </ParaglideJS>

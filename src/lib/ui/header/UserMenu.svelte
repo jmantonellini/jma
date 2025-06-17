@@ -20,7 +20,7 @@ const logout: SubmitFunction = () => {
 </script>
 
 <div class="dropdown h-fit">
-	<button tabindex="0" type="button" class="btn-sm lg:btn" aria-expanded="false"> 👤 </button>
+	<button tabindex="0" type="button" class="btn btn-sm lg:btn-md" aria-expanded="false"> 👤 </button>
 	<ul class="dropdown-content z-[1] mt-2 rounded-btn bg-base-300 shadow-2xl">
 		{#if $page.data.user}
 			<li>

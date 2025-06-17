@@ -1,103 +1,27 @@
 <script lang="ts">
-import RotationBlocks from '$lib/ui/custom/RotationBlocks.svelte';
-import { onMount } from 'svelte';
-import { fade, fly } from 'svelte/transition';
-import Socials from '$lib/ui/socials/Socials.svelte';
-import * as m from '$lib/paraglide/messages';
-
-let selected = $state(0);
-let expanded = $state(false);
-let age = $state(0);
-
-function onSelect(id: number) {
-	selected = id;
-}
-
-function onExpand(value: boolean) {
-	expanded = value;
-}
-
-onMount(() => {
-	const birthDate = new Date('1993-10-12');
-	const today = new Date();
-	const ageDifMs = today.getTime() - birthDate.getTime();
-	const ageDate = new Date(ageDifMs);
-	age = Math.abs(ageDate.getUTCFullYear() - 1970);
-});
+	import { fade, fly } from 'svelte/transition';
+	import * as m from '$lib/paraglide/messages';
 </script>
 
 <svelte:head>
 	<title>Welcome</title>
 </svelte:head>
 
-<RotationBlocks onSelect={onSelect} onExpand={onExpand}>
-	{#snippet block1()}
-		<div class="@container">
-			<p class="text-[6cqw] font-bold leading-none">
-				{m.hi()}
-			</p>
-		</div>
-	{/snippet}
-	{#snippet block2()}
-		<div class="relative flex h-full flex-col justify-between leading-none">
-			<span class="text-[2cqw] font-bold lg:text-[4cqw]"
-				>I'm
-				<span
-					class={`transition-colors duration-1000 ${selected === 2 && 'animate-text bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent'}`}
-				>
-					Juanma</span
-				>
-			</span>
-			{#if selected === 2 && expanded}
-				<Socials />
-				<div class="grid grid-cols-2" out:fade={{duration: 300}}>
-					<div in:fly={{ y: 200, duration: 700, delay: 300 }}>
-						<enhanced:img
-							fetchpriority="high"
-							loading="eager"
-							src="$lib/images/me.webp"
-							class="w-full drop-shadow-glow"
-							alt="Me"
-						/>
-					</div>
-					<div class="flex flex-col lg:gap-4">
-						<span class="block-text" in:fly={{ x: -100, duration: 700, delay: 300 }}>
-							Software Engineer
-						</span>
-						<span class="block-text self-end" in:fly={{ x: 100, duration: 700, delay: 300 }}>
-							{age} years old
-						</span>
-						<span class="block-text" in:fly={{ x: -100, duration: 700, delay: 300 }}>
-							from
-							<span
-								class="animate-text bg-gradient-to-r from-blue-500 via-white to-blue-500 bg-clip-text text-transparent transition-colors duration-500"
-								>Argentina</span
-							>
-						</span>
-						<span class="block-text self-end" in:fly={{ x: 100, duration: 700, delay: 300 }}>
-							digital nomad
-						</span>
-						<span class="block-text" in:fly={{ x: -100, duration: 700, delay: 300 }}>
-							🐱 lover
-						</span>
-					</div>
-				</div>
-			{/if}
-		</div>
-	{/snippet}
-	{#snippet block3()}
-		<span class="text-[1.5cqw] font-bold leading-tight">
-			I love traveling and learning about stuff Some of my interests are technology 💻, photography
-			📷 & knowledge sharing 📖
-		</span>
-	{/snippet}
-	{#snippet block4()}
-		<span class="text-[4cqw] font-bold leading-none lg:text-[2cqw]"></span>
-	{/snippet}
-</RotationBlocks>
-
-<style lang="postcss">
-.block-text {
-	@apply text-[1cqw] leading-none lg:text-[2cqw];
-}
-</style>
+<div
+	in:fly={{ y: 200, duration: 1000 }}
+	out:fade
+	class="flex flex-col items-center h-full justify-center gap-4 lg:gap-8"
+>
+	<h1>
+		{m.hi()}
+	</h1>
+	<div class="flex flex-col gap-4 lg:gap-8">
+		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">Welcome to my virtual shelter.</p>
+		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">
+			Where you can read about ecological practices.
+		</p>
+		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">And maybe learn about travelling & volunteering.</p>
+		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">I also post some photos from my journey.</p>
+		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">I'm happy you are here :)</p>
+	</div>
+</div>

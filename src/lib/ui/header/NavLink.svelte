@@ -1,17 +1,26 @@
 <script lang="ts">
-export let href;
-export let label;
-import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 
-const isActive = (href: string) => {
-	if (href === '/') {
-		return $page.url.pathname === href || /^\/[a-z]{2}(\/)?$/.test($page.url.pathname);
-	} else {
-		return $page.url.pathname.includes(href);
-	}
-};
+	let { href, label } = $props<{ href: string; label: string }>();
+
+	const pathname = $derived(page.url.pathname);
+
+	const isActive = (href: string) => {
+		if (href === '/') {
+			return pathname === href || /^\/[a-z]{2}(\/)?$/.test(pathname);
+		} else {
+			return pathname.includes(href);
+		}
+	};
 </script>
 
 <li class={`${isActive(href) && 'text-secondary'}`}>
-	<a href={href}>{label}</a>
+	<a
+		{href}
+		onclick={(event) => {
+			event.preventDefault();
+			if (pathname !== href) goto(href);
+		}}>{label}</a
+	>
 </li>

@@ -14,7 +14,7 @@ published: true
     import PostImage from "$lib/ui/custom/PostImage.svelte";
 </script>
 
-<PostImage src="/src/countries/br/capoeira.png" alt="capoeira" description="Capoeira group in Itacaré, by Juanma Antonellini"/>
+<PostImage src="/images/capoeira.png" alt="capoeira" description="Capoeira group in Itacaré, by Juanma Antonellini"/>
 
 ## Internet
 

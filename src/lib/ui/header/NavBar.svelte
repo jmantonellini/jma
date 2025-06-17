@@ -1,29 +1,29 @@
 <script lang="ts">
-import * as m from '$lib/paraglide/messages.js';
+	import * as m from '$lib/paraglide/messages.js';
 
-import LanguageSelector from './LanguageSelector.svelte';
-import NavLink from './NavLink.svelte';
-import ThemeController from './ThemeController.svelte';
-import MenuIcon from '$lib/icons/MenuIcon.svelte';
-import UserMenu from './UserMenu.svelte';
+	import LanguageSelector from './LanguageSelector.svelte';
+	import NavLink from './NavLink.svelte';
+	import ThemeController from './ThemeController.svelte';
+	import MenuIcon from '$lib/icons/MenuIcon.svelte';
+	import UserMenu from './UserMenu.svelte';
 
-let scrollY: number;
+	let scrollY: number;
 
-$: fixed = scrollY > 0;
+	$: fixed = scrollY > 0;
 
-const links = [
-	{ href: '/', label: m.home },
-	{ href: '/posts', label: m.posts },
-	{ href: '/travel', label: m.travel },
-	{ href: '/volunteering', label: m.volunteering },
-	{ href: '/photos', label: m.photos }
-];
+	const links = [
+		{ href: '/', label: m.home },
+		{ href: '/posts', label: m.posts },
+		{ href: '/travel', label: m.travel },
+		{ href: '/volunteering', label: m.volunteering },
+		{ href: '/photos', label: m.photos }
+	];
 </script>
 
-<svelte:window bind:scrollY={scrollY} />
+<svelte:window bind:scrollY />
 
 <header
-	class={`box-border grid grid-cols-[auto_1fr] bg-base-100/80 lg:grid-cols-3 lg:px-4 &${fixed && ' sticky top-4 shadow-lg backdrop-blur-sm'}`}
+	class={`box-border flex justify-around p-2 lg:p-4 lg:justify-center items-center bg-base-100/80 &${fixed && ' sticky top-4 shadow-lg backdrop-blur-sm'}`}
 >
 	<div class="dropdown lg:hidden">
 		<div tabindex="0" role="button" class="btn btn-ghost">
@@ -33,18 +33,18 @@ const links = [
 			class="menu dropdown-content menu-sm z-[1] mt-3 w-52 flex-nowrap rounded-btn bg-base-100 p-2 text-lg shadow"
 		>
 			{#each links as { href, label }}
-				<NavLink href={href} label={label()} />
+				<NavLink {href} label={label()} />
 			{/each}
 		</ul>
 	</div>
 	<ul
-		class="menu menu-horizontal hidden w-full flex-nowrap items-center justify-center gap-2 text-lg lg:col-start-2 lg:flex"
+		class="menu menu-horizontal hidden flex-nowrap items-center justify-center gap-4 text-lg lg:col-start-2 lg:flex"
 	>
 		{#each links as { href, label }}
-			<NavLink href={href} label={label()} />
+			<NavLink {href} label={label()} />
 		{/each}
 	</ul>
-	<div class="flex w-full items-center justify-end gap-1 lg:col-start-3 lg:gap-3">
+	<div class="flex items-center gap-2 lg:gap-4">
 		<UserMenu />
 		<LanguageSelector />
 		<ThemeController />
@@ -52,10 +52,10 @@ const links = [
 </header>
 
 <style lang="postcss">
-header {
-	border-radius: 1rem;
-	z-index: 20;
-	transition: all 0.3s ease;
-	view-transition-name: header;
-}
+	header {
+		border-radius: 1rem;
+		z-index: 20;
+		transition: all 0.3s ease;
+		view-transition-name: header;
+	}
 </style>

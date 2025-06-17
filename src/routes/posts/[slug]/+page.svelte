@@ -1,19 +1,19 @@
 <script lang="ts">
-import type { PageData } from './$types';
-import { languageTag } from '$lib/paraglide/runtime';
-import * as m from '$lib/paraglide/messages';
+	import type { PageData } from './$types';
+	import { languageTag } from '$lib/paraglide/runtime';
+	import * as m from '$lib/paraglide/messages';
 
-export let data: PageData;
+	export let data: PageData;
 
-const { user, post } = data;
+	const { user, post } = data;
 
-function formatDate(date: Date) {
-	return new Intl.DateTimeFormat(languageTag(), {
-		dateStyle: 'long'
-	}).format(date);
-}
+	function formatDate(date: Date) {
+		return new Intl.DateTimeFormat(languageTag(), {
+			dateStyle: 'long'
+		}).format(date);
+	}
 
-let showEdit = false;
+	let showEdit = false;
 </script>
 
 <svelte:head>
@@ -24,8 +24,8 @@ let showEdit = false;
 	<hgroup>
 		<h1
 			class="text-secondary"
-			on:mouseenter={() => showEdit = true}
-			on:mouseleave={() => showEdit = false}
+			on:mouseenter={() => (showEdit = true)}
+			on:mouseleave={() => (showEdit = false)}
 		>
 			{post?.title ?? 'Untitled'}
 			{#if user?.id === post?.authorId}
@@ -42,7 +42,7 @@ let showEdit = false;
 	</hgroup>
 	<article class="prose prose-slate font-serif">
 		{#if post}
-			{@html post.content}
+			<p>{@html post.content}</p>
 		{:else}
 			<p>Content not available.</p>
 		{/if}
