@@ -38,7 +38,7 @@
 			<li class="flex flex-col gap-2">
 				<div class="card bg-base-100 shadow-xl lg:card-side">
 					<figure>
-						<img class="lg:h-[20rem] lg:w-[20rem]" src={post.coverImage} alt={post.description} />
+						<img class="aspect-square w-full lg:w-[20rem]" src={post.proxyUrl} alt={post.description} />
 					</figure>
 					<div class="card-body">
 						<div class="flex items-center gap-2">

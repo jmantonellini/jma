@@ -62,10 +62,7 @@
 				if (metadataResponse.ok) {
 					console.log('Metadata stored successfully');
 					if (onPhotoUploaded) {
-						const newPhoto = await metadataResponse.json().then((r) => {
-							console.log('RESPONSE', r);
-							console.log('Photo uploaded', r.photo);
-
+						await metadataResponse.json().then((r) => {
 							onPhotoUploaded(r.photo);
 						});
 					}

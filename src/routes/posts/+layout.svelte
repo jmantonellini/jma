@@ -7,7 +7,7 @@
 
 	const pathname = $derived(page.url.pathname);
 
-	let { data } = $props();
+	let { data, children } = $props();
 
 	const orderedPosts = data?.posts.sort(
 		(a: Post, b: Post) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -36,5 +36,5 @@
 			{/each}
 		</ul>
 	</aside>
-	<slot />
+	{@render children()}
 </div>

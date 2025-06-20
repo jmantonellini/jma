@@ -85,6 +85,13 @@ git push origin main
 - Analytics usando Umami self-hosted en CapRover
 - Implementación de reglas de seguridad en CloudFlare y middleware en Svelte contra bots
 
+### 🔄 Nueva infraestructura para imágenes
+- Se crearon buckets S3 separados: `my-photos-album` para fotos generales y `posts-cover-images` para imágenes de portada de posts.
+- Se implementó Amazon CloudFront como CDN para ambos buckets, cada uno con su propia distribución y dominio personalizado (`images.eco-sistema.net` para fotos y `posts-images.eco-sistema.net` para posts).
+- Configuración de certificados ACM para habilitar HTTPS en ambos subdominios.
+- Se ajustaron políticas de acceso y reglas para asegurar que solo CloudFront pueda acceder a los buckets, mejorando la seguridad y rendimiento.
+- El proxy de imágenes (Imagor) se configuró para consumir las URLs a través de CloudFront, evitando problemas de acceso y mejorando la velocidad de entrega.
+
 ---
 
 ## 🧩 Features presentes

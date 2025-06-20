@@ -27,14 +27,14 @@
 			on:mouseenter={() => (showEdit = true)}
 			on:mouseleave={() => (showEdit = false)}
 		>
-			{post?.title ?? 'Untitled'}
 			{#if user?.id === post?.authorId}
 				<a
 					title={m.edit()}
-					href={`/posts/edit/${post.slug}`}
-					class={`transition-opacity ${!showEdit && 'opacity-0'}`}>🖋️</a
+					href={`/posts/editor/${post.slug}`}
+					class={`transition-opacity ${!showEdit && 'lg:opacity-50'}`}>🖋️</a
 				>
 			{/if}
+			{post?.title ?? 'Untitled'}
 		</h1>
 		<h4 class="text-accent">
 			{post?.createdAt ? formatDate(post.createdAt) : 'Unknown date'}

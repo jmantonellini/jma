@@ -1,7 +1,13 @@
-import { fail, redirect, type Actions } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
-import { slugify } from '$lib';
+import { DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { s3Client } from '$lib/server/aws';
+
+function getS3KeyFromUrl(url: string) {
+	const match = url.match(/amazonaws\.com\/(.+)$/);
+	return match ? match[1] : null;
+}
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -10,70 +16,36 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-	createPost: async ({ request, locals }) => {
-		const { title, content, description } = Object.fromEntries(await request.formData()) as {
-			title: string;
-			content: string;
-			description: string;
-		};
-		const slug = slugify(title);
-
-		try {
-			await prisma.post.create({
-				data: {
-					title,
-					content,
-					description,
-					slug: slug,
-					author: {
-						connect: {
-							id: locals.user?.id
-						}
-					}
-				}
-			});
-		} catch (error) {
-			console.error(error);
-			return fail(500, { mesage: 'Could not create the post' });
-		}
-		return redirect(303, `/posts/${slug}`);
-	},
 	deletePost: async ({ request }) => {
 		const formData = await request.formData();
 		const postId = Number(formData.get('id'));
-		try {
-			await prisma.post.delete({
-				where: {
-					id: postId
-				}
-			});
-		} catch (error) {
-			console.error(error);
-			return fail(500, { mesage: 'Could not delete the post' });
-		}
-		return { success: true };
-	},
-	editPost: async ({ request }) => {
-		const formData = await request.formData();
-		const postId = Number(formData.get('id'));
-		const slug = formData.get('slug');
 
-		const title = formData.get('title');
-		const content = formData.get('content');
 		try {
-			await prisma.post.update({
-				where: {
-					id: postId
-				},
-				data: {
-					title,
-					content
-				}
+			const post = await prisma.post.findUnique({
+				where: { id: postId }
+			});
+
+			if (!post) return fail(404, { message: 'Post not found' });
+
+			const key = post.coverImage ? getS3KeyFromUrl(post.coverImage) : null;
+
+			if (key) {
+				await s3Client.send(
+					new DeleteObjectCommand({
+						Bucket: process.env.AWS_POSTS_BUCKET,
+						Key: key
+					})
+				);
+			}
+
+			await prisma.post.delete({
+				where: { id: postId }
 			});
 		} catch (error) {
 			console.error(error);
-			return fail(500, { mesage: 'Could not update the post' });
+			return fail(500, { message: 'Could not delete the post' });
 		}
-		return redirect(303, `/posts/${slug}`);
+
+		return { success: true };
 	}
 };
