@@ -2,7 +2,7 @@ import { fail, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
 import { DeleteObjectCommand } from '@aws-sdk/client-s3';
-import { s3Client } from '$lib/server/aws';
+import { getS3Client } from '$lib/server/aws';
 
 function getS3KeyFromUrl(url: string) {
 	const match = url.match(/amazonaws\.com\/(.+)$/);
@@ -30,6 +30,7 @@ export const actions: Actions = {
 			const key = post.coverImage ? getS3KeyFromUrl(post.coverImage) : null;
 
 			if (key) {
+				const s3Client = getS3Client();
 				await s3Client.send(
 					new DeleteObjectCommand({
 						Bucket: process.env.AWS_POSTS_BUCKET,

@@ -8,10 +8,12 @@ if (!region || !accessKeyId || !secretAccessKey) {
 	throw new Error('Missing AWS credentials in environment variables');
 }
 
-export const s3Client = new S3Client({
-	region,
-	credentials: {
-		accessKeyId,
-		secretAccessKey
-	}
-});
+export function getS3Client() {
+	return new S3Client({
+		region: process.env.AWS_REGION!,
+		credentials: {
+			accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
+			secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!
+		}
+	});
+}

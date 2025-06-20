@@ -2,7 +2,7 @@ import { json, type RequestHandler } from '@sveltejs/kit';
 import { v4 as uuidv4 } from 'uuid';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
-import { s3Client } from '$lib/server/aws';
+import { getS3Client } from '$lib/server/aws';
 
 export const GET: RequestHandler = async ({ url }) => {
 	const name = url.searchParams.get('name');
@@ -13,9 +13,7 @@ export const GET: RequestHandler = async ({ url }) => {
 	}
 
 	const bucket =
-		bucketParam === 'posts'
-			? process.env.AWS_POSTS_BUCKET
-			: process.env.AWS_PHOTOS_BUCKET;
+		bucketParam === 'posts' ? process.env.AWS_POSTS_BUCKET : process.env.AWS_PHOTOS_BUCKET;
 
 	if (!bucket) {
 		return json({ error: 'Bucket not configured' }, { status: 500 });
@@ -28,6 +26,8 @@ export const GET: RequestHandler = async ({ url }) => {
 		Key: uniqueKey,
 		ContentType: 'image/jpeg'
 	});
+
+	const s3Client = getS3Client();
 
 	const preSignedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
 
