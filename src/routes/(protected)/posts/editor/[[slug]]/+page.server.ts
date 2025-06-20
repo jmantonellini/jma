@@ -3,7 +3,9 @@ import type { PageServerLoad } from './$types';
 import { slugify } from '$lib';
 import { getProxyUrl } from '$lib/server/utils';
 import { prisma } from '$lib/server/prisma';
-import { SITE_URL } from '$env/static/private';
+import { env } from '$env/dynamic/private';
+
+const SITE_URL = env.SITE_URL;
 
 export const load: PageServerLoad = async ({ params }) => {
 	try {
@@ -59,9 +61,12 @@ export const actions: Actions = {
 		if (file && file.size > 0 && file.name) {
 			try {
 				const bucketParam = 'posts';
-				const res = await fetch(`${SITE_URL}/api/photos/url?name=${file.name}&bucket=${bucketParam}`, {
-					headers: { 'x-human-verified': 'true' }
-				});
+				const res = await fetch(
+					`${SITE_URL}/api/photos/url?name=${file.name}&bucket=${bucketParam}`,
+					{
+						headers: { 'x-human-verified': 'true' }
+					}
+				);
 
 				if (!res.ok) {
 					console.error('❌ Error getting signed URL:', await res.text());
