@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 import { slugify } from '$lib';
 import { getProxyUrl } from '$lib/server/utils';
 import { prisma } from '$lib/server/prisma';
-import { PUBLIC_SITE_URL } from '$env/static/public';
+import { SITE_URL } from '$env/static/private';
 
 export const load: PageServerLoad = async ({ params }) => {
 	try {
@@ -59,7 +59,7 @@ export const actions: Actions = {
 		if (file && file.size > 0 && file.name) {
 			try {
 				const bucketParam = 'posts';
-				const res = await fetch(`${PUBLIC_SITE_URL}/api/photos/url?name=${file.name}&bucket=${bucketParam}`, {
+				const res = await fetch(`${SITE_URL}/api/photos/url?name=${file.name}&bucket=${bucketParam}`, {
 					headers: { 'x-human-verified': 'true' }
 				});
 
