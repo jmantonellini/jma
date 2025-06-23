@@ -1,11 +1,11 @@
 <script lang="ts" module>
-import { img } from '$lib/ui/custom';
+	import { img } from '$lib/ui/custom';
 
-export { img };
+	export { img };
 </script>
 
 <script lang="ts">
-let props = $props();
+	let props = $props();
 </script>
 
 {@render props.children?.()}

@@ -86,7 +86,7 @@ onMount(async () => {
 						d3.select(event.currentTarget).style('fill', 'oklch(var(--s))');
 					}
 				});
-			mesh = topojson.mesh(world, countries, (a, b) => a !== b);
+			mesh = topojson.mesh(world, countries, (a: any, b: any) => a !== b);
 
 			zoomSA();
 		}

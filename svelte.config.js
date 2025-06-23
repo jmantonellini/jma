@@ -2,12 +2,16 @@ import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { escapeSvelte, mdsvex } from 'mdsvex';
 import { createHighlighter } from 'shiki';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
-	extensions: ['.md'],
+	extensions: ['.svx', '.md'],
 	layout: {
-		_: './src/mdsvex.svelte'
+		_: join(__dirname, 'src', 'mdsvex.svelte')
 	},
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
