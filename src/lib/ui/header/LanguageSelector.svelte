@@ -1,18 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { i18n } from '$lib/i18n';
-	import { goto } from '$app/navigation';
-	import {
-		availableLanguageTags,
-		languageTag,
-		type AvailableLanguageTag
-	} from '$lib/paraglide/runtime';
+	import { locales, getLocale, type Locale, setLocale } from '$lib/paraglide/runtime';
 
-	$: currentPathWithoutLanguage = i18n.route($page.url.pathname);
-
-	function switchToLanguage(newLanguage: AvailableLanguageTag) {
-		const localisedPath = i18n.resolveRoute(currentPathWithoutLanguage, newLanguage);
-		goto(localisedPath, { invalidateAll: true });
+	function switchToLanguage(newLanguage: Locale) {
+		setLocale(newLanguage);
 	}
 
 	const labels = {
@@ -25,17 +15,17 @@
 
 <div class="dropdown h-fit">
 	<button tabindex="0" type="button" class="btn btn-sm lg:btn-md" aria-expanded="false">
-		{labels[languageTag()]}
+		{labels[getLocale()]}
 	</button>
 	<ul class="dropdown-content z-[1] mt-2 rounded-btn bg-base-300 shadow-2xl">
-		{#each availableLanguageTags as langTag}
-			{#if langTag !== languageTag()}
+		{#each locales as langTag}
+			{#if langTag !== getLocale()}
 				<li>
 					<button
 						on:click={() => switchToLanguage(langTag)}
 						class="btn btn-ghost justify-start"
 						name="themed-dropdown"
-						disabled={langTag === languageTag()}
+						disabled={langTag === getLocale()}
 					>
 						{labels[langTag]}
 					</button>

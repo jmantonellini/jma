@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { capitalize, formatDate } from '$lib';
-	import * as m from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 
 	let { data } = $props<{ slug: string }>();
 

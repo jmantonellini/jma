@@ -4,7 +4,7 @@
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
 
-	import * as m from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 	import Confirmation from '$lib/ui/modals/Confirmation.svelte';
 	import { getToastState } from '$states/toast.svelte';
 	import { ToastTypeEnum } from '$lib/types';
@@ -38,7 +38,11 @@
 			<li class="flex flex-col gap-2">
 				<div class="card bg-base-100 shadow-xl lg:card-side">
 					<figure>
-						<img class="aspect-square w-full lg:w-[20rem]" src={post.proxyUrl} alt={post.description} />
+						<img
+							class="aspect-square w-full lg:w-[20rem]"
+							src={post.proxyUrl}
+							alt={post.description}
+						/>
 					</figure>
 					<div class="card-body">
 						<div class="flex items-center gap-2">

@@ -3,8 +3,9 @@
 	import { getToastState } from '$states/toast.svelte';
 	import { ToastTypeEnum } from '$lib/types';
 	import { invalidateAll, goto } from '$app/navigation';
-	import * as m from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 	import UploadCoverImage from './UploadCoverImage.svelte';
+	import { localizeHref } from '$lib/paraglide/runtime';
 
 	export let post: {
 		id?: number;
@@ -98,7 +99,7 @@
 			{m.publish()}
 			{#if loading}<span class="loading loading-spinner"></span>{/if}
 		</button>
-		<button type="button" on:click={() => goto(redirectUrl)} class="btn btn-error">
+		<button type="button" on:click={() => goto(localizeHref(redirectUrl))} class="btn btn-error">
 			{m.cancel()}
 			{#if loading}<span class="loading loading-spinner"></span>{/if}
 		</button>

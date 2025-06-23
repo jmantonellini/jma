@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 	import { isAdmin } from '$lib';
 
-	import * as m from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 	import { ToastTypeEnum } from '$lib/types';
 	import { getToastState } from '$states/toast.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
@@ -18,7 +18,6 @@
 			await applyAction(result);
 		};
 	};
-
 </script>
 
 <div class="dropdown h-fit">

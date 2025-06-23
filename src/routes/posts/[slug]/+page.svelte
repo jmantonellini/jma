@@ -1,14 +1,14 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { languageTag } from '$lib/paraglide/runtime';
-	import * as m from '$lib/paraglide/messages';
+	import { getLocale } from '$lib/paraglide/runtime';
+	import { m } from '$lib/paraglide/messages';
 
 	export let data: PageData;
 
 	const { user, post } = data;
 
 	function formatDate(date: Date) {
-		return new Intl.DateTimeFormat(languageTag(), {
+		return new Intl.DateTimeFormat(getLocale(), {
 			dateStyle: 'long'
 		}).format(date);
 	}

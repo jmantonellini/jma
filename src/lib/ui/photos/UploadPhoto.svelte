@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ToastTypeEnum, type Photo } from '$lib/types';
 	import { getToastState } from '$states/toast.svelte';
-	import * as m from '$lib/paraglide/messages.js';
+	import { m } from '$lib/paraglide/messages.js';
 
 	const { onPhotoUploaded } = $props<{ onPhotoUploaded?: (photo: Photo) => void }>();
 

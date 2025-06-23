@@ -10,6 +10,13 @@
 	<li>Samaipata, Finca de Andrés</li>
 	<li>Coimata, La Poza del Pato</li>
 	<li>Tarija, Hostel Cultural Pata y Perro</li>
+	<button
+		class="btn btn-primary"
+		on:click={() =>
+			window.open(
+				'https://www.worldpackers.com/es/promo/JUANMA12?utm_campaign=JUANMA12&utm_medium=referral&utm_source=affiliate'
+			)}>🌍 Ver todos los viajes</button
+	>
 	<iframe
 		title="Mapa de viajes"
 		src="https://www.google.com/maps/d/u/0/embed?mid=1ozw02Cg_HeQQFyzpOs99K48bPLn9wBA&ehbc=2E312F"

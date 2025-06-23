@@ -1,30 +1,30 @@
 <script lang="ts">
-import type { SubmitFunction } from '@sveltejs/kit';
-import { applyAction, enhance } from '$app/forms';
-import type { ActionData } from './$types';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { applyAction, enhance } from '$app/forms';
+	import type { ActionData } from './$types';
 
-import * as m from '$lib/paraglide/messages';
-import { getToastState } from '$states/toast.svelte';
-import { ToastTypeEnum } from '$lib/types';
+	import { m } from '$lib/paraglide/messages';
+	import { getToastState } from '$states/toast.svelte';
+	import { ToastTypeEnum } from '$lib/types';
 
-export let form: ActionData;
+	export let form: ActionData;
 
-const toastState = getToastState();
+	const toastState = getToastState();
 
-let showPassword = false;
-let loading = false;
+	let showPassword = false;
+	let loading = false;
 
-$: password = showPassword ? 'text' : 'password';
+	$: password = showPassword ? 'text' : 'password';
 
-const register: SubmitFunction = () => {
-	loading = true;
+	const register: SubmitFunction = () => {
+		loading = true;
 
-	return async ({ result }) => {
-		loading = false;
-		toastState.add(`${m.user_registered()}! 🥳`, ToastTypeEnum.Success);
-		await applyAction(result);
+		return async ({ result }) => {
+			loading = false;
+			toastState.add(`${m.user_registered()}! 🥳`, ToastTypeEnum.Success);
+			await applyAction(result);
+		};
 	};
-};
 </script>
 
 <div class="flex w-full flex-col items-center justify-center space-y-8">

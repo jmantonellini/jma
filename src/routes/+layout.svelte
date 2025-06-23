@@ -1,7 +1,5 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { i18n } from '$lib/i18n';
-	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
 
 	import UmamiAnalytics from '$lib/ui/custom/UmamiAnalytics.svelte';
 	import ViewTransition from './navigation.svelte';
@@ -18,26 +16,24 @@
 
 <UmamiAnalytics />
 
-<ParaglideJS {i18n}>
-	<ViewTransition />
-	<Toasts />
-	<div class="box-border font-jost grid h-full min-h-[100vh] w-screen grid-rows-[auto_1fr_auto]">
-		<Header />
-		
-		{#key url}
-			<main
-				class="mt-8 px-8 lg:mt-12 lg:px-12"
-				in:fly={{ x: -200, duration: 300, delay: 300 }}
-				out:fly={{ x: 200, duration: 300 }}
-			>
-				{@render children()}
-			</main>
-		{/key}
-		<footer class="flex h-full items-center justify-center gap-4 p-4 lg:p-8">
-			<p>&copy; Juanma 2025 🌱</p>
-		</footer>
-	</div>
-</ParaglideJS>
+<ViewTransition />
+<Toasts />
+<div class="box-border font-jost grid h-full min-h-[100vh] w-screen grid-rows-[auto_1fr_auto]">
+	<Header />
+
+	{#key url}
+		<main
+			class="mt-8 px-8 lg:mt-12 lg:px-12"
+			in:fly={{ x: -200, duration: 300, delay: 300 }}
+			out:fly={{ x: 200, duration: 300 }}
+		>
+			{@render children()}
+		</main>
+	{/key}
+	<footer class="flex h-full items-center justify-center gap-4 p-4 lg:p-8">
+		<p>&copy; Juanma 2025 🌱</p>
+	</footer>
+</div>
 
 <style lang="postcss">
 	@keyframes fade-in {

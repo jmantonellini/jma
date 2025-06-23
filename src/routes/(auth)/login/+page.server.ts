@@ -4,10 +4,11 @@ import type { Action, Actions, PageServerLoad } from './$types';
 
 import { prisma } from '$lib/server/prisma';
 import type { User } from '@prisma/client';
+import { localizeUrl } from '$lib/paraglide/runtime';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.user) {
-		return redirect(302, '/');
+		return redirect(302, localizeUrl('/'));
 	}
 };
 
@@ -47,6 +48,6 @@ const login: Action = async ({ cookies, request }) => {
 		maxAge: 60 * 60 * 24 * 7
 	});
 
-	return redirect(303, '/');
+	return redirect(303, localizeUrl('/'));
 };
 export const actions: Actions = { login };

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import WorldMap from './WorldMap.svelte';
-	import * as m from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 	import { goto } from '$app/navigation';
 
 	let { data } = $props();

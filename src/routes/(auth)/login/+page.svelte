@@ -1,30 +1,30 @@
 <script lang="ts">
-import type { ActionData } from './$types';
-import { applyAction, enhance } from '$app/forms';
-import { invalidateAll } from '$app/navigation';
+	import type { ActionData } from './$types';
+	import { applyAction, enhance } from '$app/forms';
+	import { invalidateAll } from '$app/navigation';
 
-import * as m from '$lib/paraglide/messages.js';
-import type { SubmitFunction } from '@sveltejs/kit';
-import { ToastTypeEnum } from '$lib/types';
-import { getToastState } from '$states/toast.svelte';
+	import { m } from '$lib/paraglide/messages.js';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { ToastTypeEnum } from '$lib/types';
+	import { getToastState } from '$states/toast.svelte';
 
-export let form: ActionData;
+	export let form: ActionData;
 
-const toastState = getToastState();
-let loading = false;
+	const toastState = getToastState();
+	let loading = false;
 
-const login: SubmitFunction = () => {
-	loading = true;
+	const login: SubmitFunction = () => {
+		loading = true;
 
-	return async ({ result }) => {
-		invalidateAll();
-		loading = false;
-		result.status === 200 || result.status === 303
-			? toastState.add(`${m.welcome()}! 😎`, ToastTypeEnum.Success)
-			: toastState.add(`${m.something_wrong()} 😓`, ToastTypeEnum.Error);
-		await applyAction(result);
+		return async ({ result }) => {
+			invalidateAll();
+			loading = false;
+			result.status === 200 || result.status === 303
+				? toastState.add(`${m.welcome()}! 😎`, ToastTypeEnum.Success)
+				: toastState.add(`${m.something_wrong()} 😓`, ToastTypeEnum.Error);
+			await applyAction(result);
+		};
 	};
-};
 </script>
 
 <div class="flex w-full flex-col items-center justify-center space-y-8">

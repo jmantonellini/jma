@@ -5,7 +5,7 @@
 	import UploadPhoto from '$lib/ui/photos/UploadPhoto.svelte';
 	import Modal from '$lib/ui/modals/Modal.svelte';
 	import Add from '$lib/icons/Add.svelte';
-	import * as m from '$lib/paraglide/messages.js';
+	import { m } from '$lib/paraglide/messages.js';
 	import ResponsiveImage from '$lib/ui/custom/ResponsiveImage.svelte';
 	import type { Photo } from '$lib/types';
 	import { isAdmin } from '$lib';
@@ -94,7 +94,8 @@
 				<h2
 					class="text-sm lg:text-lg absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center bg-base-100 opacity-0 transition-opacity hover:opacity-80"
 				>
-					<span class="w-[80%] text-center absolute text-white opacity-50">{photo.description}</span>
+					<span class="w-[80%] text-center absolute text-white opacity-50">{photo.description}</span
+					>
 					<span
 						class="w-[80%] text-center bg-clip-text text-transparent"
 						style="background-image: url({photo.proxyUrl});"

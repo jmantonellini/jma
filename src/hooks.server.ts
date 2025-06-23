@@ -1,7 +1,7 @@
-import { i18n } from '$lib/i18n';
 import { sequence } from '@sveltejs/kit/hooks';
 import type { Handle } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
+import { paraglideMiddleware } from '$lib/paraglide/server';
 
 export const userSession: Handle = async ({ event, resolve }) => {
 	const token = event.request.headers.get('x-human-verified');
@@ -58,4 +58,14 @@ export const themeHandler: Handle = async ({ event, resolve }) => {
 	});
 };
 
-export const handle: Handle = sequence(userSession, i18n.handle(), themeHandler);
+const paraglideHandle: Handle = ({ event, resolve }) =>
+	paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
+		event.request = localizedRequest;
+		return resolve(event, {
+			transformPageChunk: ({ html }) => {
+				return html.replace('%lang%', locale);
+			}
+		});
+	});
+
+export const handle: Handle = sequence(userSession, themeHandler, paraglideHandle);

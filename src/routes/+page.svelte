@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
-	import * as m from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 </script>
 
 <svelte:head>
@@ -20,7 +20,9 @@
 		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">
 			Where you can read about ecological practices.
 		</p>
-		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">And maybe learn about travelling & volunteering.</p>
+		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">
+			And maybe learn about travelling & volunteering.
+		</p>
 		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">I also post some photos from my journey.</p>
 		<p class="text-center max-w-[70vw] lg:max-w-[50vw]">I'm happy you are here :)</p>
 	</div>

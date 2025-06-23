@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import type { Post } from '@prisma/client';
 
-	import * as m from '$lib/paraglide/messages';
+	import { m } from '$lib/paraglide/messages';
 
 	const pathname = $derived(page.url.pathname);
 

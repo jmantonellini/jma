@@ -1,11 +1,11 @@
 import { json } from '@sveltejs/kit';
-import { languageTag } from '$lib/paraglide/runtime';
+import { getLocale } from '$lib/paraglide/runtime';
 import type { MetaData, Post } from '$lib/types';
 
 async function getCountryPosts() {
 	const posts: Post[] = [];
 	let paths;
-  const lang = languageTag();
+  const lang = getLocale();
 	
 	switch (lang) {
 		case 'es':

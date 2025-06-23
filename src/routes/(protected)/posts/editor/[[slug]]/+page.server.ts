@@ -4,6 +4,7 @@ import { slugify } from '$lib';
 import { getProxyUrl } from '$lib/server/utils';
 import { prisma } from '$lib/server/prisma';
 import { env } from '$env/dynamic/private';
+import { localizeUrl } from '$lib/paraglide/runtime';
 
 const SITE_URL = env.SITE_URL;
 
@@ -15,7 +16,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			where: { slug: params.slug }
 		});
 
-		if (!post) throw redirect(303, '/posts');
+		if (!post) throw redirect(303, localizeUrl('/posts'));
 
 		return {
 			post
@@ -112,7 +113,7 @@ export const actions: Actions = {
 				}
 			});
 
-			return redirect(303, `/posts/${slug}`);
+			return redirect(303, localizeUrl(`/posts/${slug}`));
 		} else {
 			const newSlug = slugify(title);
 
@@ -133,7 +134,7 @@ export const actions: Actions = {
 				}
 			});
 
-			return redirect(303, `/posts/${newSlug}`);
+			return redirect(303, localizeUrl(`/posts/${newSlug}`));
 		}
 	}
 };

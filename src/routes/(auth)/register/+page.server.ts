@@ -3,10 +3,11 @@ import type { Action, Actions, PageServerLoad } from './$types';
 import bcrypt from 'bcryptjs';
 import { prisma } from '$lib/server/prisma';
 import { Roles } from '$lib';
+import { localizeUrl } from '$lib/paraglide/runtime';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.user) {
-		return redirect(302, '/');
+		return redirect(302, localizeUrl('/'));
 	}
 };
 
@@ -33,7 +34,7 @@ const register: Action = async ({ request }) => {
 		console.error('Error during user registration:', error);
 		return fail(500, { error: 'Internal server error' });
 	}
-	return redirect(303, '/login');
+	return redirect(303, localizeUrl('/login'));
 };
 
 async function createUser(username: string, password: string) {
