@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 import type { Photo } from '$lib/types';
 
 export const load: PageServerLoad = async () => {
-	const limit = 10;
+	const limit = 5;
 
 	const photos = await prisma.photo.findMany({
 		take: limit,

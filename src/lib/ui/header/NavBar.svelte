@@ -13,6 +13,7 @@
 	const links = [
 		{ href: '/', label: m.home() },
 		{ href: '/posts', label: m.posts() },
+		{ href: '/lab', label: m.laboratory() },
 		{ href: '/travel', label: m.travel() },
 		{ href: '/volunteering', label: m.volunteering() },
 		{ href: '/photos', label: m.photos() }

@@ -16,11 +16,10 @@
 </script>
 
 <li class={`${isActive(href) && 'text-secondary'}`}>
-	<a
-		{href}
+	<button
 		onclick={(event) => {
 			event.preventDefault();
 			if (pathname !== href) goto(href);
-		}}>{label}</a
+		}}>{label}</button
 	>
 </li>

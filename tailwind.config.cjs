@@ -86,9 +86,7 @@ export default {
 					warning: '#EAB308',
 					error: '#EF4444'
 				}
-			},
-			'retro',
-			'cyberpunk'
+			}
 		]
 	}
 };

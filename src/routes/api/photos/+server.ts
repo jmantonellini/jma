@@ -34,7 +34,7 @@ export const POST: RequestHandler = async ({ request }) => {
 export const GET: RequestHandler = async ({ url }) => {
 	const cursor = url.searchParams.get('cursor');
 
-	const limit = 15;
+	const limit = 5;
 
 	const photos = await prisma.photo.findMany({
 		take: limit,
