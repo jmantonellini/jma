@@ -26,4 +26,4 @@ sleep 1
 
 # Iniciar la app
 echo "🟢 Ejecutando pnpm run dev..."
-pnpm run dev
+pnpm run dev --host

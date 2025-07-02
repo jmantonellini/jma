@@ -16,21 +16,21 @@ model Category {
 }
 
 model Post {
-  id               Int        @id @default(autoincrement())
-  createdAt        DateTime   @default(now())
-  updatedAt        DateTime   @updatedAt
-  title            String
-  content          String
-  description      String
-  slug             String     @unique
-  published        Boolean    @default(false)
-  authorId         String
-  tags             String[]
-  coverImage       String?
-  proxyUrl String?
-  Comment          Comment[]
-  author           User       @relation(fields: [authorId], references: [id])
-  categories       Category[] @relation("CategoryToPost")
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  title       String
+  content     String
+  description String
+  slug        String     @unique
+  published   Boolean    @default(false)
+  authorId    String
+  tags        String[]
+  coverImage  String?
+  proxyUrl    String?
+  Comment     Comment[]
+  author      User       @relation(fields: [authorId], references: [id])
+  categories  Category[] @relation("CategoryToPost")
 }
 
 model Country {
