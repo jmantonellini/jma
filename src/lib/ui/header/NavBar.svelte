@@ -23,7 +23,7 @@
 <svelte:window bind:scrollY />
 
 <header
-	class={`box-border flex justify-around p-2 lg:p-4 lg:justify-center items-center bg-base-100/80 &${fixed && ' sticky top-4 shadow-lg backdrop-blur-sm'}`}
+	class={`box-border flex justify-around p-2 lg:p-4 lg:justify-center items-center bg-base-100/80 &${fixed && ' sticky top-4 shadow-lg backdrop-blur-xs'}`}
 >
 	<div class="dropdown lg:hidden">
 		<div tabindex="0" role="button" class="btn btn-ghost">
@@ -52,6 +52,7 @@
 </header>
 
 <style lang="postcss">
+	@reference "tailwindcss";
 	header {
 		border-radius: 1rem;
 		z-index: 20;

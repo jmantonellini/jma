@@ -23,7 +23,7 @@
 </script>
 
 <div
-	class="w-full border-2 border-primary flex flex-col-reverse lg:flex-row rounded-2xl p-4 lg:p-8 gap-4 lg:gap-8"
+	class="w-full flex flex-col-reverse glass lg:flex-row rounded-2xl p-4 lg:p-8 gap-4 lg:gap-8"
 >
 	<div class="flex flex-col w-full lg:w-1/3 items-center justify-center gap-2 lg:gap-4">
 		<h2 class="text-xl font-bold text-center">{title}</h2>
@@ -32,7 +32,7 @@
 	</div>
 
 	<div
-		class="w-full lg:w-2/3 relative aspect-video border rounded-xl overflow-hidden group"
+		class="w-full lg:w-2/3 relative aspect-video rounded-xl overflow-hidden group"
 		role="button"
 		onmouseover={handleMouseOver}
 		onfocus={handleFocus}

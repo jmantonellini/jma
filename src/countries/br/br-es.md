@@ -78,11 +78,6 @@ published: true
 
 Saqué 400BRL
 
-En el cajero me dijo que agregaban 20BRL de interés
-
-Me terminó sacando:
-
-![IMG_2523.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b5ef7771-13c8-419f-9deb-38b3d86cfd22/b311d8b8-8ce0-47dc-823c-12c0379b0213/IMG_2523.png)
 
 | Reales | USD    | Description    |
 | ------ | ------ | -------------- |

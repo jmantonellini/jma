@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@plugin 'daisyui';
 
 @layer base {
 	h1 {
@@ -12,8 +12,21 @@
 	h3 {
 		@apply text-xl;
 	}
-	a {
-	 @apply font-semibold bg-secondary bg-opacity-75 bg-blend-overlay cursor-pointer text-base-100 hover:bg-primary
+}
+
+@theme {
+	--animate-bounce: bounce 5s ease infinite;
+
+	@keyframes text {
+		0%, 100%: {
+			transform: translateY(0);
+			animationtimingfunction: cubic-bezier(0, 0, 0.2, 1);
+		}
+
+		50%: {
+			transform: translateY(-25%);
+			animationtimingfunction: cubic-bezier(0.8, 0, 1, 1);
+		}
 	}
 }
 

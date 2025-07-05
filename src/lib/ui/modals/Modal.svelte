@@ -5,7 +5,7 @@ let {
 	dialog = $bindable(),
 	title,
 	children
-} = $props<{ dialog: HTMLDialogElement; title: Snippet; children: Snippet }>();
+} = $props<{ dialog?: HTMLDialogElement; title: Snippet; children: Snippet }>();
 
 const close = () => {
 	dialog.close();

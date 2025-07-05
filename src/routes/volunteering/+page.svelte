@@ -1,6 +1,5 @@
 <script>
 	import { m } from '$lib/paraglide/messages';
-	import SideFiller from '$lib/ui/custom/SideFiller.svelte';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
@@ -17,7 +16,6 @@
 		<h1>{m.volunteering()}</h1>
 		<div class="flex min-h-[60vh] h-full w-full">
 			{#if visible}
-				<SideFiller side="left" />
 				<div
 					class="flex flex-col self-center h-full gap-4 lg:gap-8 text-center relative"
 					in:fade={{ duration: 600 }}
@@ -26,9 +24,7 @@
 						You can travel all around the world while meeting amazing people, learning tons of
 						things and save a lot of money.
 					</p>
-					<p>
-						Volunteering basically consists in a mututal exchange. You work some
-					</p>
+					<p>Volunteering basically consists in a mututal exchange. You work some</p>
 					<p>
 						For me it was one of the best decisions I ever made. Volunteering allowed me to travel
 						around many countries and meet amazing people. I learned many new skills and even more
@@ -47,7 +43,6 @@
 						travelling.
 					</p>
 				</div>
-				<SideFiller side="right" />
 			{/if}
 		</div>
 		<h2>My experiences</h2>

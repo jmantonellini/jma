@@ -73,11 +73,6 @@ published: true
 
 I withdrew 400BRL
 
-The ATM told me they would add 20BRL in interest
-
-It ended up taking:
-
-![IMG_2523.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/b5ef7771-13c8-419f-9deb-38b3d86cfd22/b311d8b8-8ce0-47dc-823c-12c0379b0213/IMG_2523.png)
 
 | Reais | USD    | Description        |
 | ----- | ------ | ------------------ |

@@ -15,6 +15,8 @@ export const load: PageServerLoad = async () => {
 		...photo,
 		proxyUrl: getProxyUrl(photo.url, { width: 800, format: 'webp' })
 	}));
+	console.log(photosWithProxy);
+	console.log(photosWithProxy.length);
 
 	return {
 		photos: photosWithProxy,

@@ -23,7 +23,8 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"postinstall": "pnpx prisma generate",
-		"machine-translate": "inlang machine translate --project project.inlang"
+		"machine-translate": "inlang machine translate --project project.inlang",
+		"build:css": "postcss app.css -o public/output.css"
 	},
 	"devDependencies": {
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
@@ -40,7 +41,7 @@
 		"@types/eslint": "^9.6.1",
 		"@types/topojson-client": "^3.1.5",
 		"autoprefixer": "^10.4.20",
-		"daisyui": "^4.12.24",
+		"daisyui": "^5.0.43",
 		"eslint": "^9.29.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.1",
@@ -52,7 +53,7 @@
 		"prisma": "^6.10.1",
 		"svelte": "5.28.2",
 		"svelte-check": "^4.2.2",
-		"tailwindcss": "^3.4.17",
+		"tailwindcss": "^4.1.11",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.35.0",
 		"uuid": "^11.1.0",
@@ -65,6 +66,7 @@
 		"@aws-sdk/s3-request-presigner": "^3.758.0",
 		"@inlang/paraglide-js": "^2.1.0",
 		"@prisma/client": "^6.10.1",
+		"@tailwindcss/vite": "^4.1.11",
 		"bcryptjs": "^2.4.3",
 		"d3": "^7.9.0",
 		"dotenv": "^16.5.0",

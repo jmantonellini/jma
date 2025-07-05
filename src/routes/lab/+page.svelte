@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { reveal } from '$lib/actions/reveal';
 
@@ -10,9 +11,7 @@
 	import SerenaGif from './SERENA-GIF.gif';
 	import SumajGif from './SUMAJ-GIF.gif';
 	import VivaGif from './VIVA-GIF.gif';
-	import SideFiller from '$lib/ui/custom/SideFiller.svelte';
 	import Socials from '$lib/ui/socials/Socials.svelte';
-	import { onMount } from 'svelte';
 
 	const projects = [
 		{
@@ -54,16 +53,14 @@
 
 		<div class="flex min-h-[50vh] w-full">
 			{#if visible}
-				<SideFiller side="left" />
 				<div class="flex flex-col gap-4 lg:gap-8 relative" in:fade={{ duration }}>
 					{@html m.lab_introduction()}
 					<Socials />
 				</div>
-				<SideFiller side="right" />
 			{/if}
 		</div>
 
-		<div class="flex flex-col w-full items-center gap-4 pb-10">
+		<div class="flex flex-col w-full items-center gap-8 pb-10">
 			{#each projects as project, i}
 				<div use:reveal={{ delay: i * 150 }}>
 					<ProjectCard {...project} />

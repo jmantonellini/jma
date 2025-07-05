@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../app.css';
 	import type { Snippet } from 'svelte';
 
 	import UmamiAnalytics from '$lib/ui/custom/UmamiAnalytics.svelte';
@@ -36,6 +37,8 @@
 </div>
 
 <style lang="postcss">
+	@reference "tailwindcss";
+
 	@keyframes fade-in {
 		from {
 			opacity: 0;

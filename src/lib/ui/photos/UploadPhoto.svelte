@@ -122,6 +122,7 @@
 </form>
 
 <style lang="postcss">
+	@reference "tailwindcss";
 	.show {
 		@apply visible;
 	}

@@ -22,5 +22,5 @@
 />
 
 {#if previewUrl}
-	<img src={previewUrl} alt="Preview" class="mt-2 max-h-48 rounded shadow" />
+	<img src={previewUrl} alt="Preview" class="mt-2 max-h-48 rounded-sm shadow" />
 {/if}

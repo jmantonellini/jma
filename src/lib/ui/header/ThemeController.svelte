@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 
 	const themes = {
-		eco: '🌱',
+		light: '🌱',
 		dark: '🌙',
 	};
 

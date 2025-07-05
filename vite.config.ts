@@ -2,10 +2,12 @@ import { defineConfig } from 'vitest/config';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
 	assetsInclude: ['**/*.md'],
 	plugins: [
+		tailwindcss(),
 		sveltekit(),
 		paraglideVitePlugin({
 			project: './project.inlang',

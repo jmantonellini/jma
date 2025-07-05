@@ -23,7 +23,7 @@
 		<p class="opacity-50">{m.published_at()} {formatDate(metadata.date)}</p>
 	</hgroup>
 
-	<div class="flex items-center gap-2">
+	<div class="flex items-center whitespace-nowrap text-ellipsis gap-2">
 		{#each metadata.categories as category}
 			<a class="badge badge-secondary" href={`/category/${category}`}>{capitalize(category)}</a>
 		{/each}
