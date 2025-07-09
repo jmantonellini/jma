@@ -15,11 +15,7 @@
 	};
 </script>
 
-<li class={`${isActive(href) && 'text-secondary'}`}>
-	<button
-		onclick={(event) => {
-			event.preventDefault();
-			if (pathname !== href) goto(href);
-		}}>{label}</button
+<li class={`${isActive(href) && 'text-primary'}`}>
+	<a class="font-sans" href={href}>{label}</a
 	>
 </li>

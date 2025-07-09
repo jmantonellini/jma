@@ -64,7 +64,7 @@
 			if (features) {
 				countries = g
 					.append('g')
-					.attr('stroke', 'var(--color-primary)')
+					.attr('stroke', 'var(--color-base-content)')
 					.attr('cursor', 'pointer')
 					.selectAll('path')
 					.data(features)
@@ -72,7 +72,7 @@
 					.attr('d', path)
 					.style('transition', 'all .4s ease')
 					.attr('fill', (d: any) =>
-						visitedCountryNames.has(d.properties.name) ? 'var(--color-secondary)' : 'transparent'
+						visitedCountryNames.has(d.properties.name) ? 'var(--color-base-300)' : 'transparent'
 					)
 					.on('click', (event: MouseEvent, d: any) => {
 						if (visitedCountryNames.has(d.properties.name)) {
@@ -82,12 +82,12 @@
 					})
 					.on('mouseover', (event: MouseEvent, d: any) => {
 						if (visitedCountryNames.has(d.properties.name) && selected !== d.properties.name) {
-							d3.select(event.currentTarget).style('fill', 'var(--pc)');
+							d3.select(event.currentTarget).style('fill', 'var(--color-primary)');
 						}
 					})
 					.on('mouseout', (event: MouseEvent, d: any) => {
 						if (visitedCountryNames.has(d.properties.name) && selected !== d.properties.name) {
-							d3.select(event.currentTarget).style('fill', 'var(--color-secondary)');
+							d3.select(event.currentTarget).style('fill', 'var(--color-base-300)');
 						}
 					});
 				mesh = topojson.mesh(world, countries, (a: any, b: any) => a !== b);

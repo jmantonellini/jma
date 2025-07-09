@@ -26,7 +26,7 @@
 	class="w-full flex flex-col-reverse glass lg:flex-row rounded-2xl p-4 lg:p-8 gap-4 lg:gap-8"
 >
 	<div class="flex flex-col w-full lg:w-1/3 items-center justify-center gap-2 lg:gap-4">
-		<h2 class="text-xl font-bold text-center">{title}</h2>
+		<h2 class="text-primary">{title}</h2>
 		<p class="text-sm text-center">{@html description}</p>
 		<a href={siteUrl} target="_blank" class="text-xl">{siteUrl}</a>
 	</div>
@@ -42,14 +42,14 @@
 			{title}
 			src={image}
 			alt="Captura del sitio {title}"
-			class="w-full h-full object-cover transition duration-500 group-hover:hidden"
+			class="w-full object-contain transition duration-500 group-hover:hidden"
 		/>
 		{#if gif}
 			<img
 				bind:this={gifElement}
 				src={gif}
 				alt="GIF del sitio {title}"
-				class="w-full h-full object-cover hidden transition duration-500 group-hover:block"
+				class="w-full object-contain hidden transition duration-500 group-hover:block"
 			/>
 		{/if}
 	</div>

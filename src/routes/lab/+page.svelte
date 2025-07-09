@@ -12,6 +12,8 @@
 	import SumajGif from './SUMAJ-GIF.gif';
 	import VivaGif from './VIVA-GIF.gif';
 	import Socials from '$lib/ui/socials/Socials.svelte';
+	import Pricing from '$lib/ui/lab/Pricing.svelte';
+	import Avatar from '$lib/ui/custom/Avatar.svelte';
 
 	const projects = [
 		{
@@ -47,25 +49,27 @@
 	});
 </script>
 
-<div class="flex flex-col items-center w-full gap-8 lg:gap-16">
-	<div class="flex flex-col w-full lg:max-w-[80%] items-center gap-8 lg:gap-16 text-center">
-		<h1 class="text-3xl">Works & Projects</h1>
-
-		<div class="flex min-h-[50vh] w-full">
-			{#if visible}
-				<div class="flex flex-col gap-4 lg:gap-8 relative" in:fade={{ duration }}>
-					{@html m.lab_introduction()}
-					<Socials />
-				</div>
-			{/if}
+<div class="flex flex-col self-center space-y-6 lg:space-y-10 items-center lg:max-w-[80%] w-full">
+	<h1 class="lg:mt-18 mt-10">Works & Projects</h1>
+	<Avatar />
+	<h2>{m.hi()} 👋🏼</h2>
+	{#if visible}
+		<div class="max-w-4xl lg:columns-2 gap-4 lg:gap-8 text-center lg:text-justify relative" in:fade={{ duration }}>
+			{@html m.lab_introduction()}
 		</div>
+		<Socials />
+	{/if}
+	<div class="text-center max-w-4xl mx-auto">
+		<h2>Web Development Packages</h2>
+		<p>Flexible plans to build, launch, and maintain your professional online presence.</p>
+	</div>
+	<Pricing />
 
-		<div class="flex flex-col w-full items-center gap-8 pb-10">
-			{#each projects as project, i}
-				<div use:reveal={{ delay: i * 150 }}>
-					<ProjectCard {...project} />
-				</div>
-			{/each}
-		</div>
+	<div class="flex flex-col w-full items-center gap-8 pb-10">
+		{#each projects as project, i}
+			<div use:reveal={{ delay: i * 150 }}>
+				<ProjectCard {...project} />
+			</div>
+		{/each}
 	</div>
 </div>

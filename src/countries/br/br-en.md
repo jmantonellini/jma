@@ -34,16 +34,19 @@ published: true
   - Enables you to get a cell phone SIM card
 - You need to bring documentation to the Bank of Brazil
 - Contact of the lady who helps with paperwork in Arraial do Cabo:
-- Steps to do it: 1. Complete the [form](https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/default.asp) 2. If you entered Brazil with a passport, put the passport number; if you used your ID, put the ID number. 3. Put the CEP and address of the hostel where you're staying. (Lograduro: RUA) 4. When you finish, this message appears:
+### Steps to do it:
+1. Complete the [form](https://servicos.receita.fazenda.gov.br/Servicos/CPF/InscricaoCpfEstrangeiro/default.asp)
+2. If you entered Brazil with a passport, put the passport number; if you used your ID, put the ID number.
+3. Put the CEP and address of the hostel where you're staying. (Lograduro: RUA)
+4. When you finish, this message appears:
+5. Select for printing and save a copy. Then you need to bring it printed.
+6. Now you have to go to the nearest "**Secretaria da Receita Federal do Brasil**" and present the requested documentation:
+  1. Document or passport (whichever you used to complete the form) and a copy of it
+  2. Printed form
+7. It can take 3 to 5 days usually and it's sent directly to your email
+8. Done! 😄
 
 <PostImage src="/src/countries/br/cpf.png" alt="CPF" description="Required document for ID"/>
-        
-    5. Select for printing and save a copy. Then you need to bring it printed.
-    6. Now you have to go to the nearest "**Secretaria da Receita Federal do Brasil**" and present the requested documentation:
-        1. Document or passport (whichever you used to complete the form) and a copy of it
-        2. Printed form
-    7. It can take 3 to 5 days usually and it's sent directly to your email
-    8. Done! 😄
 
 ## Accommodation
 
@@ -162,3 +165,10 @@ I withdrew 400BRL
 - Inhotim
 - Diamantina and Ouro Preto
 - Traditional bars
+
+### **Bahia**
+- Itacaré
+- Porto Seguro
+- Arraial d'Ajuda
+- Trancoso
+- Chapada Diamantina (Vale do Pati)

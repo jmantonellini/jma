@@ -1,31 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Quattrocento:wght@400;700&family=Sometype+Mono:ital,wght@0,400..700;1,400..700&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 @plugin 'daisyui';
 
+@plugin "daisyui/theme" {
+	name: 'light';
+	default: true;
+	prefersdark: false;
+	color-scheme: 'light';
+	--color-base-100: oklch(98% 0 0);
+	--color-base-200: oklch(97% 0 0);
+	--color-base-300: oklch(92% 0 0);
+	--color-base-content: oklch(20% 0 0);
+	--color-primary: oklch(0.6748 0.2006 143.57);
+	--color-primary-content: oklch(98% 0.018 155.826);
+	--color-secondary: oklch(66% 0.179 58.318);
+	--color-secondary-content: oklch(98% 0.022 95.277);
+	--color-accent: oklch(59% 0.249 0.584);
+	--color-accent-content: oklch(97% 0.014 343.198);
+	--color-neutral: oklch(20% 0 0);
+	--color-neutral-content: oklch(98% 0 0);
+	--color-info: oklch(70% 0.165 254.624);
+	--color-info-content: oklch(28% 0.091 267.935);
+	--color-success: oklch(84% 0.238 128.85);
+	--color-success-content: oklch(27% 0.072 132.109);
+	--color-warning: oklch(82% 0.189 84.429);
+	--color-warning-content: oklch(27% 0.077 45.635);
+	--color-error: oklch(71% 0.202 349.761);
+	--color-error-content: oklch(28% 0.109 3.907);
+	--radius-selector: 2rem;
+	--radius-field: 0.5rem;
+	--radius-box: 0rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+	--depth: 0;
+	--noise: 1;
+}
+
+@plugin "daisyui/theme" {
+	name: 'dark';
+	default: false;
+	color-scheme: 'dark';
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @layer base {
 	h1 {
-		@apply text-3xl font-bold;
+		@apply animate-text from-primary via-secondary to-primary mt-8 mb-6 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent transition-colors duration-500 lg:mt-10 lg:mb-8 lg:text-5xl;
 	}
 	h2 {
-		@apply text-2xl font-semibold;
+		@apply mt-6 mb-4 text-2xl font-semibold lg:mt-8 lg:mb-6 lg:text-4xl;
 	}
 	h3 {
-		@apply text-xl;
+		@apply mt-4 mb-2 text-xl font-semibold lg:mt-6 lg:mb-4 lg:text-2xl;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	button {
+		@apply font-sans;
+	}
+	p,
+	li {
+		@apply font-serif;
+	}
+	table {
+		@apply font-mono;
+	}
+	button {
+		@apply cursor-pointer;
 	}
 }
 
 @theme {
-	--animate-bounce: bounce 5s ease infinite;
+	--animate-text: text 5s ease infinite;
+	--animate-fade-in: fade-in 0.8s ease forwards;
+	--font-serif: Quattrocento, serif;
+	--font-sans: Lexend Deca, sans-serif;
+	--font-mono: Sometype Mono, monospace;
+	--default-mono-font-family: 'Sometype Mono', monospace;
+	--header-height: 4.5rem;
 
 	@keyframes text {
-		0%, 100%: {
-			transform: translateY(0);
-			animationtimingfunction: cubic-bezier(0, 0, 0.2, 1);
+		0%,
+		100% {
+			background-size: 200%200%;
+			background-position: left center;
 		}
+		50% {
+			background-size: 200%200%;
+			background-position: right center;
+		}
+	}
 
-		50%: {
-			transform: translateY(-25%);
-			animationtimingfunction: cubic-bezier(0.8, 0, 1, 1);
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
 		}
 	}
 }

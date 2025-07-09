@@ -5,6 +5,7 @@
 	import MenuIcon from '$lib/icons/MenuIcon.svelte';
 	import UserMenu from './UserMenu.svelte';
 	import { m } from '$lib/paraglide/messages';
+	import Logotipo from '$lib/assets/Logotipo.svelte';
 
 	let scrollY: number;
 
@@ -23,9 +24,10 @@
 <svelte:window bind:scrollY />
 
 <header
-	class={`box-border flex justify-around p-2 lg:p-4 lg:justify-center items-center bg-base-100/80 &${fixed && ' sticky top-4 shadow-lg backdrop-blur-xs'}`}
+	class={`w-screen fixed flex items-center h-[var(--header-height)] justify-between p-2 lg:p-4 bg-base-100/80 &${fixed && 'shadow-lg backdrop-blur-xs'}`}
 >
-	<div class="dropdown lg:hidden">
+	<Logotipo width={50} height={50} />
+	<nav class="dropdown lg:hidden">
 		<div tabindex="0" role="button" class="btn btn-ghost">
 			<MenuIcon />
 		</div>
@@ -36,15 +38,18 @@
 				<NavLink {href} {label} />
 			{/each}
 		</ul>
-	</div>
-	<ul
-		class="menu menu-horizontal hidden flex-nowrap items-center justify-center gap-4 text-lg lg:col-start-2 lg:flex"
-	>
-		{#each links as { href, label }}
-			<NavLink {href} {label} />
-		{/each}
-	</ul>
-	<div class="flex items-center gap-2 lg:gap-4">
+	</nav>
+
+	<nav>
+		<ul
+			class="menu menu-horizontal hidden flex-nowrap items-center justify-center gap-4 text-lg lg:flex"
+		>
+			{#each links as { href, label }}
+				<NavLink {href} {label} />
+			{/each}
+		</ul>
+	</nav>
+	<div class="flex items-center justify-end gap-2 lg:gap-4">
 		<UserMenu />
 		<LanguageSelector />
 		<ThemeController />

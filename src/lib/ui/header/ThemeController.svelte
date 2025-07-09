@@ -1,53 +1,42 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { enhance } from '$app/forms';
-	import { capitalize } from '$lib';
-	import type { SubmitFunction } from '@sveltejs/kit';
 	import { onMount } from 'svelte';
 
 	const themes = {
 		light: '🌱',
-		dark: '🌙',
+		dark: '🌙'
 	};
 
-	let theme = themes.dark;
+	let currentTheme: keyof typeof themes = $state('light');
+	let themeIcon = $derived(themes[currentTheme]);
 
 	onMount(() => {
-		if (!browser) return;
+		onMount(() => {
+			if (!browser) return;
+			const stored = document.cookie.match(/colortheme=(light|dark)/)?.[1];
+			console.log('STORED', stored);
 
-		const current = document.documentElement.getAttribute('data-theme') as keyof typeof themes;
-		if (current && themes[current]) {
-			document.cookie = 'colortheme=' + current + '; path=/; max-age=' + 60 * 60 * 24 * 365;
-			theme = themes[current];
-		}
+			const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches
+				? 'dark'
+				: 'light';
+			const themeToUse = (stored as keyof typeof themes) || systemPref;
+			console.log(themeToUse);
+
+			document.documentElement.setAttribute('data-theme', themeToUse);
+			currentTheme = themeToUse;
+			themeIcon = themes[currentTheme];
+		});
 	});
 
-	const submitUpdateTheme: SubmitFunction = ({ action }) => {
-		const params = new URLSearchParams(action.search);
-		const newTheme = params.get('theme');
+	function toggleTheme() {
+		currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+		themeIcon = themes[currentTheme];
 
-		if (newTheme) {
-			document.documentElement.setAttribute('data-theme', newTheme);
-			theme = themes[newTheme as keyof typeof themes];
-		}
-	};
+		document.documentElement.setAttribute('data-theme', currentTheme);
+		document.cookie = `colortheme=${currentTheme}; path=/; max-age=${60 * 60 * 24 * 365}`;
+	}
 </script>
 
-<form class="dropdown h-fit" method="post" use:enhance={submitUpdateTheme}>
-	<button type="button" class="btn btn-sm lg:btn-md" aria-expanded="false" aria-controls="theme-options">
-		{theme}
-	</button>
-	<ul id="theme-options" class="dropdown-content z-[1] mt-2 rounded-btn bg-base-300 shadow-2xl">
-		{#each Object.keys(themes) as theme}
-			<li>
-				<button
-					class="theme-controller btn btn-ghost justify-start"
-					aria-label={`${capitalize(theme)} theme`}
-					formaction={`/?/setTheme&theme=${theme}`}
-				>
-					{themes[theme as keyof typeof themes]}
-				</button>
-			</li>
-		{/each}
-	</ul>
-</form>
+<button type="button" class="btn btn-sm lg:btn-md" onclick={toggleTheme} aria-label="Toggle theme">
+	{themeIcon}
+</button>
