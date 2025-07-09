@@ -1,12 +1,12 @@
 <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
 	<!-- Starter Plan -->
 	<article
-		class="flex flex-col px-6 py-8 space-y-6 bg-base-200 shadow ring-1 ring-base-300 h-full opacity-0 animate-fade-in delay-[100ms]"
+		class="flex flex-col px-6 py-8 space-y-6 bg-base-200 shadow ring-1 ring-base-300 h-full"
 		aria-labelledby="starter-title"
 	>
 		<h3 id="starter-title" class="text-primary font-semibold">Starter Site</h3>
 		<p class="text-4xl font-sans font-semibold text-base-content">
-			$899 <span class="text-base text-base-content/60">one-time</span>
+			$800 <span class="text-base text-base-content/60">one-time</span>
 		</p>
 		<p class="text-base-content/70">
 			Ideal for personal sites or small businesses. Fast delivery using WordPress or another CMS.
@@ -39,7 +39,7 @@
 
 	<!-- Pro Plan -->
 	<article
-		class="flex flex-col px-6 py-8 space-y-6 bg-base-100 shadow ring-2 ring-primary h-full opacity-0 animate-fade-in delay-[200ms]"
+		class="flex flex-col px-6 py-8 space-y-6 bg-base-100 shadow ring-2 ring-primary h-full"
 		aria-labelledby="pro-title"
 	>
 		<h3 id="pro-title" class="text-primary font-semibold">Pro Custom Site</h3>
@@ -75,7 +75,7 @@
 
 	<!-- Elite Plan -->
 	<article
-		class="flex flex-col px-6 py-8 space-y-6 bg-neutral text-neutral-content shadow-2xl ring-1 ring-neutral-focus h-full opacity-0 animate-fade-in delay-[300ms]"
+		class="flex flex-col px-6 py-8 space-y-6 bg-neutral text-neutral-content shadow-2xl ring-1 ring-neutral-focus h-full"
 		aria-labelledby="elite-title"
 	>
 		<h3 id="elite-title" class="text-secondary font-semibold">Elite Web Package</h3>

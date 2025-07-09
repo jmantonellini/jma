@@ -90,20 +90,17 @@
 
 	<div class="columns-2 lg:columns-3">
 		{#each photos as photo}
-			<div class="group relative mb-4 w-full overflow-hidden">
+			<div class="group mb-4 relative w-full overflow-hidden">
 				<ResponsiveImage src={photo?.proxyUrl || ''} alt={photo.alt} />
-				<h2
-					class="text-sm lg:text-lg absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center bg-base-100 opacity-0 transition-opacity hover:opacity-80"
+				<div
+					class="absolute inset-0 lg:bg-radial from-black/10 to-black/70 to-80% transition-all duration-600 group-hover:bg-none flex justify-center"
 				>
-					<span class="w-[80%] text-center absolute text-white opacity-50">{photo.description}</span
-					>
-					<span
-						class="w-[80%] text-center bg-clip-text text-transparent"
-						style="background-image: url({photo.proxyUrl});"
+					<p
+						class="text-semibold bg-base-100 h-fit text-center p-2 opacity-0 translate-y-0 group-hover:opacity-100 group-hover:translate-y-3 transition-all duration-500"
 					>
 						{photo.description}
-					</span>
-				</h2>
+					</p>
+				</div>
 			</div>
 		{/each}
 	</div>
