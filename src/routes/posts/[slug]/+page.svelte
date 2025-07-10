@@ -1,11 +1,8 @@
 <script lang="ts">
-	import type { PageData } from './$types';
 	import { getLocale } from '$lib/paraglide/runtime';
 	import { m } from '$lib/paraglide/messages';
 
-	export let data: PageData;
-
-	const { user, post } = data;
+	let { user, post } = $props();
 
 	function formatDate(date: Date) {
 		return new Intl.DateTimeFormat(getLocale(), {
@@ -13,7 +10,7 @@
 		}).format(date);
 	}
 
-	let showEdit = false;
+	let showEdit = $state(false);
 </script>
 
 <svelte:head>
@@ -24,8 +21,8 @@
 	<hgroup>
 		<h1
 			class="text-secondary"
-			on:mouseenter={() => (showEdit = true)}
-			on:mouseleave={() => (showEdit = false)}
+			onmouseenter={() => (showEdit = true)}
+			onmouseleave={() => (showEdit = false)}
 		>
 			{#if user?.id === post?.authorId}
 				<a

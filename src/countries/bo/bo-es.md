@@ -1,5 +1,6 @@
 ---
-title: Bolivia 🇧🇴
+title: Bolivia
+flag: 🇧🇴
 description: Tierra de altiplanos y carnavales
 date: '2024-10-26'
 categories:

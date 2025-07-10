@@ -22,17 +22,10 @@
 	}
 </script>
 
-<div
-	class="w-full flex flex-col-reverse glass lg:flex-row rounded-2xl p-4 lg:p-8 gap-4 lg:gap-8"
->
-	<div class="flex flex-col w-full lg:w-1/3 items-center justify-center gap-2 lg:gap-4">
-		<h2 class="text-primary">{title}</h2>
-		<p class="text-sm text-center">{@html description}</p>
-		<a href={siteUrl} target="_blank" class="text-xl">{siteUrl}</a>
-	</div>
-
+<div class="w-fit max-w-xl items-center flex flex-col rounded-2xl p-4 bg-base-200 space-y-4 lg:p-8">
+	<h2 class="text-primary">{title}</h2>
 	<div
-		class="w-full lg:w-2/3 relative aspect-video rounded-xl overflow-hidden group"
+		class="relative aspect-video rounded-xl overflow-hidden group"
 		role="button"
 		onmouseover={handleMouseOver}
 		onfocus={handleFocus}
@@ -42,7 +35,7 @@
 			{title}
 			src={image}
 			alt="Captura del sitio {title}"
-			class="w-full object-contain transition duration-500 group-hover:hidden"
+			class="w-full lg:w-xl object-contain transition duration-500 group-hover:hidden"
 		/>
 		{#if gif}
 			<img
@@ -53,4 +46,11 @@
 			/>
 		{/if}
 	</div>
+	<p class="text-sm text-center">{@html description}</p>
+	<button
+		title="Go to {siteUrl}"
+		aria-label="Check website {siteUrl}"
+		class="btn btn-secondary"
+		onclick={() => window.open(siteUrl, '_blank')}>{m.check_website()}</button
+	>
 </div>

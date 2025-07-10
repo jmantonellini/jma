@@ -25,8 +25,6 @@
 		isFetching = true;
 
 		try {
-			console.log('Loading more photos...', nextCursor);
-
 			const res = await fetch(`/api/photos?cursor=${nextCursor}`, {
 				headers: { 'x-human-verified': 'true' }
 			});

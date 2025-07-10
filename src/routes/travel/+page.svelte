@@ -25,8 +25,8 @@
 
 <svelte:window on:resize={attachListener} />
 
-<main class="flex flex-col items-center gap-2 lg:gap-8">
-	<h1 class="lg:mt-18 mt-10">{m.travel_guide()}</h1>
+<main class="flex flex-col items-center">
+	<h1>{m.travel_guide()}</h1>
 	<p>{m.travel_description()} 🧭</p>
 	<div class={`flex w-full gap-4 px-2 lg:gap-8 lg:px-4 ${smallDevice && 'flex-col'}`}>
 		<WorldMap

@@ -1,13 +1,11 @@
 import { json } from '@sveltejs/kit';
-import { getLocale } from '$lib/paraglide/runtime';
 import type { MetaData, Post } from '$lib/types';
 
-async function getCountryPosts() {
+async function getCountryPosts(locale: string) {
 	const posts: Post[] = [];
 	let paths;
-  const lang = getLocale();
-	
-	switch (lang) {
+
+	switch (locale.toLowerCase()) {
 		case 'es':
 			paths = import.meta.glob('/src/countries/*/*-es.md', { eager: true });
 			break;
@@ -32,13 +30,13 @@ async function getCountryPosts() {
 		}
 	}
 
-	posts.sort((first, second) => new Date(second.date).getTime() - new Date(first.date).getTime());
+	posts.sort();
 
 	return posts;
 }
 
-export const GET = async () => {
-	const posts = await getCountryPosts();
+export const GET = async ({ params }) => {
+	const posts = await getCountryPosts(params.locale);
 
 	return json(posts);
 };

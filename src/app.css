@@ -83,8 +83,7 @@
 	button {
 		@apply font-sans;
 	}
-	p,
-	li {
+	p {
 		@apply font-serif;
 	}
 	table {
@@ -96,8 +95,8 @@
 	p {
 		@apply not-first:mt-2 not-last:mb-4 not-first:lg:mt-4 not-last:lg:mb-6;
 	}
-	a {
-		@apply font-semibold decoration-2 decoration-secondary hover:decoration-accent underline;
+	p > a {
+		@apply decoration-secondary hover:decoration-accent font-semibold underline decoration-2;
 	}
 }
 
@@ -108,7 +107,7 @@
 	--font-sans: Lexend Deca, sans-serif;
 	--font-mono: Sometype Mono, monospace;
 	--default-mono-font-family: 'Sometype Mono', monospace;
-	--header-height: 4.5rem;
+	--header-height: 5.5rem;
 
 	@keyframes text {
 		0%,

@@ -24,9 +24,9 @@
 <svelte:window bind:scrollY />
 
 <header
-	class={`w-screen fixed flex items-center h-[var(--header-height)] justify-between p-2 lg:p-4 bg-base-100/80 &${fixed && 'shadow-lg backdrop-blur-xs'}`}
+	class={`w-screen transition-all duration-300 ease-in-out z-20 fixed flex items-center h-[var(--header-height)] justify-around p-2 lg:p-4 bg-base-100/80 &${fixed && 'shadow-lg backdrop-blur-xs'}`}
 >
-	<Logotipo width={50} height={50} />
+	<Logotipo classes="hidden lg:block" width={50} height={50} />
 	<nav class="dropdown lg:hidden">
 		<div tabindex="0" role="button" class="btn btn-ghost">
 			<MenuIcon />
@@ -55,13 +55,3 @@
 		<ThemeController />
 	</div>
 </header>
-
-<style lang="postcss">
-	@reference "tailwindcss";
-	header {
-		border-radius: 1rem;
-		z-index: 20;
-		transition: all 0.3s ease;
-		view-transition-name: header;
-	}
-</style>

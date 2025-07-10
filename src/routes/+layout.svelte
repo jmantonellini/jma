@@ -9,6 +9,7 @@
 	import { setToastState } from '$states/toast.svelte';
 	import '../app.css';
 	import { fly } from 'svelte/transition';
+	import Footer from '$lib/ui/footer/Footer.svelte';
 
 	let { children, url }: { children: Snippet; url: string } = $props();
 
@@ -19,19 +20,19 @@
 
 <ViewTransition />
 <Toasts />
-<div
-	class="box-border grid h-full min-h-[100vh] min-w-0 w-screen grid-rows-[auto_1fr_auto]"
->
+<div class="box-border min-h-screen min-w-0 w-screen flex flex-col">
 	<Header />
 
 	{#key url}
-		<main class="flex flex-col mt-[var(--header-height)] w-full px-4 lg:p-0" in:fly={{ x: -200, duration: 300, delay: 300 }} out:fly={{ x: 200, duration: 300 }}>
+		<main
+			class="flex-grow mt-[var(--header-height)] w-full px-4 lg:p-0"
+			in:fly={{ x: -200, duration: 300, delay: 300 }}
+			out:fly={{ x: 200, duration: 300 }}
+		>
 			{@render children()}
 		</main>
 	{/key}
-	<footer class="self-end flex items-center justify-center gap-4 p-4 lg:p-8">
-		<p>&copy; Juanma 2025 🌱</p>
-	</footer>
+	<Footer />
 </div>
 
 <style lang="postcss">

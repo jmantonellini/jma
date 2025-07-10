@@ -14,11 +14,11 @@
 	);
 </script>
 
-<div class="lg:mx-[5vw] lg:grid lg:grid-cols-[auto_1fr] lg:gap-8">
-	<aside class="hidden h-fit w-80 rounded-lg bg-base-200 p-2 lg:sticky lg:block lg:p-4">
+<div class="lg:mx-[5vw] mt-4 lg:mt-8 lg:grid lg:grid-cols-[auto_1fr] lg:gap-8 relative">
+	<aside class="top-32 hidden w-80 rounded-lg bg-base-200 p-2 lg:sticky lg:block lg:p-4">
 		<h3>{m.recent_posts()}</h3>
 		<div class="divider divider-secondary"></div>
-		<ul class="menu min-h-[40vh] text-base-content">
+		<ul class="menu min-h-[30vh] text-base-content">
 			{#each orderedPosts as { slug, title }}
 				<li>
 					<a

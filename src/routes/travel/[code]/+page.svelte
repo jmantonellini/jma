@@ -19,13 +19,16 @@
 
 <article class="flex flex-col gap-4">
 	<hgroup>
-		<h1>{metadata.title}</h1>
+		<div class="flex items-center gap-4">
+			<h1 class="m-0">{metadata.title}</h1>
+			<div class="text-5xl h-fit">{metadata.flag}</div>
+		</div>
 		<p class="opacity-50">{m.published_at()} {formatDate(metadata.date)}</p>
 	</hgroup>
 
 	<div class="flex items-center whitespace-nowrap text-ellipsis gap-2">
 		{#each metadata.categories as category}
-			<a class="badge badge-secondary" href={`/category/${category}`}>{capitalize(category)}</a>
+			<a class="badge badge-secondary hover:opacity-70 transition-opacity" href={`/category/${category}`}>{capitalize(category)}</a>
 		{/each}
 	</div>
 

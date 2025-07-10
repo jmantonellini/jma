@@ -14,13 +14,11 @@
 		onMount(() => {
 			if (!browser) return;
 			const stored = document.cookie.match(/colortheme=(light|dark)/)?.[1];
-			console.log('STORED', stored);
 
 			const systemPref = window.matchMedia('(prefers-color-scheme: dark)').matches
 				? 'dark'
 				: 'light';
 			const themeToUse = (stored as keyof typeof themes) || systemPref;
-			console.log(themeToUse);
 
 			document.documentElement.setAttribute('data-theme', themeToUse);
 			currentTheme = themeToUse;

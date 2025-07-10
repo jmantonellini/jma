@@ -1,5 +1,6 @@
 ---
-title: Brasil 🇧🇷
+title: Brasil
+flag: 🇧🇷
 description: Un país de muchos países
 date: '2024-10-26'
 categories:

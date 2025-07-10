@@ -1,7 +1,9 @@
+import { getLocale } from '$lib/paraglide/runtime';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ fetch, params }) => {
-	const response = await fetch('/api/travel');
+	let locale = getLocale();
+	const response = await fetch(`/api/travel/${locale}`);
 	const posts = await response.json();
 
 	return {

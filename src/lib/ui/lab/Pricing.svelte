@@ -1,7 +1,7 @@
 <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
 	<!-- Starter Plan -->
 	<article
-		class="flex flex-col px-6 py-8 space-y-6 bg-base-200 shadow ring-1 ring-base-300 h-full"
+		class="flex flex-col px-6 py-8 space-y-6 bg-base-200 ring-1 ring-base-300 h-full rounded-xl"
 		aria-labelledby="starter-title"
 	>
 		<h3 id="starter-title" class="text-primary font-semibold">Starter Site</h3>
@@ -39,7 +39,7 @@
 
 	<!-- Pro Plan -->
 	<article
-		class="flex flex-col px-6 py-8 space-y-6 bg-base-100 shadow ring-2 ring-primary h-full"
+		class="flex flex-col px-6 py-8 space-y-6 bg-base-100 shadow ring-2 ring-primary h-full rounded-xl"
 		aria-labelledby="pro-title"
 	>
 		<h3 id="pro-title" class="text-primary font-semibold">Pro Custom Site</h3>
@@ -75,7 +75,7 @@
 
 	<!-- Elite Plan -->
 	<article
-		class="flex flex-col px-6 py-8 space-y-6 bg-neutral text-neutral-content shadow-2xl ring-1 ring-neutral-focus h-full"
+		class="flex flex-col px-6 py-8 space-y-6 bg-neutral text-neutral-content shadow-2xl ring-1 ring-neutral-focus h-full rounded-xl"
 		aria-labelledby="elite-title"
 	>
 		<h3 id="elite-title" class="text-secondary font-semibold">Elite Web Package</h3>
