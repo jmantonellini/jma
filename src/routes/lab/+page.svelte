@@ -36,7 +36,7 @@
 	];
 </script>
 
-<div class="flex flex-col lg:max-w-5xl space-y-10 lg:space-y-20 items-center w-full mx-auto">
+<div class="flex flex-col lg:max-w-6xl space-y-10 lg:space-y-20 items-center w-full mx-auto">
 	<div id="hero" class="flex flex-col items-center space-y-10">
 		<h1 class="lg:mt-18 mt-10">{m.hi()} <ch class="text-primary">👋🏼</ch></h1>
 		<Avatar />

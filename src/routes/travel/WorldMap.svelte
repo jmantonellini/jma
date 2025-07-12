@@ -164,7 +164,7 @@
 <div class="map-container relative h-[70vh] w-full lg:h-[65vh]">
 	<button
 		class="btn btn-circle btn-ghost absolute bottom-2 left-1/2 text-xl opacity-50 transition-opacity hover:opacity-100"
-		onclick={() => reset}>🌎</button
+		onclick={() => reset()}>🌎</button
 	>
 	<div
 		class="pointer-events-none absolute left-0 top-0 h-full w-full shadow-[var(--b1)_inset]"

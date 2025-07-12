@@ -110,24 +110,24 @@ _Proposed route_
 - Los Chorros de Marquiri for nature
 - Wine route
 
-Sucre
+### Sucre
 
 - La Glorietta Castle
 - House of Freedom
 - Germen: tasty and cheap vegetarian food
 
-Samaipata
+### Samaipata
 
 - Giant fern forest
 - Samaipata Fort
 - Cafe Arte
 
-Santa Cruz
+### Santa Cruz
 
 - Typica Cafe
 - Daniela Ser Fauna: +59170938153
 
-La Paz
+### La Paz
 
 - Volunteering at Lobo Hostel
 - July 16th Fair in El Alto - Red Cable Car

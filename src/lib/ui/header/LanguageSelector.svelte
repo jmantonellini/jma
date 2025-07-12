@@ -17,7 +17,7 @@
 	<button tabindex="0" type="button" class="btn btn-sm lg:btn-md" aria-expanded="false">
 		{labels[getLocale()]}
 	</button>
-	<ul class="dropdown-content z-[1] mt-2 rounded-btn bg-base-300 shadow-2xl">
+	<ul class="dropdown-content rounded z-[1] mt-2 bg-base-300 shadow-2xl">
 		{#each locales as langTag}
 			{#if langTag !== getLocale()}
 				<li>

@@ -30,9 +30,7 @@
 			{/each}
 		</ul>
 	</aside>
-	<div>
-		{#key data.code}
-			{@render children()}
-		{/key}
-	</div>
+	{#key data.code}
+		{@render children()}
+	{/key}
 </div>

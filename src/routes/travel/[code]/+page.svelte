@@ -2,10 +2,11 @@
 	import { capitalize, formatDate } from '$lib';
 	import { m } from '$lib/paraglide/messages';
 
-	let { data } = $props<{ slug: string }>();
+	let { data } = $props();
+	const { slug } = data;
 
 	const modules = import.meta.glob('/src/countries/**/*.md', { eager: true });
-	const mod = modules[`/src/countries/${data.slug.split('-')[0]}/${data.slug}.md`] as any;
+	const mod = modules[`/src/countries/${slug.split('-')[0]}/${slug}.md`] as any;
 
 	const Post = $derived(mod.default);
 	const metadata = mod.metadata;
@@ -28,7 +29,10 @@
 
 	<div class="flex items-center whitespace-nowrap text-ellipsis gap-2">
 		{#each metadata.categories as category}
-			<a class="badge badge-secondary hover:opacity-70 transition-opacity" href={`/category/${category}`}>{capitalize(category)}</a>
+			<a
+				class="badge badge-secondary hover:opacity-70 transition-opacity"
+				href={`/category/${category}`}>{capitalize(category)}</a
+			>
 		{/each}
 	</div>
 

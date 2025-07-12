@@ -24,7 +24,7 @@
 	<button tabindex="0" type="button" class="btn btn-sm lg:btn-md" aria-expanded="false">
 		👤
 	</button>
-	<ul class="dropdown-content z-[1] mt-2 rounded-btn bg-base-300 shadow-2xl">
+	<ul class="dropdown-content z-[1] mt-2 rounded bg-base-300 shadow-2xl">
 		{#if page.data.user && isAdmin(page.data.user.role)}
 			<li>
 				<a class="btn btn-ghost w-full whitespace-nowrap" href="/admin">Admin 🦸🏻‍♂️</a>

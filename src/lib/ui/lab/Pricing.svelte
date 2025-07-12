@@ -1,7 +1,7 @@
 <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
 	<!-- Starter Plan -->
 	<article
-		class="flex flex-col px-6 py-8 space-y-6 bg-base-200 ring-1 ring-base-300 h-full rounded-xl"
+		class="flex flex-col px-6 py-8 space-y-5 bg-base-200 ring-1 ring-base-300 h-full rounded-xl"
 		aria-labelledby="starter-title"
 	>
 		<h3 id="starter-title" class="text-primary font-semibold">Starter Site</h3>

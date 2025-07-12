@@ -110,24 +110,24 @@ _Ruta propuesta_
 - Los Chorros de Marquiri para naturaleza
 - Ruta del vino
 
-Sucre
+### Sucre
 
 - Castillo La Glorietta
 - Casa de la Libertad
 - Germen: comida vegetariana rica y barata
 
-Samaipata
+### Samaipata
 
 - Bosque de los helechos gigantes
 - Fuerte de Samaipata
 - Cafe Arte
 
-Santa Cruz
+### Santa Cruz
 
 - Typica Cafe
 - Daniela Ser Fauna: +59170938153
 
-La Paz
+### La Paz
 
 - Voluntariado en Lobo Hostel
 - Feria 16 de Julio en el Alto - Teleférico Rojo
