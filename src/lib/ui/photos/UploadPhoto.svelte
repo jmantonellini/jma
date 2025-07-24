@@ -81,7 +81,7 @@
 	<input
 		placeholder="Photo file"
 		type="file"
-		class="file-input file-input-bordered w-full"
+		class="file-input w-full"
 		oninput={(event) => {
 			const target = event.target as HTMLInputElement;
 			if (target && target.files) {

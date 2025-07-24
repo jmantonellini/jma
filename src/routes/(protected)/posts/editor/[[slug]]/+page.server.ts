@@ -1,140 +1,129 @@
-import { fail, redirect, type Actions } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
+import { zod4 } from 'sveltekit-superforms/adapters';
+import { message, fail, superValidate, withFiles } from 'sveltekit-superforms';
+
 import type { PageServerLoad } from './$types';
 import { slugify } from '$lib';
 import { getProxyUrl } from '$lib/server/utils';
 import { prisma } from '$lib/server/prisma';
 import { env } from '$env/dynamic/private';
 import { localizeUrl } from '$lib/paraglide/runtime';
+import { PostSchema } from './zod-schema';
+import { ZodError } from 'zod';
 
 const SITE_URL = env.SITE_URL;
 
 export const load: PageServerLoad = async ({ params }) => {
-	try {
-		if (!params.slug) return { post: null };
+	const formEmpty = await superValidate(zod4(PostSchema));
 
-		const post = await prisma.post.findUnique({
-			where: { slug: params.slug }
-		});
+	if (!params.slug) return { form: formEmpty };
 
-		if (!post) throw redirect(303, localizeUrl('/posts'));
+	const post = await prisma.post.findUnique({
+		where: { slug: params.slug }
+	});
 
-		return {
-			post
-		};
-	} catch (error) {
-		console.log(error);
-	}
+	const form = await superValidate(post, zod4(PostSchema));
+	if (!post) throw redirect(303, localizeUrl('/posts'));
+
+	return {
+		form
+	};
 };
 
 export const actions: Actions = {
 	default: async ({ request, locals, fetch }) => {
-		const formData = await request.formData();
+		try {
+			const form = await superValidate(request, zod4(PostSchema));
 
-		const id = formData.get('id')?.toString();
-		const slug = formData.get('slug')?.toString();
-		const title = formData.get('title')?.toString();
-		const description = formData.get('description')?.toString();
-		const content = formData.get('content')?.toString();
-		const intent = formData.get('intent')?.toString();
-		const file = formData.get('coverFile') as File | null;
-
-		console.log('🎯 Form fields received:', {
-			title,
-			description,
-			content,
-			intent,
-			id,
-			slug,
-			file
-		});
-
-		if (!title || !description || !content || !intent) {
-			return fail(400, { message: 'Missing fields' });
-		}
-
-		let coverUrl: string | undefined;
-		let proxyUrl: string | undefined;
-
-		if (!file || file.size === 0) {
-			console.warn('⚠️ No cover file received or file is empty');
-		}
-
-		if (file && file.size > 0 && file.name) {
-			try {
-				const bucketParam = 'posts';
-				const res = await fetch(
-					`${SITE_URL}/api/photos/url?name=${file.name}&bucket=${bucketParam}`,
-					{
-						headers: { 'x-human-verified': 'true' }
-					}
-				);
-
-				if (!res.ok) {
-					console.error('❌ Error getting signed URL:', await res.text());
-					return fail(500, { message: 'Could not get signed URL' });
-				}
-				const { preSignedUrl, permanentUrl } = await res.json();
-
-				const uploadRes = await fetch(preSignedUrl, {
-					method: 'PUT',
-					headers: {
-						'Content-Type': file.type
-					},
-					body: file
-				});
-
-				if (!uploadRes.ok) {
-					console.error('❌ Error uploading image to S3:', await uploadRes.text());
-					return fail(500, { message: 'Image upload to S3 failed' });
-				}
-
-				coverUrl = permanentUrl;
-				proxyUrl = getProxyUrl(permanentUrl, { width: 800, format: 'webp' });
-
-				console.log('✅ Image uploaded to:', coverUrl);
-			} catch (err) {
-				console.error('❌ Unexpected error uploading cover image:', err);
-				return fail(500, { message: 'Unexpected error uploading image' });
+			if (!form.valid) {
+				return fail(400, { form });
 			}
-		}
 
-		const isEdit = !!id;
+			let coverUrl: string | undefined;
+			let proxyUrl: string | undefined;
 
-		if (isEdit) {
-			await prisma.post.update({
-				where: { id: Number(id) },
-				data: {
-					title,
-					description,
-					content,
-					published: intent === 'publish',
-					...(coverUrl && { coverImage: coverUrl }),
-					...(proxyUrl && { proxyUrl })
+			const { title, description, postContent, intent, id, coverFile } = form.data;
+
+			if (coverFile && coverFile.size > 0 && coverFile.name) {
+				try {
+					const bucketParam = 'posts';
+					const res = await fetch(
+						`${SITE_URL}/api/photos/url?name=${coverFile.name}&bucket=${bucketParam}`,
+						{
+							headers: { 'x-human-verified': 'true' }
+						}
+					);
+
+					if (!res.ok) {
+						console.error('❌ Error getting signed URL:');
+						return fail(500, { form });
+					}
+					const { preSignedUrl, permanentUrl } = await res.json();
+
+					const uploadRes = await fetch(preSignedUrl, {
+						method: 'PUT',
+						headers: {
+							'Content-Type': coverFile.type
+						},
+						body: coverFile
+					});
+
+					if (!uploadRes.ok) {
+						console.error('❌ Error uploading image to S3:', await uploadRes.text());
+						return fail(500, { form, message: 'Image upload to S3 failed' });
+					}
+
+					coverUrl = permanentUrl;
+					proxyUrl = getProxyUrl(permanentUrl, { width: 800, format: 'webp' });
+
+					console.log('✅ Image uploaded to:', coverUrl);
+				} catch (err) {
+					console.error('❌ Unexpected error uploading cover image:', err);
+					return fail(500, { form, message: 'Unexpected error uploading cover image' });
 				}
-			});
+			}
 
-			return redirect(303, localizeUrl(`/posts/${slug}`));
-		} else {
-			const newSlug = slugify(title);
+			const isEdit = !!id;
 
-			await prisma.post.create({
-				data: {
-					title,
-					description,
-					content,
-					slug: newSlug,
-					published: intent === 'publish',
-					coverImage: coverUrl,
-					proxyUrl,
-					author: {
-						connect: {
-							id: locals.user?.id
+			if (isEdit) {
+				await prisma.post.update({
+					where: { id: Number(id) },
+					data: {
+						title,
+						description,
+						postContent,
+						published: intent === 'publish',
+						...(coverUrl && { coverImage: coverUrl }),
+						...(proxyUrl && { proxyUrl })
+					}
+				});
+			} else {
+				const newSlug = slugify(title);
+				console.info('Creating post with slug:', newSlug);
+
+				await prisma.post.create({
+					data: {
+						title,
+						description,
+						postContent,
+						slug: newSlug,
+						published: intent === 'publish',
+						coverImage: coverUrl,
+						proxyUrl,
+						author: {
+							connect: {
+								id: locals.user?.id
+							}
 						}
 					}
-				}
-			});
-
-			return redirect(303, localizeUrl(`/posts/${newSlug}`));
+				});
+			}
+			return withFiles({ form });
+		} catch (error) {
+			if (error instanceof ZodError) {
+				return fail(400, { message: error.message });
+			}
+			return fail(400, { message: 'FAILED POST SAVE' });
 		}
 	}
 };

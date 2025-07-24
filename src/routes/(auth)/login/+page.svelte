@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { ActionData } from './$types';
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
+	import type { ActionData } from './$types';
 
 	import { m } from '$lib/paraglide/messages.js';
 	import type { SubmitFunction } from '@sveltejs/kit';
@@ -27,7 +27,7 @@
 	};
 </script>
 
-<div class="flex w-full flex-col items-center justify-center space-y-8">
+<div class="flex w-full min-h-0 h-full flex-col items-center justify-center">
 	<h2>{m.welcome()}! 🥳</h2>
 	<form class="flex flex-col gap-2 lg:gap-4" action="?/login" method="post" use:enhance={login}>
 		<label for="username" class="form-control">

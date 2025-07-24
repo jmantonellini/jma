@@ -1,9 +1,14 @@
 import type { PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
+import { localizeUrl } from '$lib/paraglide/runtime';
 
 export const load: PageServerLoad = async ({ params }) => {
 	try {
+		if (!params.slug) {
+			throw redirect(303, localizeUrl('/posts'));
+		}
+
 		const post = await prisma.post.findUnique({
 			where: { slug: params.slug }
 		});

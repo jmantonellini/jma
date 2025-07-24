@@ -32,6 +32,9 @@ git push origin main
 - **CI/CD:** GitHub Actions + GHCR
 - **Hosting:** CapRover en DigitalOcean
 - **Analytics:** Umami en CapRover
+- **Forms:** SuperForms con Zod
+- **Markdown:** Mdsvex y Shiki
+- **Rich-text editot:** TipTap
 
 ---
 

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { getLocale } from '$lib/paraglide/runtime';
+	import { getLocale, localizeHref } from '$lib/paraglide/runtime';
 	import { m } from '$lib/paraglide/messages';
 
-	let { user, post } = $props();
+	let { data } = $props();
+	const { user, post } = data;
 
 	function formatDate(date: Date) {
 		return new Intl.DateTimeFormat(getLocale(), {
@@ -19,6 +20,7 @@
 
 <main class="grid grid-rows-[auto_1fr] gap-2 lg:gap-4">
 	<hgroup>
+		<img src={post?.coverImage} alt={post?.title} class="w-full" />
 		<h1
 			class="text-secondary"
 			onmouseenter={() => (showEdit = true)}
@@ -27,7 +29,7 @@
 			{#if user?.id === post?.authorId}
 				<a
 					title={m.edit()}
-					href={`/posts/editor/${post.slug}`}
+					href={localizeHref(`/posts/editor/${post.slug}`)}
 					class={`transition-opacity ${!showEdit && 'lg:opacity-50'}`}>🖋️</a
 				>
 			{/if}
@@ -39,7 +41,7 @@
 	</hgroup>
 	<article class="prose prose-slate font-serif">
 		{#if post}
-			<p>{@html post.content}</p>
+			<p>{@html post.postContent}</p>
 		{:else}
 			<p>Content not available.</p>
 		{/if}

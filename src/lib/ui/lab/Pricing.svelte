@@ -6,7 +6,7 @@
 	>
 		<h3 id="starter-title" class="text-primary font-semibold">Starter Site</h3>
 		<p class="text-4xl font-sans font-semibold text-base-content">
-			$800 <span class="text-base text-base-content/60">one-time</span>
+			$800 <span class="text-base text-base-content/60">one-time *</span>
 		</p>
 		<p class="text-base-content/70">
 			Ideal for personal sites or small businesses. Fast delivery using WordPress or another CMS.
@@ -32,6 +32,7 @@
 				<li>- $40/hr on demand</li>
 			</ul>
 		</div>
+		<span class="text-sm text-base-content/50">* doesn't include domain or hosting costs</span>
 		<a href="#" class="btn btn-outline btn-primary justify-self-end mt-auto" role="button">
 			Start Project
 		</a>

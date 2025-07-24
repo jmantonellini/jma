@@ -4,6 +4,7 @@
 	import { isAdmin } from '$lib';
 
 	import { m } from '$lib/paraglide/messages';
+	import { localizeHref } from '$lib/paraglide/runtime';
 	import { ToastTypeEnum } from '$lib/types';
 	import { getToastState } from '$states/toast.svelte';
 	import type { SubmitFunction } from '@sveltejs/kit';
@@ -27,10 +28,12 @@
 	<ul class="dropdown-content z-[1] mt-2 rounded bg-base-300 shadow-2xl">
 		{#if page.data.user && isAdmin(page.data.user.role)}
 			<li>
-				<a class="btn btn-ghost w-full whitespace-nowrap" href="/admin">Admin 🦸🏻‍♂️</a>
+				<a class="btn btn-ghost w-full whitespace-nowrap" href={localizeHref('/admin')}>Admin 🦸🏻‍♂️</a>
 			</li>
 			<li>
-				<a class="btn btn-ghost w-full whitespace-nowrap" href="/posts/editor">Create Post ✍🏼</a>
+				<a class="btn btn-ghost w-full whitespace-nowrap" href={localizeHref('/posts/editor')}
+					>Create Post ✍🏼</a
+				>
 			</li>
 		{/if}
 		{#if page.data.user}
@@ -43,10 +46,14 @@
 			</li>
 		{:else}
 			<li>
-				<a class="btn btn-ghost w-full whitespace-nowrap" href="/login"> {m.login()}</a>
+				<a class="btn btn-ghost w-full whitespace-nowrap" href={localizeHref('/login')}>
+					{m.login()}</a
+				>
 			</li>
 			<li>
-				<a class="btn btn-ghost w-full whitespace-nowrap" href="/register"> {m.register()}</a>
+				<a class="btn btn-ghost w-full whitespace-nowrap" href={localizeHref('/register')}>
+					{m.register()}</a
+				>
 			</li>
 		{/if}
 	</ul>

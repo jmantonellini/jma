@@ -4,6 +4,7 @@
 	import type { Post } from '@prisma/client';
 
 	import { m } from '$lib/paraglide/messages';
+	import { localizeHref } from '$lib/paraglide/runtime.js';
 
 	const pathname = $derived(page.url.pathname);
 
@@ -22,11 +23,11 @@
 			{#each orderedPosts as { slug, title }}
 				<li>
 					<a
-						href="/posts/{slug}"
+						href={localizeHref(`/posts/${slug}`)}
 						onclick={(event) => {
 							event.preventDefault();
 							const current = pathname;
-							const target = `/posts/${slug}`;
+							const target = localizeHref(`/posts/${slug}`);
 							if (current !== target) {
 								goto(target);
 							}
@@ -36,5 +37,8 @@
 			{/each}
 		</ul>
 	</aside>
-	{@render children()}
+
+	{#key pathname}
+		{@render children()}
+	{/key}
 </div>

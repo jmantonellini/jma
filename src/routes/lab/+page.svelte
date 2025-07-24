@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ProjectCard from '$lib/ui/lab/ProjectCard.svelte';
 	import { m } from '$lib/paraglide/messages';
-	import Serena from './SERENA.png';
-	import Viva from './VIVA.png';
-	import Sumaj from './SUMAJ.png';
+	import Serena from './SERENA.webp';
+	import Viva from './VIVA.webp';
+	import Sumaj from './SUMAJ.webp';
 	import SerenaGif from './SERENA-GIF.gif';
 	import SumajGif from './SUMAJ-GIF.gif';
 	import VivaGif from './VIVA-GIF.gif';
