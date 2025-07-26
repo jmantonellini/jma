@@ -19,6 +19,9 @@
 		{ href: '/volunteering', label: m.volunteering() },
 		{ href: '/photos', label: m.photos() }
 	];
+
+	console.log('RENDERED NAVBAR');
+	
 </script>
 
 <svelte:window bind:scrollY />

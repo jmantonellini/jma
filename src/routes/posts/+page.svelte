@@ -3,6 +3,7 @@
 	import { applyAction } from '$app/forms';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
+	import type { PageProps } from './$types';
 
 	import { m } from '$lib/paraglide/messages';
 	import Confirmation from '$lib/ui/modals/Confirmation.svelte';
@@ -10,7 +11,7 @@
 	import { ToastTypeEnum } from '$lib/types';
 	import { isAdmin } from '$lib';
 
-	let { data } = $props();
+	let { data }: PageProps = $props();
 
 	let dialog = $state<HTMLDialogElement | null>(null);
 	let deleteId = $state(0);
@@ -18,7 +19,7 @@
 
 	const toastState = getToastState();
 
-	const posts = $derived(() => data.posts);
+	const posts = $derived(data.posts);
 	const deletePost: SubmitFunction = () => {
 		return async ({ result }) => {
 			invalidateAll();
@@ -34,7 +35,7 @@
 
 <main class="w-full">
 	<ul class="flex flex-col items-center gap-3 lg:items-start">
-		{#each posts() as post}
+		{#each posts as post}
 			<li class="flex flex-col gap-2">
 				<div class="card bg-base-100 shadow-xl lg:card-side">
 					<figure>

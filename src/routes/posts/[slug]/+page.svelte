@@ -20,7 +20,7 @@
 
 <main class="grid grid-rows-[auto_1fr] gap-2 lg:gap-4">
 	<hgroup>
-		<img src={post?.coverImage} alt={post?.title} class="w-full" />
+		<img src={post?.proxyUrl} alt={post?.title} class="w-full" />
 		<h1
 			class="text-secondary"
 			onmouseenter={() => (showEdit = true)}

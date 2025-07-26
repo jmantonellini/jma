@@ -1,37 +1,31 @@
 <script lang="ts">
 	import '../app.css';
 	import type { Snippet } from 'svelte';
-
 	import UmamiAnalytics from '$lib/ui/custom/UmamiAnalytics.svelte';
-	import ViewTransition from './navigation.svelte';
 	import Header from '$lib/ui/header/NavBar.svelte';
 	import Toasts from '$lib/ui/toasts/Toasts.svelte';
 	import { setToastState } from '$states/toast.svelte';
-	import '../app.css';
 	import { fly } from 'svelte/transition';
 	import Footer from '$lib/ui/footer/Footer.svelte';
 
-	let { children, url }: { children: Snippet; url: string } = $props();
+	let { children }: { children: Snippet } = $props();
 
 	setToastState();
 </script>
 
 <UmamiAnalytics />
 
-<ViewTransition />
 <Toasts />
 <div class="box-border min-h-screen min-w-0 w-screen flex flex-col">
 	<Header />
 
-	{#key url}
-		<main
-			class="flex-grow mt-[var(--header-height)] w-full px-4 lg:p-0"
-			in:fly={{ x: -200, duration: 300, delay: 300 }}
-			out:fly={{ x: 200, duration: 300 }}
-		>
-			{@render children()}
-		</main>
-	{/key}
+	<main
+		class="flex-grow mt-[var(--header-height)] w-full px-4 lg:p-0"
+		in:fly={{ x: -200, duration: 300, delay: 300 }}
+		out:fly={{ x: 200, duration: 300 }}
+	>
+		{@render children()}
+	</main>
 	<Footer />
 </div>
 

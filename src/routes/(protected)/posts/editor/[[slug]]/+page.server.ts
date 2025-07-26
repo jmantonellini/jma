@@ -1,6 +1,6 @@
 import { redirect, type Actions } from '@sveltejs/kit';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { message, fail, superValidate, withFiles } from 'sveltekit-superforms';
+import { fail, superValidate, withFiles } from 'sveltekit-superforms';
 
 import type { PageServerLoad } from './$types';
 import { slugify } from '$lib';
@@ -42,13 +42,13 @@ export const actions: Actions = {
 			let coverUrl: string | undefined;
 			let proxyUrl: string | undefined;
 
-			const { title, description, postContent, intent, id, coverFile } = form.data;
+			const { title, description, postContent, published, id, coverImage } = form.data;
 
-			if (coverFile && coverFile.size > 0 && coverFile.name) {
+			if (coverImage instanceof File && coverImage.size > 0) {
 				try {
 					const bucketParam = 'posts';
 					const res = await fetch(
-						`${SITE_URL}/api/photos/url?name=${coverFile.name}&bucket=${bucketParam}`,
+						`${SITE_URL}/api/photos/url?name=${coverImage.name}&bucket=${bucketParam}`,
 						{
 							headers: { 'x-human-verified': 'true' }
 						}
@@ -63,9 +63,9 @@ export const actions: Actions = {
 					const uploadRes = await fetch(preSignedUrl, {
 						method: 'PUT',
 						headers: {
-							'Content-Type': coverFile.type
+							'Content-Type': coverImage.type
 						},
-						body: coverFile
+						body: coverImage
 					});
 
 					if (!uploadRes.ok) {
@@ -81,6 +81,9 @@ export const actions: Actions = {
 					console.error('❌ Unexpected error uploading cover image:', err);
 					return fail(500, { form, message: 'Unexpected error uploading cover image' });
 				}
+			} else if (typeof coverImage === 'string') {
+				coverUrl = coverImage;
+				proxyUrl = getProxyUrl(coverImage, { width: 800, format: 'webp' });
 			}
 
 			const isEdit = !!id;
@@ -92,7 +95,7 @@ export const actions: Actions = {
 						title,
 						description,
 						postContent,
-						published: intent === 'publish',
+						published,
 						...(coverUrl && { coverImage: coverUrl }),
 						...(proxyUrl && { proxyUrl })
 					}
@@ -107,7 +110,7 @@ export const actions: Actions = {
 						description,
 						postContent,
 						slug: newSlug,
-						published: intent === 'publish',
+						published,
 						coverImage: coverUrl,
 						proxyUrl,
 						author: {

@@ -9,12 +9,6 @@ function getS3KeyFromUrl(url: string) {
 	return match ? match[1] : null;
 }
 
-export const load: PageServerLoad = async () => {
-	return {
-		posts: await prisma.post.findMany()
-	};
-};
-
 export const actions: Actions = {
 	deletePost: async ({ request }) => {
 		const formData = await request.formData();

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { fileProxy, superForm } from 'sveltekit-superforms';
-	import { zod4Client } from 'sveltekit-superforms/adapters';
+	import SuperDebug, { fileProxy, superForm } from 'sveltekit-superforms';
 
 	import { goto } from '$app/navigation';
 	import { m } from '$lib/paraglide/messages';
@@ -8,22 +7,24 @@
 	import { getToastState } from '$states/toast.svelte';
 	import { localizeHref } from '$lib/paraglide/runtime';
 	import TextEditor from '$lib/ui/post/editor/TextEditor.svelte';
-	import { PostSchema } from './zod-schema';
 
 	let { data } = $props();
 
-	const { form, errors, constraints, message, enhance } = superForm(data.form, {
-		validators: zod4Client(PostSchema),
-		onError({ result }) {
-			$message = result.error.message || 'Unknown error';
-			console.log('ERROR', result.error.message);
-		}
-	});
+	const { form, errors, constraints, message, enhance } = superForm(data.form);
 
-	const file = fileProxy(form, 'coverFile');
+	const file = fileProxy(form, 'coverImage');
+	console.log('file', file);
 
 	let loading = $state(false);
 	let previewUrl: string | null = $state(null);
+
+	$effect(() => {
+		if ($file?.length) {
+			previewUrl = URL.createObjectURL($file[0]);
+		} else if (typeof $form.coverImage === 'string') {
+			previewUrl = $form.proxyUrl || $form.coverImage;
+		}
+	});
 
 	const toastState = getToastState();
 </script>
@@ -42,7 +43,7 @@
 			<input type="hidden" name="slug" value={$form.slug} />
 
 			<fieldset class="fieldset">
-				<label class="label" for="title">{m.title()}</label>
+				<label class="label" for="title" id="title">{m.title()}</label>
 				<input
 					name="title"
 					class="input input-primary"
@@ -56,7 +57,7 @@
 			</fieldset>
 
 			<fieldset class="fieldset">
-				<label class="label" for="description">{m.description()}</label>
+				<label class="label" for="description" id="description">{m.description()}</label>
 				<input
 					name="description"
 					class="input input-primary"
@@ -70,18 +71,29 @@
 			</fieldset>
 
 			<fieldset class="fieldset">
-				<label class="label" for="coverFile">{m.cover_image()}</label>
+				<label class="label" for="coverImage" id="coverImage">{m.cover_image()}</label>
 				<input
 					type="file"
-					name="coverFile"
+					name="coverImage"
 					accept="image/*"
 					class="file-input"
 					bind:files={$file}
 				/>
 
 				{#if previewUrl}
-					<img src={previewUrl} alt="Preview" class="mt-2 max-h-48 rounded-sm shadow" />
+					<img src={previewUrl} alt="Preview" class="mt-2 max-h-48 rounded shadow" />
 				{/if}
+			</fieldset>
+
+			<fieldset class="fieldset">
+				<label class="label" for="published">{m.publish()}</label>
+				<input
+					name="published"
+					type="checkbox"
+					bind:checked={$form.published}
+					class="checkbox"
+					id="published"
+				/>
 			</fieldset>
 
 			<fieldset class="fieldset">
@@ -90,16 +102,12 @@
 			</fieldset>
 
 			<div class="flex gap-2 justify-around">
-				<button type="submit" name="intent" value="save" class="btn btn-success">
+				<button class="btn btn-success">
 					{#if $form?.slug}
 						{m.save()}
 					{:else}
 						{m.create_post()}
 					{/if}
-					{#if loading}<span class="loading loading-spinner"></span>{/if}
-				</button>
-				<button type="submit" name="intent" value="publish" class="btn btn-primary">
-					{m.publish()}
 					{#if loading}<span class="loading loading-spinner"></span>{/if}
 				</button>
 				<button type="button" onclick={() => goto(localizeHref('/posts'))} class="btn btn-error">
