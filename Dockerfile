@@ -11,6 +11,9 @@ COPY . .
 
 # Instalamos y construimos
 RUN npm i -g pnpm
+
+ENV PRISMA_SKIP_POSTINSTALL_GENERATE=true
+
 RUN pnpm install
 RUN pnpm exec svelte-kit sync
 RUN pnpm run build
