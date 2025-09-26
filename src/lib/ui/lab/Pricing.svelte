@@ -1,40 +1,49 @@
+<script lang="ts">
+	import { m } from '$lib/paraglide/messages';
+</script>
+
 <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
 	<!-- Starter Plan -->
 	<article
 		class="flex flex-col px-6 py-8 space-y-5 bg-base-200 ring-1 ring-base-300 h-full rounded-xl"
 		aria-labelledby="starter-title"
 	>
-		<h3 id="starter-title" class="text-primary font-semibold">Starter Site</h3>
+		<h3 id="starter-title" class="text-primary font-semibold">{m.pricing_starter_title()}</h3>
 		<p class="text-4xl font-sans font-semibold text-base-content">
-			$800 <span class="text-base text-base-content/60">one-time *</span>
+			{m.pricing_starter_price()}
+			<span class="text-base text-base-content/60">{m.pricing_one_time()}</span>
 		</p>
 		<p class="text-base-content/70">
-			Ideal for personal sites or small businesses. Fast delivery using WordPress or another CMS.
+			{m.pricing_starter_description()}
 		</p>
 		<ul class="space-y-3 text-base-content/70" aria-label="Features included">
 			<li class="flex items-center gap-2">
-				<span class="text-primary" aria-hidden="true">✓</span> Up to 5 pages
+				<span class="text-primary" aria-hidden="true">✓</span>
+				{m.pricing_starter_features_1()}
 			</li>
 			<li class="flex items-center gap-2">
-				<span class="text-primary" aria-hidden="true">✓</span> Custom theme setup
+				<span class="text-primary" aria-hidden="true">✓</span>
+				{m.pricing_starter_features_2()}
 			</li>
 			<li class="flex items-center gap-2">
-				<span class="text-primary" aria-hidden="true">✓</span> Contact form integration
+				<span class="text-primary" aria-hidden="true">✓</span>
+				{m.pricing_starter_features_3()}
 			</li>
 			<li class="flex items-center gap-2">
-				<span class="text-primary" aria-hidden="true">✓</span> Basic SEO setup
+				<span class="text-primary" aria-hidden="true">✓</span>
+				{m.pricing_starter_features_4()}
 			</li>
 		</ul>
 		<div class="text-sm text-base-content/60">
-			<p class="font-medium">Maintenance:</p>
+			<p class="font-medium">{m.pricing_mantainence()}:</p>
 			<ul class="space-y-1">
-				<li>- $50/month</li>
-				<li>- $40/hr on demand</li>
+				<li>- {m.pricing_starter_maintenance_monthly()}</li>
+				<li>- {m.pricing_starter_maintenance_hourly()}</li>
 			</ul>
 		</div>
-		<span class="text-sm text-base-content/50">* doesn't include domain or hosting costs</span>
-		<a href="#" class="btn btn-outline btn-primary justify-self-end mt-auto" role="button">
-			Start Project
+		<span class="text-sm text-base-content/50">{m.pricing_starter_maintenance_not_included()}</span>
+		<a href="https://wa.me/593981862474?text=I%20want%20to%20start%20a%20project" target="_blank" class="btn btn-outline btn-primary justify-self-end mt-auto" role="button">
+			{m.pricing_start_project()}
 		</a>
 	</article>
 
@@ -58,6 +67,9 @@
 				<span class="text-primary" aria-hidden="true">✓</span> Up to 10 pages
 			</li>
 			<li class="flex items-center gap-2">
+				<span class="text-primary" aria-hidden="true">✓</span> eCommerce integration
+			</li>
+			<li class="flex items-center gap-2">
 				<span class="text-primary" aria-hidden="true">✓</span> SEO & analytics integration
 			</li>
 			<li class="flex items-center gap-2">
@@ -71,7 +83,7 @@
 				<li>- $50/hr for changes & security updates</li>
 			</ul>
 		</div>
-		<a href="#" class="btn btn-primary mt-auto" role="button">Get Started</a>
+		<a href="#" class="btn btn-primary mt-auto" role="button">Start Project</a>
 	</article>
 
 	<!-- Elite Plan -->

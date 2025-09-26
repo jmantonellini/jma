@@ -13,4 +13,10 @@
 	<form action="/logout" method="POST">
 		<button type="submit">Log out</button>
 	</form>
+
+	<a
+		class="btn btn-ghost w-full whitespace-nowrap"
+		href={"https://n8n-app.eco-sistema.net"}
+		target="_blank">Go to N8N panel</a
+	>
 {/if}

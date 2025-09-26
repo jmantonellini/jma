@@ -18,6 +18,7 @@
 	<section class="flex flex-col items-center mb-6 lg:mb-10">
 		<h2>{m.my_experiences()}</h2>
 		<ul class="flex flex-col gap-2 lg:gap-4 items-center">
+			<li>🇨🇴 Sandoná, Movie Time Cinema</li>
 			<li>🇪🇨 Cuenca, Cosmos Apparel</li>
 			<li>🇪🇨 Malacatos, Serena Holistic Center</li>
 			<li>🇵🇪 Tarapoto, Sumaj Hoteles</li>
