@@ -23,7 +23,7 @@ model Country {
   flag    String?
 
   postId Int?  @unique
-  post   Post? @relation(fields: [postId], references: [id])
+  post   Post? @relation("CountryToPost", fields: [postId], references: [id])
 }
 
 model Post {
@@ -39,8 +39,9 @@ model Post {
   comments     Comment[]
   author       User          @relation(fields: [authorId], references: [id])
   categories   Category[]    @relation("CategoryToPost")
-  country      Country?
   translations Translation[]
+  countryId    Int?
+  country      Country?      @relation("CountryToPost")
 }
 
 model Language {
