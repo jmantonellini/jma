@@ -2,6 +2,7 @@
 	import WorldMap from './WorldMap.svelte';
 	import { m } from '$lib/paraglide/messages';
 	import { goto } from '$app/navigation';
+	import { localizeHref } from '$lib/paraglide/runtime';
 
 	let { data } = $props();
 
@@ -30,7 +31,7 @@
 	<p>{m.travel_description()} 🧭</p>
 	<div class={`flex w-full gap-4 px-2 lg:gap-8 lg:px-4 ${smallDevice && 'flex-col'}`}>
 		<WorldMap
-			onSelectCountry={(country) => goto(`/travel/${country?.code}`)}
+			onSelectCountry={(country) => goto(localizeHref(`/travel/${country?.code}`))}
 			{smallDevice}
 			visitedCountries={data.visitedCountries}
 		/>

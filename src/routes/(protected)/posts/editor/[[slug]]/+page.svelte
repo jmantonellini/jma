@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SuperDebug, { fileProxy, superForm } from 'sveltekit-superforms';
+	import { fileProxy, superForm } from 'sveltekit-superforms';
 
 	import { goto } from '$app/navigation';
 	import { m } from '$lib/paraglide/messages';
@@ -22,7 +22,7 @@
 		if ($file?.length) {
 			previewUrl = URL.createObjectURL($file[0]);
 		} else if (typeof $form.coverImage === 'string') {
-			previewUrl = $form.proxyUrl || $form.coverImage;
+			previewUrl = ($form.proxyUrl as string) || $form.coverImage;
 		}
 	});
 
@@ -90,7 +90,7 @@
 				<input
 					name="published"
 					type="checkbox"
-					bind:checked={$form.published}
+					bind:checked={$form.published as boolean}
 					class="checkbox"
 					id="published"
 				/>

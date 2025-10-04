@@ -15,46 +15,51 @@ model Category {
   posts Post[] @relation("CategoryToPost")
 }
 
-model Post {
-  id          Int        @id @default(autoincrement())
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  title       String
-  postContent     String
-  description String
-  slug        String     @unique
-  published   Boolean    @default(false)
-  authorId    String
-  tags        String[]
-  coverImage  String?
-  proxyUrl    String?
-  Comment     Comment[]
-  author      User       @relation(fields: [authorId], references: [id])
-  categories  Category[] @relation("CategoryToPost")
+model Country {
+  id      Int     @id @default(autoincrement())
+  name    String
+  code    String  @unique
+  visited Boolean @default(false)
+  flag    String
+
+  postId Int  @unique
+  post   Post @relation(fields: [postId], references: [id])
 }
 
-model Country {
-  id                  Int                   @id @default(autoincrement())
-  name                String
-  code                String                @unique
-  visited             Boolean               @default(false)
-  CountryTranslations CountryTranslations[]
+model Post {
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  slug         String        @unique
+  published    Boolean       @default(false)
+  authorId     String
+  tags         String[]
+  coverImage   String?
+  proxyUrl     String?
+  comments     Comment[]
+  author       User          @relation(fields: [authorId], references: [id])
+  categories   Category[]    @relation("CategoryToPost")
+  country      Country?
+  translations Translation[]
 }
 
 model Language {
-  id                  Int                   @id @default(autoincrement())
-  code                String                @unique
-  name                String
-  CountryTranslations CountryTranslations[]
+  id           Int           @id @default(autoincrement())
+  code         String        @unique
+  name         String
+  translations Translation[]
 }
 
-model CountryTranslations {
-  id           Int      @id @default(autoincrement())
+model Translation {
+  id           Int     @id @default(autoincrement())
   languageCode String
-  frontPage    String
-  countryCode  String
-  country      Country  @relation(fields: [countryCode], references: [code])
-  language     Language @relation(fields: [languageCode], references: [code])
+  postId       Int
+  title        String
+  content      String?
+  description  String
+
+  post     Post?    @relation(fields: [postId], references: [id])
+  language Language @relation(fields: [languageCode], references: [code])
 }
 
 model User {

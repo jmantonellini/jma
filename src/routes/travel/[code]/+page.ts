@@ -2,7 +2,7 @@ import { getLocale, localizeUrl } from '$lib/paraglide/runtime';
 import { redirect } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = ({ params }) => {
+export const load: PageLoad = async ({ params, fetch }) => {
 	const rawCode = params.code;
 
 	if (!rawCode || rawCode === 'undefined') {
@@ -11,14 +11,23 @@ export const load: PageLoad = ({ params }) => {
 
 	const code = rawCode.toLowerCase();
 	const lang = getLocale();
-	const slug = `${code}-${lang}`;
 
-	const modules = import.meta.glob('/src/countries/**/*.md', { eager: true });
-	const path = `/src/countries/${code}/${slug}.md`;
-
-	if (!modules[path]) {
+	// call your API endpoint
+	const res = await fetch(`/api/countries/${code}?lang=${lang}`);
+	if (!res.ok) {
 		throw redirect(307, localizeUrl('/travel'));
 	}
 
-	return { slug };
+	const translation = await res.json();
+
+	// if no translation was found, redirect
+	if (!translation) {
+		throw redirect(307, localizeUrl('/travel'));
+	}
+
+	return {
+		translation,
+		code,
+		lang
+	};
 };

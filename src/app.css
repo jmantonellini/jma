@@ -103,6 +103,7 @@
 @theme {
 	--animate-text: text 5s ease infinite;
 	--animate-fade-in: fade-in 0.8s ease forwards;
+	--animate-wave: wave 1.5s infinite;
 	--font-serif: Quattrocento, serif;
 	--font-sans: Lexend Deca, sans-serif;
 	--font-mono: Sometype Mono, monospace;
@@ -129,6 +130,33 @@
 		100% {
 			opacity: 1;
 			transform: translateY(0);
+		}
+	}
+
+	@keyframes wave {
+		0% {
+			transform: rotate(0deg);
+		}
+		15% {
+			transform: rotate(14deg);
+		}
+		30% {
+			transform: rotate(-8deg);
+		}
+		40% {
+			transform: rotate(14deg);
+		}
+		50% {
+			transform: rotate(-4deg);
+		}
+		60% {
+			transform: rotate(10deg);
+		}
+		70% {
+			transform: rotate(-2deg);
+		}
+		100% {
+			transform: rotate(0deg);
 		}
 	}
 }

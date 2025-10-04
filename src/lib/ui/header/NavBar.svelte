@@ -6,22 +6,20 @@
 	import UserMenu from './UserMenu.svelte';
 	import { m } from '$lib/paraglide/messages';
 	import Logotipo from '$lib/assets/Logotipo.svelte';
+	import { localizeHref } from '$lib/paraglide/runtime';
 
 	let scrollY: number;
 
 	$: fixed = scrollY > 0;
 
 	const links = [
-		{ href: '/', label: m.home() },
-		{ href: '/posts', label: m.posts() },
-		{ href: '/lab', label: m.laboratory() },
-		{ href: '/travel', label: m.travel() },
-		{ href: '/volunteering', label: m.volunteering() },
-		{ href: '/photos', label: m.photos() }
+		{ href: localizeHref('/'), label: m.home() },
+		{ href: localizeHref('/posts'), label: m.posts() },
+		{ href: localizeHref('/lab'), label: m.laboratory() },
+		{ href: localizeHref('/travel'), label: m.travel() },
+		{ href: localizeHref('/volunteering'), label: m.volunteering() },
+		{ href: localizeHref('/photos'), label: m.photos() }
 	];
-
-	console.log('RENDERED NAVBAR');
-	
 </script>
 
 <svelte:window bind:scrollY />
