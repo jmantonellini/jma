@@ -20,10 +20,10 @@ model Country {
   name    String
   code    String  @unique
   visited Boolean @default(false)
-  flag    String
+  flag    String?
 
-  postId Int  @unique
-  post   Post @relation(fields: [postId], references: [id])
+  postId Int?  @unique
+  post   Post? @relation(fields: [postId], references: [id])
 }
 
 model Post {
