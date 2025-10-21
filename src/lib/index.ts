@@ -1,5 +1,7 @@
 // place files you want to import through the `$lib` alias in this folder.
 
+import { getLocale } from './paraglide/runtime';
+
 export function slugify(text: string) {
 	const from = 'áàäâãéèëêíìïîóòöôõúùüûñç';
 	const to = 'aaaaaeeeeiiiiooooouuuunc';
@@ -33,14 +35,10 @@ export function capitalize(text: string) {
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 
-export function formatDate(date: string, dateStyle: DateStyle = 'medium', locales = 'en') {
-	// Safari is mad about dashes in the date
-	if (date) {
-		const dateToFormat = new Date(date.replaceAll('-', '/'));
-		const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle });
-		return dateFormatter.format(dateToFormat);
-	}
-	return '';
+export function formatDate(date: Date) {
+	return new Intl.DateTimeFormat(getLocale(), {
+		dateStyle: 'long'
+	}).format(date);
 }
 
 export function sleep(ms: number) {

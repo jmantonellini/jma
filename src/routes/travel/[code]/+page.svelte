@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { capitalize, formatDate } from '$lib';
 	import { m } from '$lib/paraglide/messages';
+	import { localizeHref } from '$lib/paraglide/runtime.js';
 
 	let { data } = $props();
-	const { translation, code, lang } = data;
+	const { translation, post, country, user } = data;
 
-	// comes from translation.post.country
-	const country = translation?.post?.country;
+	let showEdit = $state(false);
+
 	const flag = country?.flag ?? '🏳️'; // fallback
 	const title = translation?.title ?? country?.name;
-	const description = translation?.description ?? '';
-	const date = translation?.post?.createdAt;
-	const categories = translation?.post?.categories ?? [];
+	const date = post?.createdAt;
+	const categories = post?.categories ?? [];
 </script>
 
 <svelte:head>
@@ -23,10 +23,25 @@
 <article class="flex flex-col gap-4">
 	<hgroup>
 		<div class="flex items-center gap-4">
-			<h1 class="m-0">{title}</h1>
 			<div class="text-5xl h-fit">{flag}</div>
+			<h1
+				class="m-0"
+				onmouseenter={() => (showEdit = true)}
+				onmouseleave={() => (showEdit = false)}
+			>
+				{title}
+				{#if user?.id === post?.authorId}
+					<a
+						title={m.edit()}
+						href={localizeHref(`/posts/editor/${post.slug}`)}
+						class={`text-primary transition-opacity ${!showEdit && 'lg:opacity-50'}`}>🖋️</a
+					>
+				{/if}
+			</h1>
 		</div>
-		<p class="opacity-50">{m.published_at()} {formatDate(date)}</p>
+		{#if date}
+			<p class="opacity-50">{m.published_at()} {formatDate(date)}</p>
+		{/if}
 	</hgroup>
 
 	<div class="flex items-center whitespace-nowrap text-ellipsis gap-2">
@@ -38,7 +53,7 @@
 		{/each}
 	</div>
 
-	<div class="prose">
+	<div class="prose-sm md:prose">
 		{@html translation?.content}
 	</div>
 	<div class="max-w-[65ch] p-4 rounded-md bg-secondary text-center text-secondary-content">

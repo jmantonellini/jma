@@ -11,9 +11,9 @@
 	let { data } = $props();
 
 	const { form, errors, constraints, message, enhance } = superForm(data.form);
+	const countries = data.countries;
 
 	const file = fileProxy(form, 'coverImage');
-	console.log('file', file);
 
 	let loading = $state(false);
 	let previewUrl: string | null = $state(null);
@@ -57,6 +57,24 @@
 			</fieldset>
 
 			<fieldset class="fieldset">
+				<label class="label" for="countryCode" id="countryCode">{m.country()}</label>
+				<select
+					name="countryCode"
+					class="select select-primary"
+					bind:value={$form.countryCode}
+					placeholder="Country"
+					{...$constraints.countryCode}
+				>
+					<option value={null}>None</option>
+					{#each countries as country}
+						<option value={country.code} selected={country.code === $form.countryCode}>
+							{country.flag} {country.name}</option
+						>
+					{/each}
+				</select>
+			</fieldset>
+
+			<fieldset class="fieldset">
 				<label class="label" for="description" id="description">{m.description()}</label>
 				<input
 					name="description"
@@ -97,8 +115,20 @@
 			</fieldset>
 
 			<fieldset class="fieldset">
-				<label class="label" for="postContent">{m.content()}</label>
-				<TextEditor name="postContent" bind:content={$form.postContent} />
+				<label class="label" for="translate">{m.translate()}</label>
+				<input
+					name="translate"
+					defaultChecked
+					type="checkbox"
+					bind:checked={$form.translate as boolean}
+					class="checkbox"
+					id="translate"
+				/>
+			</fieldset>
+
+			<fieldset class="fieldset">
+				<label class="label" for="content">{m.content()}</label>
+				<TextEditor name="content" bind:content={$form.content} />
 			</fieldset>
 
 			<div class="flex gap-2 justify-around">

@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Welcome</title>
+	<title>{m.home()}</title>
 </svelte:head>
 
 <div class="flex flex-col items-center h-full justify-center gap-4 lg:gap-8">

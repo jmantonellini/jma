@@ -39,12 +39,6 @@
 			}
 		});
 	});
-
-	// onDestroy(() => {
-	// 	if (editor) {
-	// 		editor.destroy();
-	// 	}
-	// });
 </script>
 
 {#if editor}

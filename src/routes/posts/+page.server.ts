@@ -1,5 +1,4 @@
 import { fail, type Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
 import { DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { getS3Client } from '$lib/server/aws';

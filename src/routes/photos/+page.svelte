@@ -69,6 +69,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{m.photos()}</title>
+</svelte:head>
+
 <div class="flex w-full flex-col items-center px-2 lg:px-4">
 	{#if isAdmin(page.data?.user?.role)}
 		<button

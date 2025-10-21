@@ -22,8 +22,7 @@ model Country {
   visited Boolean @default(false)
   flag    String?
 
-  postId Int?  @unique
-  post   Post? @relation("CountryToPost", fields: [postId], references: [id])
+  post Post[]
 }
 
 model Post {
@@ -40,8 +39,9 @@ model Post {
   author       User          @relation(fields: [authorId], references: [id])
   categories   Category[]    @relation("CategoryToPost")
   translations Translation[]
-  countryId    Int?
-  country      Country?      @relation("CountryToPost")
+
+  country     Country? @relation(fields: [countryCode], references: [code])
+  countryCode String?
 }
 
 model Language {
@@ -52,15 +52,19 @@ model Language {
 }
 
 model Translation {
-  id           Int     @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   languageCode String
   postId       Int
   title        String
   content      String?
   description  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  post     Post?    @relation(fields: [postId], references: [id])
+  post     Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
   language Language @relation(fields: [languageCode], references: [code])
+
+  @@unique([postId, languageCode])
 }
 
 model User {

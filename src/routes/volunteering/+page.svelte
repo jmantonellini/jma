@@ -2,6 +2,10 @@
 	import { m } from '$lib/paraglide/messages';
 </script>
 
+<svelte:head>
+  <title>{m.volunteering()}</title>
+</svelte:head>
+
 <div class="flex flex-col items-center lg:max-w-4xl mx-auto">
 	<section class="flex flex-col items-center mb-6 lg:mb-10">
 		<h1 class="self-center">{m.volunteering_title()}</h1>
@@ -18,6 +22,8 @@
 	<section class="flex flex-col items-center mb-6 lg:mb-10">
 		<h2>{m.my_experiences()}</h2>
 		<ul class="flex flex-col gap-2 lg:gap-4 items-center">
+			<li>🇨🇴 Arbeláez, Woodcraft</li>
+			<li>🇨🇴 Lago Calima, Mystic Paradise Camping</li>
 			<li>🇨🇴 Sandoná, Movie Time Cinema</li>
 			<li>🇪🇨 Cuenca, Cosmos Apparel</li>
 			<li>🇪🇨 Malacatos, Serena Holistic Center</li>

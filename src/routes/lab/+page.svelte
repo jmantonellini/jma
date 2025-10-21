@@ -36,9 +36,15 @@
 	];
 </script>
 
+<svelte:head>
+	<title>{m.laboratory()}</title>
+</svelte:head>
+
 <div class="flex flex-col lg:max-w-6xl space-y-10 lg:space-y-20 items-center w-full mx-auto">
 	<div id="hero" class="flex flex-col items-center space-y-10">
-		<h1 class="flex flex-row gap-4 lg:mt-18 mt-10">{m.hi()} <ch class="block text-primary animate-wave">👋🏼</ch></h1>
+		<h1 class="flex flex-row gap-4 lg:mt-18 mt-10">
+			{m.hi()} <ch class="block text-primary animate-wave">👋🏼</ch>
+		</h1>
 		<Avatar />
 		<div class="lg:max-w-4xl lg:columns-2 gap-4 lg:gap-8 text-center lg:text-justify relative">
 			{@html m.lab_introduction()}

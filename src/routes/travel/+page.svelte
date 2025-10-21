@@ -24,6 +24,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>{m.travel()}</title>
+</svelte:head>
+
 <svelte:window on:resize={attachListener} />
 
 <main class="flex flex-col items-center">

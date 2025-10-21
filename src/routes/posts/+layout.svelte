@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
-	import type { Post } from '@prisma/client';
 
 	import { m } from '$lib/paraglide/messages';
 	import { localizeHref } from '$lib/paraglide/runtime.js';
+	import type { Post } from '@prisma/client';
 
 	const pathname = $derived(page.url.pathname);
 
@@ -20,7 +20,7 @@
 		<h3>{m.recent_posts()}</h3>
 		<div class="divider divider-secondary"></div>
 		<ul class="menu min-h-[30vh] text-base-content">
-			{#each orderedPosts as { slug, title }}
+			{#each orderedPosts as { slug, translations: [{ title }] }}
 				<li>
 					<a
 						href={localizeHref(`/posts/${slug}`)}

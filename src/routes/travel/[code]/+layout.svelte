@@ -6,6 +6,7 @@
 
 	let { data, children } = $props();
 	let pathname = $derived(page.url.pathname);
+	const posts = data.posts;
 </script>
 
 <div
@@ -17,14 +18,14 @@
 		<h3>{m.other_countries()}</h3>
 		<div class="divider divider-secondary dark:divider-neutral"></div>
 		<ul class="menu min-h-[30vh] gap-2 text-base-content">
-			{#each data.posts as post}
+			{#each posts as post}
 				<li>
 					<a
-						href={localizeHref(`/travel/${post.slug}`)}
+						href={localizeHref(`/travel/${post.countryCode}`)}
 						onclick={(event) => {
 							event.preventDefault();
-							if (pathname !== `/travel/${post.slug}`) goto(localizeHref(`/travel/${post.slug}`));
-						}}>{post.title} {post.flag}</a
+							if (pathname !== `/travel/${post.countryCode}`) goto(localizeHref(`/travel/${post.countryCode}`));
+						}}>{post.translations[0].title} {post.country?.flag}</a
 					>
 				</li>
 			{/each}

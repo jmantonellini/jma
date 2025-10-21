@@ -3,13 +3,14 @@
 	import { applyAction } from '$app/forms';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
-	import type { PageProps } from './$types';
 
 	import { m } from '$lib/paraglide/messages';
 	import Confirmation from '$lib/ui/modals/Confirmation.svelte';
 	import { getToastState } from '$states/toast.svelte';
 	import { ToastTypeEnum } from '$lib/types';
 	import { isAdmin } from '$lib';
+	import type { PageProps } from './$types';
+	import { localizeHref } from '$lib/paraglide/runtime';
 
 	let { data }: PageProps = $props();
 
@@ -22,9 +23,9 @@
 	const posts = $derived(data.posts);
 	const deletePost: SubmitFunction = () => {
 		return async ({ result }) => {
-			invalidateAll();
 			toastState.add(`${m.post_deleted()}! 👋🏼`, ToastTypeEnum.Success);
 			await applyAction(result);
+			invalidateAll();
 		};
 	};
 </script>
@@ -38,13 +39,15 @@
 		{#each posts as post}
 			<li class="flex flex-col gap-2">
 				<div class="card bg-base-100 shadow-xl lg:card-side">
-					<figure>
-						<img
-							class="aspect-square w-full lg:w-[20rem]"
-							src={post.proxyUrl}
-							alt={post.description}
-						/>
-					</figure>
+					{#if post.proxyUrl}
+						<figure>
+							<img
+								class="aspect-square w-full lg:w-[20rem]"
+								src={post.proxyUrl}
+								alt={post.translations[0].description}
+							/>
+						</figure>
+					{/if}
 					<div class="card-body">
 						<div class="flex items-center gap-2">
 							<h3 class="font-semibold">{post.title}</h3>
@@ -58,10 +61,10 @@
 								>
 							{/if}
 						</div>
-						<p>{post.description}</p>
+						<p>{post.translations[0].description}</p>
 						<div class="card-actions justify-end">
 							<a
-								href={`/posts/${post.slug}`}
+								href={localizeHref(`/posts/${post.slug}`)}
 								onclick={(event) => {
 									event.preventDefault();
 									if (pathname !== `/posts/${post.slug}`) goto(`/posts/${post.slug}`);

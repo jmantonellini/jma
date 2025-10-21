@@ -1,26 +1,29 @@
 <script lang="ts">
-	import { getLocale, localizeHref } from '$lib/paraglide/runtime';
+	import { localizeHref } from '$lib/paraglide/runtime';
 	import { m } from '$lib/paraglide/messages';
+	import { formatDate } from '$lib';
 
 	let { data } = $props();
 	const { user, post } = data;
 
-	function formatDate(date: Date) {
-		return new Intl.DateTimeFormat(getLocale(), {
-			dateStyle: 'long'
-		}).format(date);
-	}
+	console.log('POST', post);
+
+	const translation = post?.translations[0];
+
+	console.log('TRANSLATION', translation);
 
 	let showEdit = $state(false);
 </script>
 
 <svelte:head>
-	<title>{post?.title ?? 'Post'}</title>
+	<title>{translation?.title ?? 'Post'}</title>
 </svelte:head>
 
 <main class="grid grid-rows-[auto_1fr] gap-2 lg:gap-4">
 	<hgroup>
-		<img src={post?.proxyUrl} alt={post?.title} class="w-full" />
+		{#if post?.proxyUrl}
+			<img src={post?.proxyUrl} alt={translation?.title} class="w-full" />
+		{/if}
 		<h1
 			class="text-secondary"
 			onmouseenter={() => (showEdit = true)}
@@ -33,15 +36,15 @@
 					class={`transition-opacity ${!showEdit && 'lg:opacity-50'}`}>🖋️</a
 				>
 			{/if}
-			{post?.title ?? 'Untitled'}
+			{translation?.title ?? 'Untitled'}
 		</h1>
 		<h4 class="text-accent">
-			{post?.createdAt ? formatDate(post.createdAt) : 'Unknown date'}
+			{translation?.updatedAt ? formatDate(translation.updatedAt) : 'Unknown date'}
 		</h4>
 	</hgroup>
 	<article class="prose prose-slate font-serif">
 		{#if post}
-			<p>{@html post.postContent}</p>
+			<p>{@html translation?.content}</p>
 		{:else}
 			<p>Content not available.</p>
 		{/if}
