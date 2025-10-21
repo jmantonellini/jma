@@ -1,6 +1,7 @@
 import { getLocale } from '$lib/paraglide/runtime';
 import type { LayoutServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
+import { prisma } from '$lib/server/prisma';
 
 export const load: LayoutServerLoad = async ({ params }) => {
 	let code = params.code;
