@@ -41,24 +41,20 @@ async function translateText(
 }
 
 export const load: PageServerLoad = async ({ params }) => {
-	// Load countries list
-	const countries = await prisma.country.findMany({
-		select: {
-			code: true,
-			name: true,
-			flag: true
-		},
-		where: {
-			post: {
-				none: {}
-			}
-		},
-		orderBy: {
-			name: 'asc'
-		}
-	});
+	const formEmpty = await superValidate(zod4(PostSchema));
 
-	if (!params.slug) return { form: superValidate(zod4(PostSchema)), countries };
+	if (!params.slug) {
+		const countries = await prisma.country.findMany({
+			select: { code: true, name: true, flag: true },
+			where: { post: { none: {} } },
+			orderBy: { name: 'asc' }
+		});
+
+		return {
+			form: formEmpty,
+			countries
+		};
+	}
 
 	const post = await prisma.post.findUnique({
 		where: { slug: params.slug },
@@ -70,7 +66,16 @@ export const load: PageServerLoad = async ({ params }) => {
 			}
 		}
 	});
+
 	if (!post) throw redirect(303, localizeUrl('/posts'));
+
+	const countries = await prisma.country.findMany({
+		select: { code: true, name: true, flag: true },
+		where: {
+			OR: [{ post: { none: {} } }, { code: post.countryCode ?? undefined }]
+		},
+		orderBy: { name: 'asc' }
+	});
 
 	const serializedCountries = JSON.parse(JSON.stringify(countries));
 
@@ -82,7 +87,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		published: post.published,
 		id: post.id,
 		slug: post.slug,
-		countryCode: post.country?.code,
+		countryCode: post.countryCode,
 		coverImage: post.coverImage,
 		translate: false
 	};
@@ -179,7 +184,9 @@ export const actions: Actions = {
 		}
 
 		// Redirect after success
-		throw redirect(303, localizeUrl(`/posts/${post.slug}`));
+		if (code) {
+			throw redirect(303, localizeUrl(`/travel/${post.slug}`));
+		} else throw redirect(303, localizeUrl(`/posts/${post.slug}`));
 	}
 };
 

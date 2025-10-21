@@ -85,6 +85,7 @@
 					.on('mouseover', (event: MouseEvent, d: any) => {
 						if (visitedCountryNames.has(d.properties.name) && selected !== d.properties.name) {
 							d3.select(event.currentTarget).style('fill', 'var(--color-primary)');
+							d3.select(event.currentTarget).style('cursor', '🇦🇷');
 						}
 					})
 					.on('mouseout', (event: MouseEvent, d: any) => {

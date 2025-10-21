@@ -44,6 +44,12 @@
 		{/if}
 	</hgroup>
 
+	{#if post?.proxyUrl}
+		<figure>
+			<img class="w-full max-w-[65ch]" src={post?.proxyUrl} alt={translation?.title} />
+		</figure>
+	{/if}
+
 	<div class="flex items-center whitespace-nowrap text-ellipsis gap-2">
 		{#each categories as category}
 			<a

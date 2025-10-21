@@ -20,6 +20,9 @@ export const load: LayoutServerLoad = async ({ params }) => {
 		}
 	});
 
+	console.log('POSTS', posts);
+	
+
 	if (!posts) {
 		error(404, {
 			message: 'Not found'
